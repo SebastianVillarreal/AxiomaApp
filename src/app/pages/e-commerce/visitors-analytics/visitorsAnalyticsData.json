@@ -1,0 +1,17 @@
+{
+    "innerLine": [94, 188, 225, 244, 253, 254, 249, 235, 208, 173, 141],
+    "outerLine": [
+      { "label": "Jan", "value": 85 },
+      { "label": "Jan", "value": 71 },
+      { "label": "Jan", "value": 59 },
+      { "label": "Jan", "value": 50 },
+      { "label": "Feb", "value": 45 },
+      { "label": "Feb", "value": 42 },
+      { "label": "Feb", "value": 41 },
+      { "label": "Feb", "value": 44 },
+      { "label": "Mar", "value": 58 },
+      { "label": "Mar", "value": 88 },
+      { "label": "Mar", "value": 136 }
+    ]
+  }
+  
