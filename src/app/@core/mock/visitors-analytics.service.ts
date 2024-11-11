@@ -35,12 +35,10 @@ export class VisitorsAnalyticsService extends VisitorsAnalyticsData {
       const label = (index % Math.round(outerLinePointsLength / monthsLength) === 0)
         ? months[monthIndex]
         : '';
-        console.log({label, value:p})
       return {
         label,
         value: p,
       };
-      console.log({})
     });
   }
 

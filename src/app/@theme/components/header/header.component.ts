@@ -1,10 +1,12 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeService } from '@nebular/theme';
 
 import { UserData } from '../../../@core/data/users';
 import { LayoutService } from '../../../@core/utils';
-import { map, takeUntil } from 'rxjs/operators';
+import { filter,map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ngx-header',
@@ -12,6 +14,7 @@ import { Subject } from 'rxjs';
   templateUrl: './header.component.html',
 })
 export class HeaderComponent implements OnInit, OnDestroy {
+  private router = inject(Router);
 
   private destroy$: Subject<void> = new Subject<void>();
   userPictureOnly: boolean = false;
@@ -38,7 +41,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   currentTheme = 'default';
 
-  userMenu = [ { title: 'Profile' }, { title: 'Log out' } ];
+  userMenu = [{ title: 'Profile'}, {title: 'Log out'}];
 
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
@@ -46,6 +49,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
               private userService: UserData,
               private layoutService: LayoutService,
               private breakpointService: NbMediaBreakpointsService) {
+  }
+
+  logOut(): void{
+    this.router.navigate(['/auth/login']);
+    console.log("Log Out");
+  }
+
+  viewProfile(): void{
+    console.log("Profile");
   }
 
   ngOnInit() {
@@ -69,6 +81,21 @@ export class HeaderComponent implements OnInit, OnDestroy {
         takeUntil(this.destroy$),
       )
       .subscribe(themeName => this.currentTheme = themeName);
+
+    this.menuService.onItemClick()
+      .pipe(
+        filter(({tag}) => tag === "user-menu"),
+        map(({item: {title} }) =>title),
+      )
+      .subscribe(title =>{
+        if(title === 'Log out')
+        {
+          this.logOut();
+        } else if (title === 'Profile')
+        {
+          this.viewProfile();
+        }
+      })
   }
 
   ngOnDestroy() {

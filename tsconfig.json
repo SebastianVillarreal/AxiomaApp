@@ -1,6 +1,11 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@Global/*":["src/app/global/*"],
+      "@Constants*":["src/app/global/constants.ts"],
+    },
     "importHelpers": true,
     "module": "es2020",
     "outDir": "./dist/out-tsc",
