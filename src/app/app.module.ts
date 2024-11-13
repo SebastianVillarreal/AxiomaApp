@@ -12,6 +12,9 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { NbPasswordAuthStrategy, NbAuthModule } from '@nebular/auth';
 import { NgxAuthModule } from './auth/auth.module';
+import { HeaderComponent } from './layout/components/header/header.component';
+import { HomeComponent } from './modules/home/home.component';
+import { LayoutComponent } from './layout/layout/layout.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,12 @@ import { NgxAuthModule } from './auth/auth.module';
       ],
       forms: {},
     }),
-    NgxAuthModule
+    NgxAuthModule,
+    HomeComponent,
+    HomeComponent,
+    LayoutComponent,
+    HeaderComponent
+
   ],
   providers: [],
   bootstrap: [AppComponent]
