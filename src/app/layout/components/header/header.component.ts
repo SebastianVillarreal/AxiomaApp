@@ -1,9 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NbMediaBreakpointsService,
-         NbMenuService, 
-         NbSidebarService, 
-         NbTemplatePortal, 
-         NbThemeService, 
+import { 
          NbLayoutModule, 
          NbLayoutComponent,
          NbActionsModule,
@@ -12,8 +8,6 @@ import { NbMediaBreakpointsService,
          NbUserModule,
          NbUserComponent } from '@nebular/theme';
 
-import { map, takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -24,18 +18,7 @@ import { Subject } from 'rxjs';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  // private destroy$: Subject<void> = new Subject<void>();
-  // userPictureOnly: boolean = false;
-  // user: any;
 
-  // userMenu = [{title: 'Cerrar Sesión'}];
-
-  // // constructor(
-  // //   private sidebarService: NbSidebarService,
-  // //   private menuService: NbMenuService,
-  // //   private themeService: NbThemeService,
-  // //   private breakpointService: NbMediaBreakpointsService
-  // // )
 
   
 
