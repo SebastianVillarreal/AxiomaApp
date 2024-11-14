@@ -22,6 +22,10 @@ export interface Usuario {
     Id: number;
     NombreUsuario: string;
     NombrePersona: string;
+    IdSucursal: number;
+    NombreSucursal: string;
     IdPerfil: number;
-    NombrePerfil: string;
+    PctDescuento: number;
+    Rol: string;
+    IdRol: number
 }

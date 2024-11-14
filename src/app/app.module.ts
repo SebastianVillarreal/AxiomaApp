@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule, NbMenuModule, NbContextMenuModule, NbIconModule } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbMenuModule, NbContextMenuModule, NbIconModule, NbToastrModule, NbToast } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 import { HttpClientModule } from '@angular/common/http';
@@ -15,6 +15,7 @@ import { NgxAuthModule } from './auth/auth.module';
 import { HeaderComponent } from './layout/components/header/header.component';
 import { HomeComponent } from './modules/home/home.component';
 import { LayoutComponent } from './layout/layout/layout.component';
+import { config } from 'rxjs';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { LayoutComponent } from './layout/layout/layout.component';
     NbLayoutModule,
     NbEvaIconsModule,
     NbIconModule,
+    NbToastrModule.forRoot(),
     NbMenuModule.forRoot(),
     HttpClientModule,
     NbAuthModule.forRoot({

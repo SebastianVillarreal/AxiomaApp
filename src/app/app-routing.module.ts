@@ -11,6 +11,7 @@ import {
 } from '@nebular/auth';
 import { LayoutComponent } from './layout/layout/layout.component';
 import { HomeComponent } from './modules/home/home.component';
+import { AuthGuard } from './core/guards/GuardPages';
 
 export const routes: Routes = [
   {
@@ -20,6 +21,7 @@ export const routes: Routes = [
   {
     path: 'home',
     component: LayoutComponent,
+    canActivate:[AuthGuard],
     loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule),
     title: 'Página principal'
   }
