@@ -15,7 +15,6 @@ import { NgxAuthModule } from './auth/auth.module';
 import { HeaderComponent } from './layout/components/header/header.component';
 import { HomeComponent } from './modules/home/home.component';
 import { LayoutComponent } from './layout/layout/layout.component';
-import { SidebarComponent } from './layout/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +43,6 @@ import { SidebarComponent } from './layout/sidebar/sidebar.component';
     HomeComponent,
     LayoutComponent,
     HeaderComponent,
-    SidebarComponent,
 
 
   ],

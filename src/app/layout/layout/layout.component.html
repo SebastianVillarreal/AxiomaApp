@@ -3,11 +3,10 @@
         <app-header></app-header>
     </nb-layout-header>
     <nb-sidebar class="menu-sidebar" tag="menu-sidebar" responsive>
-        <app-sidebar></app-sidebar>
+        <nb-menu [items]="menu"></nb-menu>
     </nb-sidebar>
-      <nb-layout-column>
-        <!-- Contenido principal -->
-      </nb-layout-column>
+    <nb-layout-column>
+        <router-outlet></router-outlet>
+    </nb-layout-column>
 </nb-layout>
-    <!-- <app-sidebar></app-sidebar> -->
 
