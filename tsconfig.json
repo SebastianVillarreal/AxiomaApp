@@ -1,26 +1,41 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "importHelpers": true,
-    "module": "es2020",
+    "baseUrl": "./",
+    "paths": {
+      "@Global/*":["src/app/global/*"],
+      "@Environment": ["src/environments/environment.ts"],
+      "@EndPoints*": ["src/app/global/endpoints.ts"],
+      "@Services": ["src/app/core/services"],
+      "@Models/Response": ["src/app/core/models/response/response.ts"],
+      "@Models/Auth": ["src/app/core/models/login"],
+    },
     "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
     "declaration": false,
-    "moduleResolution": "node",
+    "downlevelIteration": true,
     "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
     "target": "ES2022",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
+    "module": "ES2022",
+    "useDefineForClassFields": false,
     "lib": [
-      "es2017",
+      "ES2022",
       "dom"
-    ],
-    "plugins": [
-      {
-        "name": "tslint-language-service"
-      }
-    ],
-    "useDefineForClassFields": false
+    ]
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
   }
 }

@@ -1,61 +1,33 @@
-import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+
 import {
   NbAuthComponent,
   NbLoginComponent,
-  NbLogoutComponent,
   NbRegisterComponent,
+  NbLogoutComponent,
   NbRequestPasswordComponent,
   NbResetPasswordComponent,
 } from '@nebular/auth';
+import { LayoutComponent } from './layout/layout/layout.component';
+import { HomeComponent } from './modules/home/home.component';
+import { AuthGuard } from './core/guards/GuardPages';
 
 export const routes: Routes = [
   {
-    path: 'pages',
-    loadChildren: () => import('./pages/pages.module')
-      .then(m => m.PagesModule),
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then(m => m.NgxAuthModule),
   },
   {
-    path: 'auth',
-    component: NbAuthComponent,
-    children: [
-      {
-        path: '',
-        component: NbLoginComponent,
-      },
-      {
-        path: 'login',
-        component: NbLoginComponent,
-      },
-      {
-        path: 'register',
-        component: NbRegisterComponent,
-      },
-      {
-        path: 'logout',
-        component: NbLogoutComponent,
-      },
-      {
-        path: 'request-password',
-        component: NbRequestPasswordComponent,
-      },
-      {
-        path: 'reset-password',
-        component: NbResetPasswordComponent,
-      },
-    ],
-  },
-  { path: '', redirectTo: 'pages', pathMatch: 'full' },
-  { path: '**', redirectTo: 'pages' },
+    path: 'home',
+    component: LayoutComponent,
+    canActivate:[AuthGuard],
+    loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule),
+    title: 'Página principal'
+  }
 ];
-
-const config: ExtraOptions = {
-  useHash: false,
-};
-
 @NgModule({
-  imports: [RouterModule.forRoot(routes, config)],
-  exports: [RouterModule],
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule { }
