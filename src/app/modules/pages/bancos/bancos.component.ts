@@ -9,10 +9,12 @@ import { NbToastrService } from '@nebular/theme';
 //models
 import { BancoInsertRequest } from '@Models/Banco';
 
+import { CustomTableComponent } from 'src/app/shared/components/custom-table/custom-table.component';
+
 @Component({
   selector: 'app-bancos',
   standalone: true,
-  imports: [NbCardModule, NbInputModule, NbButtonModule],
+  imports: [NbCardModule, NbInputModule, NbButtonModule, CustomTableComponent],
   providers: [NbActionComponent, NbToastrService],
   templateUrl: './bancos.component.html',
   styleUrls: ['./bancos.component.scss']

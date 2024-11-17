@@ -17,6 +17,7 @@ import { HomeComponent } from './modules/home/home.component';
 import { LayoutComponent } from './layout/layout/layout.component';
 import { config } from 'rxjs';
 import { BancosComponent } from './modules/pages/bancos/bancos.component';
+import { CustomTableComponent } from './shared/components/custom-table/custom-table.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { BancosComponent } from './modules/pages/bancos/bancos.component';
     HomeComponent,
     LayoutComponent,
     HeaderComponent,
+    CustomTableComponent,
 
 
   ],
