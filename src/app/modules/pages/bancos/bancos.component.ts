@@ -14,7 +14,7 @@ import { CustomTableComponent } from 'src/app/shared/components/custom-table/cus
 @Component({
   selector: 'app-bancos',
   standalone: true,
-  imports: [NbCardModule, NbInputModule, NbButtonModule, CustomTableComponent],
+  imports: [NbCardModule, NbInputModule, NbButtonModule, CustomTableComponent, ReactiveFormsModule],
   providers: [NbActionComponent, NbToastrService],
   templateUrl: './bancos.component.html',
   styleUrls: ['./bancos.component.scss']
@@ -22,12 +22,13 @@ import { CustomTableComponent } from 'src/app/shared/components/custom-table/cus
 export class BancosComponent implements OnInit {
   constructor() {}
   private fb = inject(FormBuilder);
-  private bancoService = inject(BancoService)
+  private bancoService = inject(BancoService);
   private toastr = inject(NbToastrService);
 
   bancosList: BancoModel[] = [];
 
   form = this.fb.nonNullable.group({
+    id:[0],
     nombre: ['', [Validators.required, Validators.pattern('^\s*$')]],
     direccion: ['', [Validators.required, Validators.pattern('^\s*$')]]
   })
@@ -67,6 +68,7 @@ export class BancosComponent implements OnInit {
 
   resetForm(): void{
     this.form.reset({
+      id: 0,
       nombre: '',
       direccion: ''
     })
@@ -74,7 +76,7 @@ export class BancosComponent implements OnInit {
 
   editBanco(data: BancoModel)
   {
-    console.log(data);
+    console.log(data)
   }
 
   deleteBanco(Id: number){

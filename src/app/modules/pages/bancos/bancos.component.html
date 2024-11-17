@@ -1,15 +1,15 @@
 <div>
-    <form action="">
+    <form action="" [formGroup]="form">
         <nb-card>
             <nb-card-header>Ingresar banco</nb-card-header>
             <nb-card-body class="form-grid">
                 <div>
                     <label class="label">Nombre</label>
-                    <input type="text" nbInput fullWidth>
+                    <input formControlName="nombre" type="text" nbInput fullWidth>
                 </div>
                 <div>
                     <label class="label" >Dirección</label>
-                    <input type="text" nbInput fullWidth>
+                    <input formControlName="direccion" type="text" nbInput fullWidth>
                 </div>
             </nb-card-body>
             <nb-card-footer>
