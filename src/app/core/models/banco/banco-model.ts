@@ -7,5 +7,13 @@ export interface BancoInsertRequest
     UsuarioActualiza: number;
 }
 
+export type GetBancosResponse = ApiResponse<BancoModel[]>;
+
 export interface BancoModel {
+    Id: number;
+    Nombre: string;
+    Direcccion: string;
+    FechaRegistro: string;
+    FechaActualiza: string;
+    UsuarioActualiza: string;
 }

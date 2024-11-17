@@ -5,5 +5,6 @@ export const auth = {
 };
 
 export const bancos = {
-  insert: `${environment.urlBase}/Bancos/Insert`
+  insert: `${environment.urlBase}/Bancos/Insert`,
+  get: `${environment.urlBase}/Bancos/Get`
 }
