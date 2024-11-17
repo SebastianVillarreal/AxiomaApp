@@ -20,6 +20,16 @@
 </div>
 
 <div>
-    <app-custom-table></app-custom-table>
+    <app-custom-table
+        tableHead="Bancos"
+        keyRow="Id"
+        [headers]="['#', 'Nombre', 'Dirección', 'Fecha - registra', 'Fecha - actualiza', 'Usuario-Actualiza']"
+        [keys]="['Id','Nombre', 'Direccion','FechaRegistro', 'FechaActualiza','UsuarioActualiza']"
+        [data]="bancosList"
+        [hasEdit]="true"
+        [hasDelete]="true"
+        (editEmit)="editBanco($event)"
+        (deleteEmit)="deleteBanco($event)">
+    ></app-custom-table>
 </div>
 

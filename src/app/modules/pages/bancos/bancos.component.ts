@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { NbActionComponent, NbCardModule, NbInputModule, NbButtonModule } from '@nebular/theme';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
@@ -7,7 +7,7 @@ import { BancoService } from '@Services';
 import { NbToastrService } from '@nebular/theme';
 
 //models
-import { BancoInsertRequest } from '@Models/Banco';
+import { BancoInsertRequest, BancoModel } from '@Models/Banco';
 
 import { CustomTableComponent } from 'src/app/shared/components/custom-table/custom-table.component';
 
@@ -19,17 +19,29 @@ import { CustomTableComponent } from 'src/app/shared/components/custom-table/cus
   templateUrl: './bancos.component.html',
   styleUrls: ['./bancos.component.scss']
 })
-export class BancosComponent {
+export class BancosComponent implements OnInit {
   constructor() {}
   private fb = inject(FormBuilder);
-
   private bancoService = inject(BancoService)
   private toastr = inject(NbToastrService);
+
+  bancosList: BancoModel[] = [];
 
   form = this.fb.nonNullable.group({
     nombre: ['', [Validators.required, Validators.pattern('^\s*$')]],
     direccion: ['', [Validators.required, Validators.pattern('^\s*$')]]
   })
+
+  ngOnInit(): void {
+    this.getAllBancos();
+  }
+
+  getAllBancos() {
+    this.bancoService.GetAllBancos().subscribe((data)=> {
+      this.bancosList = data.Response.data
+      console.log(this.bancosList)
+    })
+  }
 
   onSubmit(): void{
     if(this.form.valid){
@@ -58,5 +70,14 @@ export class BancosComponent {
       nombre: '',
       direccion: ''
     })
+  }
+
+  editBanco(data: BancoModel)
+  {
+    console.log(data);
+  }
+
+  deleteBanco(Id: number){
+    console.log(Id);
   }
 }
