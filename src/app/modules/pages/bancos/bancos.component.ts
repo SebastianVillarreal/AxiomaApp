@@ -32,8 +32,8 @@ export class BancosComponent implements OnInit {
 
   form = this.fb.nonNullable.group({
     id:[0],
-    nombre: ['', [Validators.required, Validators.pattern('^\s*$')]],
-    direccion: ['', [Validators.required, Validators.pattern('^\s*$')]]
+    nombre: ['', [Validators.required]],
+    direccion: ['', [Validators.required]]
   })
 
   ngOnInit(): void {
@@ -47,7 +47,8 @@ export class BancosComponent implements OnInit {
   }
 
   onSubmit(): void{
-    if(this.form.valid){
+    if (this.form.valid) {
+      console.log('submitted')
       const {id,nombre, direccion} = this.form.getRawValue();
       const usuarioActualiza = parseInt(localStorage.getItem('idUsuario')??'0')
 
