@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { NgIf } from '@angular/common';
+import { NgIf, NgFor } from '@angular/common';
 import { NbActionComponent, NbCardModule, NbInputModule, NbButtonModule, NbSelectModule } from '@nebular/theme';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
@@ -8,7 +8,7 @@ import { ArticuloService } from '@Services';
 import { SweetAlertService } from 'src/app/shared/services/sweet-alert.service';
 
 //Models
-import { ArticuloInsertRequest, ArticuloModel } from '@Models/Articulo';
+import { ArticuloInsertRequest, ArticuloModel, ArticuloUpdateRequest } from '@Models/Articulo';
 
 
 import { CustomTableComponent } from '@Component/Table';
@@ -16,7 +16,7 @@ import { CustomTableComponent } from '@Component/Table';
 @Component({
   selector: 'app-articulos',
   standalone: true,
-  imports: [CustomTableComponent, NbCardModule, NbInputModule, NbButtonModule, ReactiveFormsModule, NbSelectModule,NgIf],
+  imports: [CustomTableComponent, NbCardModule, NbInputModule, NbButtonModule, ReactiveFormsModule, NbSelectModule,NgIf, NgFor],
   templateUrl: './articulos.component.html',
   styleUrls: ['./articulos.component.scss']
 })
@@ -26,6 +26,20 @@ export class ArticulosComponent implements OnInit{
   private articulosService = inject(ArticuloService)
 
   articulosList: ArticuloModel[] = []
+  familiasList = [
+    { id: 1, nombre: '1' },
+  ];
+  unidadesMedidaList = [
+    { id: 1, nombre: 'Kilogramo' },
+    { id: 2, nombre: 'Gramo' },
+    { id: 3, nombre: 'Paquete' },
+    { id: 4, nombre: 'Pieza' },
+    { id: 5, nombre: 'Litro' },
+    { id: 6, nombre: 'Mililitro' },
+    { id: 7, nombre: 'Metro' },
+    { id: 8, nombre: 'Centímetro' },
+  ];
+  
 
   form = this.fb.nonNullable.group({
     id: [0],
@@ -66,7 +80,20 @@ export class ArticulosComponent implements OnInit{
         idUsuario: usuarioActualiza
       }
 
-      const serviceCall =  this.articulosService.InsertArticulo(request)
+      const requestUpdate: ArticuloUpdateRequest = {
+        id: id,
+        codigo: codigo,
+        descripcion: descripcion,
+        idFamilia: idFamilia,
+        idUM: idUm,
+        ultimoCosto: ultimoCosto,
+        precioVenta: precioVenta,
+        iva: iva,
+        ieps: ieps,
+        idUsuario: usuarioActualiza
+      }
+
+      const serviceCall = id == 0 ? this.articulosService.InsertArticulo(request) : this.articulosService.UpdateArticulo(requestUpdate)
       serviceCall.subscribe({
         next: (res: any) => {
           this.resetForm();
@@ -95,7 +122,20 @@ export class ArticulosComponent implements OnInit{
 
   editArticulo(data: ArticuloModel)
   {
-    console.log(data)
+    const idFamilia = this.familiasList.find(familia => familia.nombre === data.Familia);
+    const umSeleccionada = this.unidadesMedidaList.find(um => um.nombre.toLowerCase() === data.UM.toLowerCase());
+
+    this.form.patchValue({
+      id: data.Id,
+      codigo: data.Codigo,
+      descripcion: data.Descripcion,
+      idFamilia: idFamilia?.id,
+      idUm: umSeleccionada?.id,
+      ultimoCosto: Number(data.UltimoCosto),
+      precioVenta: Number(data.PrecioVenta),
+      iva: Number(data.Iva),
+      ieps: Number(data.Ieps)
+    })
   }
 
   deleteArticulo(Id: number) {

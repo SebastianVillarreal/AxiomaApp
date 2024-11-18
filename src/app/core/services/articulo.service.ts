@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { articulos } from '@EndPoints';
-import { ArticuloInsertRequest, GetArticulosResponse  } from '@Models/Articulo';
+import { ArticuloInsertRequest, ArticuloUpdateRequest, GetArticulosResponse  } from '@Models/Articulo';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +16,7 @@ export class ArticuloService {
   constructor(private http: HttpClient) {
     this.headers = new HttpHeaders({})
   }
+
   InsertArticulo(articulo: ArticuloInsertRequest): Observable<boolean>
   {
     const httpOptions = { headers: this.headers }
@@ -26,6 +27,7 @@ export class ArticuloService {
       })
     )
   }
+
   GetAllArticulos(): Observable<GetArticulosResponse>{
     const httpOptions = { headers: this.headers }
     return this.http.get<GetArticulosResponse>(articulos.get, httpOptions)
@@ -36,5 +38,13 @@ export class ArticuloService {
     )
   }
   
-
+  UpdateArticulo(articulo: ArticuloUpdateRequest): Observable<boolean>{
+    const httpOptions = { headers: this.headers }
+    return this.http.put<boolean>(articulos.update, articulo, httpOptions)
+      .pipe(
+        map(res => {
+        return res;
+      })
+    )
+  }
 }

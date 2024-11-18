@@ -25,7 +25,9 @@
                     <label class="label">*Familia</label>
                     <nb-select formControlName="idFamilia" fullWidth>
                         <nb-option value="0" disabled>Familias</nb-option>
-                        <nb-option value="1">1</nb-option>
+                        <nb-option *ngFor="let familia of familiasList" [value]="familia.id">
+                            {{ familia.nombre }}
+                        </nb-option>
                     </nb-select>
                     <div *ngIf="form.get('idFamilia')?.touched && form.get('idFamilia')?.invalid">
                         <p class="text-danger text-sm italic" *ngIf="form.get('idFamilia')?.errors?.['required']">Familia de artículo requerida*</p>
@@ -38,14 +40,9 @@
                     <label class="label">*Unidad de medida</label>
                     <nb-select formControlName="idUm" fullWidth>
                         <nb-option value="0" disabled>Unidades de medida</nb-option>
-                        <nb-option value="1">Kilogramo</nb-option>
-                        <nb-option value="2">Gramo</nb-option>
-                        <nb-option value="3">Paquete</nb-option>
-                        <nb-option value="4">Pieza</nb-option>
-                        <nb-option value="5">Litro</nb-option>
-                        <nb-option value="6">Mililitro</nb-option>
-                        <nb-option value="7">Metro</nb-option>
-                        <nb-option value="8">Centímetro</nb-option>
+                        <nb-option *ngFor="let um of unidadesMedidaList" [value]="um.id">
+                            {{ um.nombre }}
+                        </nb-option>
                     </nb-select>
                     <div *ngIf="form.get('idUm')?.touched && form.get('idUm')?.invalid">
                         <p class="text-danger text-sm italic" *ngIf="form.get('idUm')?.errors?.['required']">Unidad de medida requerida*</p>
