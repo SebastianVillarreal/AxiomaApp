@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 // import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
 import { BancosComponent } from './bancos/bancos.component';
 import { LayoutComponent } from 'src/app/layout/layout/layout.component';
+import { ArticulosComponent } from './articulos/articulos.component';
 
 const routes: Routes = [{
   path: '',
@@ -14,6 +15,11 @@ const routes: Routes = [{
       component: BancosComponent,
       title: 'Bancos'
     },
+    {
+      path: 'articulos',
+      component: ArticulosComponent,
+      title: 'Artículos'
+    }
     // {
     //   path: '**',
     //   component: NotFoundComponent,
