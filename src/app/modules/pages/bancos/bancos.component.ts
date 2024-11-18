@@ -1,4 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { NbActionComponent, NbCardModule, NbInputModule, NbButtonModule } from '@nebular/theme';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
@@ -15,7 +16,7 @@ import { CustomTableComponent } from 'src/app/shared/components/custom-table/cus
 @Component({
   selector: 'app-bancos',
   standalone: true,
-  imports: [NbCardModule, NbInputModule, NbButtonModule, CustomTableComponent, ReactiveFormsModule],
+  imports: [NbCardModule, NbInputModule, NbButtonModule, CustomTableComponent, ReactiveFormsModule, NgIf],
   providers: [NbActionComponent, NbToastrService],
   templateUrl: './bancos.component.html',
   styleUrls: ['./bancos.component.scss']
@@ -52,14 +53,14 @@ export class BancosComponent implements OnInit {
 
       const request: BancoInsertRequest ={
         Nombre: nombre.trim(),
-        Direcccion: direccion.trim(),
+        Direccion: direccion.trim(),
         UsuarioActualiza: usuarioActualiza
       }
 
       const requestUpdate: BancoUpdateRequest = {
         Id: id,
         Nombre: nombre.trim(),
-        Direcccion: direccion.trim(),
+        Direccion: direccion.trim(),
         UsuarioActualiza: usuarioActualiza
       }
 
