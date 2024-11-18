@@ -2,17 +2,17 @@ import { ApiResponse } from "@Models/Response";
 
 export interface BancoInsertRequest
 {
-    Nombre: string;
-    Direccion: string;
-    UsuarioActualiza: number;
+    nombre: string;
+    direccion: string;
+    usuarioActualiza: number;
 }
 
 export interface BancoUpdateRequest
 {
-    Id: number;
-    Nombre: string;
-    Direccion: string;
-    UsuarioActualiza: number;
+    id: number;
+    nombre: string;
+    direccion: string;
+    usuarioActualiza: number;
 }
 
 export type GetBancosResponse = ApiResponse<GetBancosResponseData>;

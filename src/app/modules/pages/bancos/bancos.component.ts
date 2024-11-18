@@ -52,16 +52,16 @@ export class BancosComponent implements OnInit {
       const usuarioActualiza = parseInt(localStorage.getItem('idUsuario')??'0')
 
       const request: BancoInsertRequest ={
-        Nombre: nombre.trim(),
-        Direccion: direccion.trim(),
-        UsuarioActualiza: usuarioActualiza
+        nombre: nombre.trim(),
+        direccion: direccion.trim(),
+        usuarioActualiza: usuarioActualiza
       }
 
       const requestUpdate: BancoUpdateRequest = {
-        Id: id,
-        Nombre: nombre.trim(),
-        Direccion: direccion.trim(),
-        UsuarioActualiza: usuarioActualiza
+        id: id,
+        nombre: nombre.trim(),
+        direccion: direccion.trim(),
+        usuarioActualiza: usuarioActualiza
       }
 
       const serviceCall = id == 0 ? this.bancoService.InsertBanco(request) : this.bancoService.UpdateBanco(requestUpdate);
