@@ -1,1 +1,13 @@
-<p>articulos works!</p>
+<div>
+    <app-custom-table
+        tableHead="Artículos"
+        keyRow="Id"
+        [headers]="['#', 'Código', 'Descripción', 'Familia', 'Unidad de medida', 'Último costo', 'Precio venta', 'IVA', 'IEPS', 'Fecha - registra', 'Fecha - actualiza', 'Usuario - Actualiza']"
+        [keys]="['Id','Codigo', 'Descripcion','Familia', 'UM','UltimoCosto', 'PrecioVenta', 'Iva', 'Ieps', 'FechaReg','FechaAct', 'Usuario']"
+        [data]="articulosList"
+        [hasEdit]="true"
+        [hasDelete]="true"
+        (editEmit)="editArticulo($event)"
+        (deleteEmit)="deleteArticulo($event)">
+    ></app-custom-table>
+</div>

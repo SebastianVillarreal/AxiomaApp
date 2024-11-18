@@ -9,4 +9,8 @@ export const bancos = {
   get: `${environment.urlBase}Bancos/Get`,
   update: `${environment.urlBase}Bancos/Update`,
   delete: `${environment.urlBase}Bancos/Delete`,
+};
+
+export const articulos = {
+  get: `${environment.urlBase}Articulos/Get`
 }

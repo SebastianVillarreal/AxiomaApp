@@ -10,7 +10,7 @@ import { ArticulosComponent } from './articulos/articulos.component';
     NbMenuModule,
   ],
   declarations: [
-    ArticulosComponent
+    
   ],
 })
 export class PagesModule {
