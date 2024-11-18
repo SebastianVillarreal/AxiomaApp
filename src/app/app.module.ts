@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NbThemeModule, NbLayoutModule, NbMenuModule, NbContextMenuModule, NbIconModule, NbToastrModule, NbToast, NbCardModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 
 import { NbPasswordAuthStrategy, NbAuthModule } from '@nebular/auth';
@@ -18,6 +18,7 @@ import { LayoutComponent } from './layout/layout/layout.component';
 import { config } from 'rxjs';
 import { BancosComponent } from './modules/pages/bancos/bancos.component';
 import { CustomTableComponent } from './shared/components/custom-table/custom-table.component';
+import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,9 @@ import { CustomTableComponent } from './shared/components/custom-table/custom-ta
 
 
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
