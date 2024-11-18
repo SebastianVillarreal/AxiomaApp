@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { bancos } from '@EndPoints';
-import { GetBancosResponse,BancoInsertRequest } from '@Models/Banco';
+import { GetBancosResponse,BancoInsertRequest, BancoUpdateRequest } from '@Models/Banco';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +30,16 @@ export class BancoService {
   GetAllBancos(): Observable<GetBancosResponse>{
     const httpOptions = {headers: this.headers}
     return this.http.get<GetBancosResponse>(bancos.get, httpOptions)
+    .pipe(
+      map(res => {
+        return res;
+      })
+    )
+  }
+
+  UpdateBanco(banco: BancoUpdateRequest): Observable<boolean>{
+    const httpOptions = {headers: this.headers}
+    return this.http.put<boolean>(bancos.update, banco, httpOptions)
     .pipe(
       map(res => {
         return res;

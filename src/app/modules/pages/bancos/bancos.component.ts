@@ -7,7 +7,7 @@ import { BancoService } from '@Services';
 import { NbToastrService } from '@nebular/theme';
 
 //models
-import { BancoInsertRequest, BancoModel } from '@Models/Banco';
+import { BancoInsertRequest, BancoModel, BancoUpdateRequest } from '@Models/Banco';
 
 import { CustomTableComponent } from 'src/app/shared/components/custom-table/custom-table.component';
 
@@ -46,25 +46,34 @@ export class BancosComponent implements OnInit {
 
   onSubmit(): void{
     if(this.form.valid){
-      const {nombre, direccion} = this.form.getRawValue();
+      const {id,nombre, direccion} = this.form.getRawValue();
       const usuarioActualiza = parseInt(localStorage.getItem('idUsuario')??'0')
+
       const request: BancoInsertRequest ={
-        Nombre: nombre,
-        Direcccion: direccion,
+        Nombre: nombre.trim(),
+        Direcccion: direccion.trim(),
         UsuarioActualiza: usuarioActualiza
       }
 
-    this.bancoService.InsertBanco(request)
-    .subscribe({
-      next: (res: any) => {
-        this.resetForm();
-      },
-      error: (err: any) => {
-        console.log(err);
+      const requestUpdate: BancoUpdateRequest = {
+        Id: id,
+        Nombre: nombre.trim(),
+        Direcccion: direccion.trim(),
+        UsuarioActualiza: usuarioActualiza
       }
-    })
+
+      const serviceCall = id == 0 ? this.bancoService.InsertBanco(request) : this.bancoService.UpdateBanco(requestUpdate);
+      serviceCall.subscribe({
+        next: (res: any) => {
+          this.resetForm();
+          this.getAllBancos();
+        },
+        error: (err: any) => {
+          console.log(err);
+        }
+      })
+    }
   }
-}
 
   resetForm(): void{
     this.form.reset({
@@ -76,7 +85,11 @@ export class BancosComponent implements OnInit {
 
   editBanco(data: BancoModel)
   {
-    console.log(data)
+    this.form.patchValue({
+      id: data.Id,
+      nombre: data.Nombre,
+      direccion: data.Direccion
+    })
   }
 
   deleteBanco(Id: number){
