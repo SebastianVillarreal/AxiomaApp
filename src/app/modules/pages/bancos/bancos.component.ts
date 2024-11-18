@@ -11,7 +11,7 @@ import { SweetAlertService } from 'src/app/shared/services/sweet-alert.service';
 //models
 import { BancoInsertRequest, BancoModel, BancoUpdateRequest } from '@Models/Banco';
 
-import { CustomTableComponent } from 'src/app/shared/components/custom-table/custom-table.component';
+import { CustomTableComponent } from '@Component/Table';
 
 @Component({
   selector: 'app-bancos',
