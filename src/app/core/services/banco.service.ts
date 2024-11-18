@@ -46,4 +46,14 @@ export class BancoService {
       })
     )
   }
+
+  DeleteBanco(id: number): Observable<Boolean>{
+    const httpOptions = {headers: this.headers}
+    return this.http.put<Boolean>(bancos.delete,id, httpOptions)
+    .pipe(
+      map(res => {
+        return res;
+      })
+    )
+  }
 }

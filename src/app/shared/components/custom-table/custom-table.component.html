@@ -21,7 +21,7 @@
                     <button *ngIf="hasEdit" (click)="editRow(row)">
                         <nb-icon icon="edit-outline"></nb-icon>
                     </button>
-                    <button>
+                    <button *ngIf="hasDelete" (click)="deleteRow(row)">
                         <nb-icon icon="trash-outline"></nb-icon>
                     </button>
                 </td>

@@ -5,6 +5,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 //services
 import { BancoService } from '@Services';
 import { NbToastrService } from '@nebular/theme';
+import { SweetAlertService } from 'src/app/shared/services/sweet-alert.service';
 
 //models
 import { BancoInsertRequest, BancoModel, BancoUpdateRequest } from '@Models/Banco';
@@ -24,6 +25,7 @@ export class BancosComponent implements OnInit {
   private fb = inject(FormBuilder);
   private bancoService = inject(BancoService);
   private toastr = inject(NbToastrService);
+  private sweetAlertService = inject(SweetAlertService);
 
   bancosList: BancoModel[] = [];
 
@@ -40,7 +42,6 @@ export class BancosComponent implements OnInit {
   getAllBancos() {
     this.bancoService.GetAllBancos().subscribe((data)=> {
       this.bancosList = data.Response.data
-      console.log(this.bancosList)
     })
   }
 
@@ -93,6 +94,21 @@ export class BancosComponent implements OnInit {
   }
 
   deleteBanco(Id: number){
-    console.log(Id);
+    this.sweetAlertService.confirm({
+      title: '¿Estás seguro que deseas eliminar permanentemente este banco?',
+      confirmButtonText: 'Eliminar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.bancoService.DeleteBanco(Id)
+          .subscribe({
+            next: (res) => {
+              this.getAllBancos();
+            },
+            error: (err) => {
+              console.log(err);
+            }
+          });
+      }
+    });
   }
 }
