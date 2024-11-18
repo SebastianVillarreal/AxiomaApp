@@ -24,6 +24,7 @@ export class ArticulosComponent implements OnInit{
   constructor() { }
   private fb = inject(FormBuilder)
   private articulosService = inject(ArticuloService)
+  private sweetAlertService = inject(SweetAlertService)
 
   articulosList: ArticuloModel[] = []
   familiasList = [
@@ -139,6 +140,22 @@ export class ArticulosComponent implements OnInit{
   }
 
   deleteArticulo(Id: number) {
-    console.log(Id)
+    this.sweetAlertService.confirm({
+      title: '¿Estás seguro que deseas eliminar este artículo?',
+      confirmButtonText: 'Eliminar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.articulosService.DeleteArticulo(Id)
+          .subscribe({
+            next: (res) => {
+              this.getAllArticulos();
+            },
+            error: (err) => {
+              console.log(err);
+            }
+          });
+      }
+    });
   }
+  
 }

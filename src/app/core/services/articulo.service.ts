@@ -47,4 +47,14 @@ export class ArticuloService {
       })
     )
   }
+
+  DeleteArticulo(id: number): Observable<Boolean>{
+    const httpOptions = { headers: this.headers }
+    return this.http.put<Boolean>(articulos.delete, id, httpOptions)
+      .pipe(
+        map(res => {
+          return res;
+      })
+    )
+  }
 }
