@@ -1,5 +1,17 @@
 import { ApiResponse } from "@Models/Response";
 
+export interface ArticuloInsertRequest{
+    codigo: string;
+    descripcion: string;
+    idFamilia: number;
+    idUM: number;
+    ultimoCosto: number;
+    precioVenta: number;
+    iva: number;
+    ieps: number;
+    idUsuario: number;
+}
+
 export type GetArticulosResponse = ApiResponse<GetArticulosResponseData>;
 
 export interface GetArticulosResponseData{

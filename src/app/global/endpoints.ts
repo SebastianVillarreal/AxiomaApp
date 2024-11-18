@@ -12,5 +12,6 @@ export const bancos = {
 };
 
 export const articulos = {
+  insert: `${environment.urlBase}Articulos/Insert`,
   get: `${environment.urlBase}Articulos/Get`
 }
