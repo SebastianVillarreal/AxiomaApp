@@ -1,0 +1,31 @@
+
+<h5>{{tableHead}}</h5>
+<div class="relative overflow-x-auto">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th *ngFor="let header of headers" scope="col" class="px-6 py-3">
+                    {{header}}
+                </th>
+                <th *ngIf="hasEdit || hasDelete">
+                    Acciones
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let row of data" class="bg-white border-b">
+                <td *ngFor="let key of keys"class="px-6 py-4">
+                   {{row[key]}}
+                </td>
+                <td *ngIf="hasEdit || hasDelete">
+                    <button *ngIf="hasEdit" class="text-blue-600 font-medium hover:underline" (click)="editRow(row)">
+                        <nb-icon icon="edit-outline"></nb-icon>
+                    </button>
+                    <button *ngIf="hasDelete" class="text-red-600 font-medium hover:underline ms-3"(click)="deleteRow(row)">
+                        <nb-icon icon="trash-outline"></nb-icon>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

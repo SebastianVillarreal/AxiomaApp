@@ -4,10 +4,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule, NbMenuModule, NbContextMenuModule, NbIconModule, NbToastrModule, NbToast } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbMenuModule, NbContextMenuModule, NbIconModule, NbToastrModule, NbToast, NbCardModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 
 import { NbPasswordAuthStrategy, NbAuthModule } from '@nebular/auth';
@@ -16,6 +16,9 @@ import { HeaderComponent } from './layout/components/header/header.component';
 import { HomeComponent } from './modules/home/home.component';
 import { LayoutComponent } from './layout/layout/layout.component';
 import { config } from 'rxjs';
+import { BancosComponent } from './modules/pages/bancos/bancos.component';
+import { CustomTableComponent } from './shared/components/custom-table/custom-table.component';
+import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -29,6 +32,7 @@ import { config } from 'rxjs';
     NbLayoutModule,
     NbEvaIconsModule,
     NbIconModule,
+    NbCardModule,
     NbToastrModule.forRoot(),
     NbMenuModule.forRoot(),
     HttpClientModule,
@@ -45,10 +49,13 @@ import { config } from 'rxjs';
     HomeComponent,
     LayoutComponent,
     HeaderComponent,
+    CustomTableComponent,
 
 
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

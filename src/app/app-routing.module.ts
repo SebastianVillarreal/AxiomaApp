@@ -23,7 +23,14 @@ export const routes: Routes = [
     component: LayoutComponent,
     canActivate:[AuthGuard],
     loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule),
-    title: 'Página principal'
+    title: 'Inicio'
+  },
+  {
+    path: 'pages',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./modules/pages/pages.module')
+      .then(m => m.PagesModule)
+
   }
 ];
 @NgModule({

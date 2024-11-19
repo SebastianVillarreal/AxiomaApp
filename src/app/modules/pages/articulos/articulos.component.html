@@ -1,0 +1,102 @@
+<div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+        <nb-card>
+            <nb-card-header>
+                <h5>
+                    Artículo | Formulario
+                </h5>
+            </nb-card-header>
+            <nb-card-body class="form-grid">
+                <div>
+                    <label class="label">*Código</label>
+                    <input formControlName="codigo" type="text" nbInput fullWidth>
+                    <div *ngIf="form.get('codigo')?.touched && form.get('codigo')?.invalid">
+                        <p class="text-danger text-sm italic" *ngIf="form.get('codigo')?.errors?.['required']">Código de artículo requerido*</p>
+                    </div>
+                </div>
+                <div>
+                    <label class="label">*Descripción</label>
+                    <input formControlName="descripcion" type="text" nbInput fullWidth>
+                    <div *ngIf="form.get('descripcion')?.touched && form.get('descripcion')?.invalid">
+                        <p class="text-danger text-sm italic" *ngIf="form.get('descripcion')?.errors?.['required']">Descripción de artículo requerida*</p>
+                    </div>
+                </div>
+                <div>
+                    <label class="label">*Familia</label>
+                    <nb-select formControlName="idFamilia" fullWidth>
+                        <nb-option value="0" disabled>Familias</nb-option>
+                        <nb-option *ngFor="let familia of familiasList" [value]="familia.id">
+                            {{ familia.nombre }}
+                        </nb-option>
+                    </nb-select>
+                    <div *ngIf="form.get('idFamilia')?.touched && form.get('idFamilia')?.invalid">
+                        <p class="text-danger text-sm italic" *ngIf="form.get('idFamilia')?.errors?.['required']">Familia de artículo requerida*</p>
+                    </div>
+                    <div *ngIf="form.get('idFamilia')?.touched && form.get('idFamilia')?.invalid">
+                        <p class="text-danger text-sm italic" *ngIf="form.get('idFamilia')?.errors?.['min']">Seleccione una familia*</p>
+                    </div>
+                </div>
+                <div>
+                    <label class="label">*Unidad de medida</label>
+                    <nb-select formControlName="idUm" fullWidth>
+                        <nb-option value="0" disabled>Unidades de medida</nb-option>
+                        <nb-option *ngFor="let um of unidadesMedidaList" [value]="um.id">
+                            {{ um.nombre }}
+                        </nb-option>
+                    </nb-select>
+                    <div *ngIf="form.get('idUm')?.touched && form.get('idUm')?.invalid">
+                        <p class="text-danger text-sm italic" *ngIf="form.get('idUm')?.errors?.['required']">Unidad de medida requerida*</p>
+                    </div>
+                    <div *ngIf="form.get('idUm')?.touched && form.get('idUm')?.invalid">
+                        <p class="text-danger text-sm italic" *ngIf="form.get('idUm')?.errors?.['min']">Seleccione una unidad de medida*</p>
+                    </div>
+                </div>
+                <div>
+                    <label class="label">*Último costo</label>
+                    <input formControlName="ultimoCosto" type="number" nbInput fullWidth min="0">
+                    <div *ngIf="form.get('ultimoCosto')?.touched && form.get('ultimoCosto')?.invalid">
+                        <p class="text-danger text-sm italic" *ngIf="form.get('ultimoCosto')?.errors?.['required']">Último costo requerido*</p>
+                    </div>
+                </div>
+                <div>
+                    <label class="label">*Precio de venta</label>
+                    <input formControlName="precioVenta" type="number" nbInput fullWidth min="0">
+                    <div *ngIf="form.get('precioVenta')?.touched && form.get('precioVenta')?.invalid">
+                        <p class="text-danger text-sm italic" *ngIf="form.get('precioVenta')?.errors?.['required']">Precio de venta requerido*</p>
+                    </div>
+                </div>
+                <div>
+                    <label class="label">*IVA</label>
+                    <input formControlName="iva" type="number" nbInput fullWidth step="0.10" min="0">
+                    <div *ngIf="form.get('iva')?.touched && form.get('iva')?.invalid">
+                        <p class="text-danger text-sm italic" *ngIf="form.get('iva')?.errors?.['required']">IVA requerido*</p>
+                    </div>
+                </div>
+                <div>
+                    <label class="label">*IEPS</label>
+                    <input formControlName="ieps" type="number" nbInput fullWidth step="0.10" min="0">
+                    <div *ngIf="form.get('ieps')?.touched && form.get('ieps')?.invalid">
+                        <p class="text-danger text-sm italic" *ngIf="form.get('ieps')?.errors?.['required']">IEPS requerido*</p>
+                    </div>
+                </div>
+            </nb-card-body>
+            <nb-card-footer>
+                <button nbButton status="primary" type="submit">Guardar</button>
+            </nb-card-footer>
+        </nb-card>
+    </form>
+</div>
+
+<div>
+    <app-custom-table
+        tableHead="Artículos"
+        keyRow="Id"
+        [headers]="['#', 'Código', 'Descripción', 'Familia', 'Unidad de medida', 'Último costo', 'Precio venta', 'IVA', 'IEPS', 'Fecha - registra', 'Fecha - actualiza', 'Usuario - Actualiza']"
+        [keys]="['Id','Codigo', 'Descripcion','Familia', 'UM','UltimoCosto', 'PrecioVenta', 'Iva', 'Ieps', 'FechaReg','FechaAct', 'Usuario']"
+        [data]="articulosList"
+        [hasEdit]="true"
+        [hasDelete]="true"
+        (editEmit)="editArticulo($event)"
+        (deleteEmit)="deleteArticulo($event)">
+    ></app-custom-table>
+</div>

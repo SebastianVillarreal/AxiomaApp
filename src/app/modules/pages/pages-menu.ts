@@ -8,15 +8,14 @@ export const MENU_ITEMS: NbMenuItem[] = [
         home: true
     },
     {
-        title: 'E-commerce',
-        icon: 'shopping-cart-outline',
-        link: '/pages/dashboard',
-        home: true,
+        title: 'Bancos',
+        icon: 'credit-card-outline',
+        link: '/pages/bancos',
       },
       {
-        title: 'IoT Dashboard',
-        icon: 'home-outline',
-        link: '/pages/iot-dashboard',
+        title: 'Artículos',
+        icon: 'cube-outline',
+        link: '/pages/articulos',
       },
       {
         title: 'FEATURES',
