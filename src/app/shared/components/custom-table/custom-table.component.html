@@ -15,8 +15,14 @@
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-                <th *ngFor="let header of headers" scope="col" class="px-6 py-3">
-                    {{header}}
+                <th *ngFor="let header of headers; let i = index" (click)="sortData(keys[i])"scope="col" class="px-6 py-3">
+                    <div class="flex items-center">
+                        {{header}}
+                        <nb-icon 
+                        *ngIf="sortKey === keys[i]" 
+                        [icon]="sortDirection === 'asc' ? 'arrow-up-outline' : 'arrow-down-outline'"
+                        class="ms-2"></nb-icon>
+                    </div>
                 </th>
                 <th *ngIf="hasEdit || hasDelete">
                     Acciones

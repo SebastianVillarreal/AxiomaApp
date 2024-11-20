@@ -22,7 +22,13 @@ export class CustomTableComponent{
   @Output() editEmit: EventEmitter<any> = new EventEmitter();
   @Output() deleteEmit: EventEmitter<any> = new EventEmitter();
 
+  //Buscar elemento
   elementoBuscado: string = "";
+
+  //Ordenar elemento
+  sortKey: string | null = null;
+  sortDirection: 'asc' | 'desc' | null = null;
+
   constructor() {}
 
   get filtrarDatos(): any[] {
@@ -39,6 +45,30 @@ export class CustomTableComponent{
         )
       )
     }
+  }
+
+  sortData(column: string)
+  {
+    if (this.sortKey == column)
+    {
+      this.sortDirection = this.sortDirection == 'asc' ? 'desc' : 'asc';
+    }
+    else
+    {
+      this.sortKey = column;
+      this.sortDirection = 'asc';
+    }
+
+    this.filtrarDatos.sort((a,b) => {
+      const valA = a[column];
+      const valB = b[column];
+
+      if (valA == null || valB == null) return 0;
+
+      const comparison = valA > valB ? 1 : valA < valB ? -1 : 0;
+
+      return this.sortDirection === 'asc' ? comparison : -comparison;
+    })
   }
 
   editRow(data: any){
