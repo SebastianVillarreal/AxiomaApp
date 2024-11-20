@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgFor, NgIf, } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { NbIconModule } from '@nebular/theme';
+import { NbIconModule,NbButtonModule } from '@nebular/theme';
 @Component({
   selector: 'app-custom-table',
   standalone: true,
-  imports: [NgFor, NgIf, NbIconModule, FormsModule],
+  imports: [NgFor, NgIf, NbIconModule, FormsModule, NbButtonModule],
   templateUrl: './custom-table.component.html',
   styleUrls: ['./custom-table.component.scss']
 })
