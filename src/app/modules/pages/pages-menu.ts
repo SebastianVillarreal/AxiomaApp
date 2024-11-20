@@ -18,6 +18,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/pages/articulos',
       },
       {
+        title: 'Insumos',
+        icon: 'file-text-outline',
+        link: '/pages/insumos',
+      },
+      {
         title: 'FEATURES',
         group: true,
       },

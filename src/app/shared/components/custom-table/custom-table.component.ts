@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgFor, NgIf, } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { NbIconModule,NbButtonModule } from '@nebular/theme';
+import { NbIconModule,NbButtonModule, NbInputModule } from '@nebular/theme';
 @Component({
   selector: 'app-custom-table',
   standalone: true,
@@ -16,6 +16,7 @@ export class CustomTableComponent{
   @Input() data: any[] = [];
   @Input() keys: any[] =[];
   @Input() hasSearch: boolean = false;
+  @Input() hasExport: boolean = false;
   @Input() hasEdit: boolean = false;
   @Input() hasDelete: boolean = false;
   
