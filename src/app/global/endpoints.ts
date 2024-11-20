@@ -16,4 +16,8 @@ export const articulos = {
   get: `${environment.urlBase}Articulos/Get`,
   update: `${environment.urlBase}Articulos/Update`,
   delete: `${environment.urlBase}Articulos/Delete`
+};
+
+export const insumos = {
+  get: `${environment.urlBase}Insumos/Get`
 }

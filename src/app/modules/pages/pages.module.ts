@@ -13,7 +13,6 @@ import { InsumosComponent } from './insumos/insumos.component';
   declarations: [
     
   
-    InsumosComponent
   ],
 })
 export class PagesModule {

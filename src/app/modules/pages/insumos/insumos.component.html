@@ -1,1 +1,15 @@
-<p>insumos works!</p>
+<div>
+    <app-custom-table
+        tableHead="Insumos | Tabla"
+        keyRow="Id"
+        [headers]="['#', 'Insumo', 'Descripción', 'InsumosUP','Costo', 'Unidad de Medida', 'Fecha Registro', 'Fecha Actualiza', 'Usuario Actualiza']"
+        [keys]="['Id','Insumo', 'Descripcion','InsumosUP', 'Costo','UnidadMedida','FechaRegistro', 'FechaActualiza', 'UsuarioActualiza']"
+        [data]="insumosList"
+        [hasEdit]="true"
+        [hasDelete]="true"
+        [hasSearch]="true"
+        [hasExport]="true"
+        (editEmit)="editInsumo($event)"
+        (deleteEmit)="deleteInsumo($event)">
+    ></app-custom-table>
+</div>

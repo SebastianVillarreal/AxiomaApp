@@ -12,7 +12,8 @@
       "@Models/Response": ["src/app/core/models/response/response.ts"],
       "@Models/Auth": ["src/app/core/models/login"],
       "@Models/Banco": ["src/app/core/models/banco"],
-      "@Models/Articulo": ["src/app/core/models/articulo"]
+      "@Models/Articulo": ["src/app/core/models/articulo"],
+      "@Models/Insumo": ["src/app/core/models/insumo"]
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
