@@ -18,7 +18,7 @@ export class ErrorInterceptor implements HttpInterceptor{
 
   intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
-    if (req.method === 'GET') {
+    if (req.method === 'GET' || req.url.includes('/api/SignIn')) {
       return next.handle(req);
     }
 

@@ -35,6 +35,7 @@ export class NgxLoginComponent extends NbLoginComponent {
       this.auth.auth(request)
         .subscribe({
           next: (res) => {
+            console.log(res)
             const data = res.Response.data;
             if (data.Token != null) {
             localStorage.setItem('token', data.Token);
@@ -52,6 +53,7 @@ export class NgxLoginComponent extends NbLoginComponent {
           },
           error: (err) => {
             this.toastr.danger("Ha ocurrido un error: " + err.message);
+            console.log(err);
             this.resetForm();
           }
         });
