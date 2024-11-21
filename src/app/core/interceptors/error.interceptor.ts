@@ -34,19 +34,14 @@ export class ErrorInterceptor implements HttpInterceptor{
     return next.handle(req).pipe(
       tap((event: HttpEvent<any>) => {
         if (event instanceof HttpResponse) {
-          if (event.body.StatusCode === 200) {
+          if (event.body.StatusCode === 200 || event.body.StatusCode === 201) {
             this.toastr.success(
-              event.body.message,
+              event.body.response.data,
               'Solicitud Exitosa'
             )
-          } else if (event.body.StatusCode === 201) {
-            this.toastr.success(
-              event.body.Message,
-              'Solicitud Exitosa 201'
-            )
-          } else if (event.body.StatusCode === 409) {
+          } else if (event.body.StatusCode === 409 || event.body.StatusCode === 400) {
             this.toastr.warning(
-              event.body.Message,
+              event.body.response.data,
               'Ha Ocurrido un Error'
             )
           }
