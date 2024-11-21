@@ -17,6 +17,11 @@ export class ErrorInterceptor implements HttpInterceptor{
   private toastr = inject(NbToastrService);
 
   intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+
+    if (req.method === 'GET') {
+      return next.handle(req);
+    }
+
     if (localStorage.getItem('token')) {
       const token = localStorage.getItem('token')!.toString();
       req = req.clone({
@@ -31,7 +36,7 @@ export class ErrorInterceptor implements HttpInterceptor{
         if (event instanceof HttpResponse) {
           if (event.body.StatusCode === 200) {
             this.toastr.success(
-              event.body.Message,
+              event.body.message,
               'Solicitud Exitosa'
             )
           } else if (event.body.StatusCode === 201) {
