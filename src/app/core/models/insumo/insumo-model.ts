@@ -1,5 +1,24 @@
 import { ApiResponse } from "@Models/Response";
 
+export interface InsumoUpdateRequest {
+    id: number;
+    insumo: string;
+    descripcionInsumo: string;
+    costo: number;
+    unidadMedida: number;
+    usuarioActualiza: number;
+    insumosUP: string;
+}
+
+export interface InsumoInsertRequest {
+    insumo: string;
+    descripcionInsumo: string;
+    costo: number;
+    unidadMedida: number;
+    usuarioActualiza: number;
+    insumosUP: string;
+}
+
 export type GetInsumoResponse = ApiResponse<InsumoResponseData>;
 
 export interface InsumoResponseData {

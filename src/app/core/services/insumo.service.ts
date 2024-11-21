@@ -5,7 +5,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { GetInsumoResponse } from '@Models/Insumo';
+import { GetInsumoResponse, InsumoInsertRequest, InsumoUpdateRequest } from '@Models/Insumo';
 import { insumos } from '@Global/endpoints';
 
 @Injectable({
@@ -17,6 +17,16 @@ export class InsumoService {
     this.headers = new HttpHeaders({});
   }
 
+  InsertInsumo(insumo: InsumoInsertRequest): Observable<Boolean> {
+    const httpOptions = {headers: this.headers}
+    return this.http.post<Boolean>(insumos.insert, insumo, httpOptions)
+    .pipe(
+      map(res => {
+        return res;
+      })
+    )
+  }
+
   GetAllInsumos(): Observable<GetInsumoResponse>{
     const httpOptions = {headers: this.headers}
     return this.http.get<GetInsumoResponse>(insumos.get, httpOptions)
@@ -25,6 +35,16 @@ export class InsumoService {
         return res;
       }
       )
+    )
+  }
+
+  UpdateInsumo(insumo: InsumoUpdateRequest): Observable<Boolean>{
+    const httpOptions = {headers: this.headers}
+    return this.http.put<Boolean>(insumos.update, insumo, httpOptions)
+    .pipe(
+      map(res => {
+        return res;
+      })
     )
   }
 }

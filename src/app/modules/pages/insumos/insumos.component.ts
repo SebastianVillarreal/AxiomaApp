@@ -5,7 +5,7 @@ import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CustomTableComponent } from '@Component/Table';
 
 import { InsumoService } from '@Services';
-import { InsumoModel, GetInsumoResponse, InsumoInsertRequest } from '@Models/Insumo';
+import { InsumoModel, GetInsumoResponse, InsumoInsertRequest, InsumoUpdateRequest } from '@Models/Insumo';
 
 @Component({
   selector: 'app-insumos',
@@ -65,7 +65,17 @@ export class InsumosComponent implements OnInit{
         usuarioActualiza: usuarioActualiza
       }
 
-      const serviceCall = this.insumoService.InsertInsumo(request)
+      const requestUpdate: InsumoUpdateRequest = {
+        id: id,
+        insumo: insumo,
+        descripcionInsumo: descripcion,
+        insumosUP: insumosUP,
+        unidadMedida: idUm,
+        costo: costo,
+        usuarioActualiza: usuarioActualiza
+      }
+
+      const serviceCall = id == 0 ? this.insumoService.InsertInsumo(request) : this.insumoService.UpdateInsumo(requestUpdate)
       serviceCall.subscribe({
         next: (res: any) => {
           this.getInsumos()
@@ -91,7 +101,18 @@ export class InsumosComponent implements OnInit{
 
   editInsumo(data: InsumoModel)
   {
-    console.log(data)
+
+    const um = this.unidadesMedidaList.find(um => um.nombre.toLowerCase() === data.UnidadMedida.toLowerCase())
+    this.form.patchValue({
+      id: data.Id,
+      insumo: data.Insumo,
+      descripcion: data.Descripcion,
+      insumosUP: data.InsumosUP,
+      idUm: um?.id,
+      costo: data.Costo
+    }
+
+    )
   }
 
   deleteInsumo(Id: number)
