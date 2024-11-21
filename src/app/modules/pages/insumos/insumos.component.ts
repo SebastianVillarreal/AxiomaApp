@@ -5,7 +5,9 @@ import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CustomTableComponent } from '@Component/Table';
 
 import { InsumoService } from '@Services';
-import { InsumoModel, GetInsumoResponse, InsumoInsertRequest, InsumoUpdateRequest } from '@Models/Insumo';
+import { InsumoModel, InsumoInsertRequest, InsumoUpdateRequest } from '@Models/Insumo';
+
+import { SweetAlertService } from 'src/app/shared/services/sweet-alert.service';
 
 @Component({
   selector: 'app-insumos',
@@ -28,6 +30,7 @@ export class InsumosComponent implements OnInit{
 
   private insumoService = inject(InsumoService)
   private fb = inject(FormBuilder)
+  private sweetAlertService = inject(SweetAlertService)
 
   insumosList: InsumoModel[] = []
 
@@ -117,6 +120,21 @@ export class InsumosComponent implements OnInit{
 
   deleteInsumo(Id: number)
   {
-    console.log(Id)
+    this.sweetAlertService.confirm({
+      title: '¿Estás seguro que deseas eliminar este insumo?',
+      confirmButtonText: 'Eliminar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.insumoService.DeleteInsumo(Id)
+          .subscribe({
+            next: (res) => {
+              this.getInsumos();
+            },
+            error: (err) => {
+              console.log(err);
+            }
+          });
+      }
+    });
   }
 }

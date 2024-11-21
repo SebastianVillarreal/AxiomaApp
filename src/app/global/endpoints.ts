@@ -21,5 +21,6 @@ export const articulos = {
 export const insumos = {
   insert: `${environment.urlBase}Insumos/Insert`,
   get: `${environment.urlBase}Insumos/Get`,
-  update: `${environment.urlBase}Insumos/Update`
+  update: `${environment.urlBase}Insumos/Update`,
+  delete: `${environment.urlBase}Insumos/Delete`
 }
