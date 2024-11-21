@@ -97,7 +97,7 @@ export class BancosComponent implements OnInit {
 
   deleteBanco(Id: number){
     this.sweetAlertService.confirm({
-      title: '¿Estás seguro que deseas eliminar permanentemente este banco?',
+      title: '¿Estás seguro que deseas eliminar este banco?',
       confirmButtonText: 'Eliminar'
     }).then((result) => {
       if (result.isConfirmed) {
