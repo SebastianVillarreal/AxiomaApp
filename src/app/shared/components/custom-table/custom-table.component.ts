@@ -1,15 +1,15 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgFor, NgIf, } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { NbIconModule,NbButtonModule, NbInputModule } from '@nebular/theme';
+import { NbIconModule,NbButtonModule, NbInputModule, NbCardModule } from '@nebular/theme';
 @Component({
   selector: 'app-custom-table',
   standalone: true,
-  imports: [NgFor, NgIf, NbIconModule, FormsModule, NbButtonModule],
+  imports: [NgFor, NgIf, NbIconModule, FormsModule, NbButtonModule, NbCardModule],
   templateUrl: './custom-table.component.html',
   styleUrls: ['./custom-table.component.scss']
 })
-export class CustomTableComponent{
+export class CustomTableComponent implements OnInit{
   @Input() keyRow: string = "Id";
   @Input() tableHead: string = "Tabla";
   @Input() headers: any[] = [];
@@ -26,50 +26,39 @@ export class CustomTableComponent{
   //Buscar elemento
   elementoBuscado: string = "";
 
-  //Ordenar elemento
-  sortKey: string | null = null;
-  sortDirection: 'asc' | 'desc' | null = null;
+  //Paginacion
+  currentPage: number = 1;
+  currentPerPage: number = 10;
+  totalItems: number = 0;
 
   constructor() {}
 
+  ngOnInit(): void {
+    this.totalItems = this.data.length;
+  }
+
+
   get filtrarDatos(): any[] {
     const elemento = this.elementoBuscado.toLowerCase();
-
-    if(!elemento)
-    {
-      return this.data;
-    }
-    else{
-      return this.data.filter(row =>
+    const filteredData = !elemento ? this.data : this.data.filter(row =>
         this.keys.some(key =>
           row[key].toString().toLowerCase().includes(elemento)
         )
       )
+    
+
+    this.totalItems = filteredData.length;
+    return filteredData.slice((this.currentPage - 1) * this.currentPerPage, this.currentPage  * this.currentPerPage)
+  }
+
+  changePage(page: number): void {
+    if (page > 0 && page <= this.lastPage) {
+      this.currentPage = page
     }
   }
 
-  sortData(column: string)
-  {
-    if (this.sortKey == column)
-    {
-      this.sortDirection = this.sortDirection == 'asc' ? 'desc' : 'asc';
-    }
-    else
-    {
-      this.sortKey = column;
-      this.sortDirection = 'asc';
-    }
-
-    this.filtrarDatos.sort((a,b) => {
-      const valA = a[column];
-      const valB = b[column];
-
-      if (valA == null || valB == null) return 0;
-
-      const comparison = valA > valB ? 1 : valA < valB ? -1 : 0;
-
-      return this.sortDirection === 'asc' ? comparison : -comparison;
-    })
+  get lastPage(): number {
+    return Math.ceil(this.totalItems / this.currentPerPage)
   }
 
   editRow(data: any){

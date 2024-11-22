@@ -66,9 +66,7 @@ export class ArticulosComponent implements OnInit{
 
   onSubmit(): void{
     if (this.form.valid) {
-      console.log('working')
       const { id, codigo, descripcion, idFamilia, idUm, ultimoCosto, precioVenta, iva, ieps } = this.form.getRawValue();
-      console.log(this.form.getRawValue())
       const usuarioActualiza = parseInt(localStorage.getItem('idUsuario')??'0')
 
       const request: ArticuloInsertRequest = {
@@ -83,6 +81,7 @@ export class ArticulosComponent implements OnInit{
         idUsuario: usuarioActualiza
       }
 
+      console.log(request);
       const requestUpdate: ArticuloUpdateRequest = {
         id: id,
         codigo: codigo,
@@ -99,6 +98,7 @@ export class ArticulosComponent implements OnInit{
       const serviceCall = id == 0 ? this.articulosService.InsertArticulo(request) : this.articulosService.UpdateArticulo(requestUpdate)
       serviceCall.subscribe({
         next: (res: any) => {
+          console.log(res);
           this.getAllArticulos();
         },
         error: (err: any) => {
