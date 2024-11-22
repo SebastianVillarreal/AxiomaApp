@@ -31,6 +31,10 @@ export class CustomTableComponent implements OnInit{
   currentPerPage: number = 10;
   totalItems: number = 0;
 
+  //Sorting
+  sortKey: string | null = null;
+  sortDirection: 'asc' | 'desc' = 'asc';
+
   constructor() {}
 
   ngOnInit(): void {
@@ -59,6 +63,25 @@ export class CustomTableComponent implements OnInit{
 
   get lastPage(): number {
     return Math.ceil(this.totalItems / this.currentPerPage)
+  }
+
+  sortTable(key: string): void {
+    if (this.sortKey == key) {
+      this.sortDirection = this.sortDirection == 'asc' ? 'desc' : 'asc';
+    } else {
+      this.sortKey = key;
+      this.sortDirection = 'asc';
+    }
+
+    this.data.sort((a,b) => {
+      const valorA = a[key]
+      const valorB = b[key]
+
+      if (valorA == null || valorB == null) return 0
+
+      const comparacion = valorA > valorB ? 1 : valorA < valorB ? -1 : 0;
+      return this.sortDirection == 'asc' ? comparacion : -comparacion;
+    })
   }
 
   editRow(data: any){
