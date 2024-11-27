@@ -3,7 +3,7 @@ import { NbMenuItem } from "@nebular/theme";
 
 export const MENU_ITEMS: NbMenuItem[] = [
     {
-        title: 'Home',
+        title: 'Inicio',
         icon: 'home',
         link: '/home',
         home: true
@@ -25,8 +25,19 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
       {
         title: 'Recetas',
-        link: '/pages/recetas',
         icon: 'file-text-outline',
+        children: [
+          {
+            title: 'Nueva Receta',
+            link: '/pages/recetas/nueva',
+            icon: 'plus-square-outline'
+          },
+          {
+            title: 'Listado de Recetas',
+            link: '/pages/recetas/listado',
+            icon: 'list-outline'
+          }
+        ]
       },
       {
         title: 'Forms',
