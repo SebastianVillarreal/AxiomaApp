@@ -29,3 +29,7 @@ export const recetas = {
   insert: `${environment.urlBase}Recetas/Insert`,
   get: `${environment.urlBase}Recetas/Get`
 }
+
+export const detalleRecetas = {
+  insert: `${environment.urlBase}DetalleReceta/Insert`
+}
