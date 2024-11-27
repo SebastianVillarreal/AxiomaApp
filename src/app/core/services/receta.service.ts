@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 
 import { recetas } from '@Global/endpoints';
 
-import { GetRecetaResponse, RecetaModel } from '@Models/Receta';
+import { GetRecetaResponse, RecetaInsertRequest, RecetaInsertResponse, RecetaModel } from '@Models/Receta';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +24,17 @@ export class RecetaService {
       map(res => {
         return res;
       })
+    )
+  }
+
+  insertReceta(receta: RecetaInsertRequest): Observable<RecetaInsertResponse> {
+    const httpOptions = {headers: this.headers}
+    return this.http.post<RecetaInsertResponse>(recetas.insert, receta, httpOptions)
+    .pipe(
+      map(res => {
+        return res
+      }
+      )
     )
   }
 }

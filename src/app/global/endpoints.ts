@@ -26,5 +26,6 @@ export const insumos = {
 };
 
 export const recetas = {
+  insert: `${environment.urlBase}Recetas/Insert`,
   get: `${environment.urlBase}Recetas/Get`
 }

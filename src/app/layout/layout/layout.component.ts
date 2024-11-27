@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { HeaderComponent } from '../components/header/header.component';
 import { RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { NbLayoutModule,
          NbLayoutComponent,
@@ -23,4 +24,22 @@ import { NbLayoutModule,
 })
 export class LayoutComponent {
   menu = MENU_ITEMS;
+  // private router = inject(Router);
+
+  // onMenuClick(event: MouseEvent): void {
+  //   const target = event.target as HTMLElement;
+
+
+  //   if(target.classList.contains('menu-title')){
+  //     const parentItem = target.closest('.menu-item') as HTMLElement;
+
+  //     const link = parentItem?.getAttribute('ng-reflect-link');
+
+  //     if (link) {
+  //       this.router.navigateByUrl(link);
+  //     }
+
+  //     event.stopPropagation();
+  //   }
+  // }
 }

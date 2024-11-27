@@ -1,5 +1,13 @@
 import { ApiResponse } from "@Models/Response";
 
+export interface RecetaInsertRequest {
+    nombre: string;
+    usuarioRegistra: number;
+    usuarioActualiza: number;
+}
+
+export type RecetaInsertResponse = ApiResponse<{data: number, Msg: string}>
+
 export type GetRecetaResponse = ApiResponse<RecetaData>;
 
 export interface RecetaData {
