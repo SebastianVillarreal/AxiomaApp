@@ -2,6 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CustomTableComponent } from '@Component/Table';
+import { DetalleRecetasComponent } from '../detalle-recetas/detalle-recetas.component';
 
 import { NbInputModule, NbSelectModule, NbCardModule, NbButtonModule } from '@nebular/theme';
 
@@ -12,13 +13,16 @@ import { data } from 'autoprefixer';
 @Component({
   selector: 'app-recetas',
   standalone: true,
-  imports: [CustomTableComponent, ReactiveFormsModule, NgIf,NbInputModule, NbSelectModule, NbCardModule, NbButtonModule],
+  imports: [CustomTableComponent, ReactiveFormsModule, NgIf,NbInputModule, NbSelectModule, NbCardModule, NbButtonModule, DetalleRecetasComponent],
   templateUrl: './recetas.component.html',
   styleUrls: ['./recetas.component.scss']
 })
 export class RecetasComponent implements OnInit {
   private recetaService = inject(RecetaService)
   private fb = inject(FormBuilder);
+
+  showDetalles = false;
+  idReceta = 0;
 
   recetasList: RecetaModel[] = []
   form = this.fb.nonNullable.group({
@@ -32,7 +36,6 @@ export class RecetasComponent implements OnInit {
   getRecetas(): void {
     this.recetaService.getRecetas().subscribe((data) => {
       this.recetasList = data
-      console.log(this.recetasList)
     })
   }
 
@@ -49,9 +52,11 @@ export class RecetasComponent implements OnInit {
 
       const serviceCall = this.recetaService.insertReceta(request)
       serviceCall.subscribe({
-        next: (res: RecetaInsertResponse) => {
+        next: (res: any) => {
           this.resetForm()
-          this.getRecetas
+          this.getRecetas()
+          this.showDetalles = true;
+          this.idReceta = res.response.data;
         },
         error: (err: any) => {
           console.log(err)
@@ -74,5 +79,9 @@ export class RecetasComponent implements OnInit {
 
   deleteReceta(Id: number): void {
     console.log(Id);
+  }
+
+  hideDetalleRecetas(): void{
+    this.showDetalles = false;
   }
 }
