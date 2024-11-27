@@ -22,6 +22,7 @@ export class RecetasComponent implements OnInit {
 
   showDetalles = false;
   idReceta = 0;
+  nombreReceta = '';
 
   recetasList: RecetaModel[] = []
   form = this.fb.nonNullable.group({
@@ -41,6 +42,7 @@ export class RecetasComponent implements OnInit {
   onSubmit(): void {
     if(this.form.valid){
       const {nombre} = this.form.getRawValue()
+      this.nombreReceta = nombre;
       const usuarioActualiza = parseInt(localStorage.getItem('idUsuario')??'0')
 
       const request: RecetaInsertRequest = {

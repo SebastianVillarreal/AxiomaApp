@@ -1,23 +1,23 @@
 import { Component, inject, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { NgIf, NgFor } from '@angular/common';
+import { CustomTableComponent } from '@Component/Table';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NbCardModule, NbInputModule, NbSelectModule, NbButtonModule } from '@nebular/theme';
-import { DetallesRecetaInsertRequest } from '@Models/DetalleRecetas';
+import { DetalleRecetasModel, DetallesRecetaInsertRequest } from '@Models/DetalleRecetas';
 import { InsumoModel } from '@Models/Insumo';
 import { DetalleRecetasService } from '@Services';
 import { InsumoService } from '@Services';
-import { RecetaService } from '@Services';
-import { RecetaModel } from '@Models/Receta';
 
 @Component({
   selector: 'app-detalle-recetas',
   standalone: true,
-  imports: [ReactiveFormsModule, NgIf, NgFor,NbCardModule, NbInputModule, NbSelectModule, NbButtonModule],
+  imports: [ReactiveFormsModule, CustomTableComponent,NgIf, NgFor,NbCardModule, NbInputModule, NbSelectModule, NbButtonModule],
   templateUrl: './detalle-recetas.component.html',
   styleUrls: ['./detalle-recetas.component.scss']
 })
 export class DetalleRecetasComponent implements OnInit{
   @Input() idReceta: number = 0;
+  @Input() nombreReceta: string = 'Receta';
 
   @Output() closeForm: EventEmitter<any> = new EventEmitter();
 
@@ -26,7 +26,7 @@ export class DetalleRecetasComponent implements OnInit{
   private insumoService = inject(InsumoService)
 
   insumosList: InsumoModel[] = []
-  recetasList: RecetaModel[] = []
+  detalleRecetasList: DetalleRecetasModel[] = []
 
   form = this.fb.nonNullable.group({
     insumo: ['',[Validators.required]],
@@ -35,6 +35,13 @@ export class DetalleRecetasComponent implements OnInit{
 
   ngOnInit(): void {
     this.getInsumos();
+    this.getDetallesRecetas();
+  }
+
+  getDetallesRecetas(){
+    this.detalleRecetasService.getDetalleReceta(this.idReceta).subscribe((data) => {
+      this.detalleRecetasList = data.Response.data
+    })
   }
   getInsumos() {
     this.insumoService.GetAllInsumos().subscribe((data) =>{
@@ -59,7 +66,7 @@ export class DetalleRecetasComponent implements OnInit{
       serviceCall.subscribe({
         next: (res: any) => {
           this.resetForm();
-
+          this.getDetallesRecetas();
         },
         error: (err: any) => {
           console.log(err)

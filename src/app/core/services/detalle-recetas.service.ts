@@ -5,7 +5,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { DetallesRecetaInsertRequest } from '@Models/DetalleRecetas';
+import { DetallesRecetaInsertRequest, GetDetalleRecetasResponse } from '@Models/DetalleRecetas';
 
 import { detalleRecetas } from '@Global/endpoints';
 
@@ -19,6 +19,16 @@ export class DetalleRecetasService {
     this.headers = new HttpHeaders({})
   }
 
+  getDetalleReceta(idReceta: number): Observable<GetDetalleRecetasResponse> {
+    const httpOptions = {headers: this.headers}
+    const url = `${detalleRecetas.get}?idReceta=${idReceta}`
+    return this.http.get<GetDetalleRecetasResponse>(url, httpOptions)
+    .pipe(
+      map(res => {
+        return res
+      })
+    )
+  }
   insertDetalleReceta(detalle: DetallesRecetaInsertRequest): Observable<Boolean> {
     const httpOptions = {headers: this.headers}
     return  this.http.post<Boolean>(detalleRecetas.insert, detalle, httpOptions)

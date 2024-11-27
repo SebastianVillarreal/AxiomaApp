@@ -26,6 +26,7 @@
 <div *ngIf="showDetalles">
     <app-detalle-recetas
     [idReceta]="idReceta"
+    [nombreReceta]="nombreReceta"
     (closeForm)="hideDetalleRecetas()"
     ></app-detalle-recetas>
 </div>
