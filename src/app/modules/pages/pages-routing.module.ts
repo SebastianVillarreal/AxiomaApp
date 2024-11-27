@@ -6,6 +6,7 @@ import { BancosComponent } from './bancos/bancos.component';
 import { LayoutComponent } from 'src/app/layout/layout/layout.component';
 import { ArticulosComponent } from './articulos/articulos.component';
 import { InsumosComponent } from './insumos/insumos.component';
+import { RecetasComponent } from './recetas/recetas.component';
 
 const routes: Routes = [{
   path: '',
@@ -25,6 +26,11 @@ const routes: Routes = [{
       path: 'insumos',
       component: InsumosComponent,
       title: 'Insumos'
+    },
+    {
+      path: 'recetas',
+      component: RecetasComponent,
+      title: 'Recetas'
     }
     // {
     //   path: '**',
