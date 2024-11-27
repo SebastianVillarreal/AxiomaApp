@@ -1,1 +1,14 @@
-<p>recetas works!</p>
+<div>
+    <app-custom-table
+        tableHead="Recetas | Tabla"
+        keyRow="Id"
+        [headers]="['#', 'Nombre', 'Fecha creación', 'Fecha actualización', 'usuario registra', 'usuario actualiza', 'mensaje']"
+        [keys]="['Id','Nombre', 'FechaCreacion', 'FechaActualiza', 'UsuarioRegistra', 'UsuarioActualiza', 'Mensaje']"
+        [data]="recetasList"
+        [hasSearch]="true"
+        [hasEdit]="true"
+        [hasDelete]="true"
+        (editEmit)="editReceta($event)"
+        (deleteEmit)="deleteReceta($event)"
+    ></app-custom-table>
+</div>

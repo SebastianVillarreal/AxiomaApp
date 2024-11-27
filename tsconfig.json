@@ -13,7 +13,8 @@
       "@Models/Auth": ["src/app/core/models/login"],
       "@Models/Banco": ["src/app/core/models/banco"],
       "@Models/Articulo": ["src/app/core/models/articulo"],
-      "@Models/Insumo": ["src/app/core/models/insumo"]
+      "@Models/Insumo": ["src/app/core/models/insumo"],
+      "@Models/Receta": ["src/app/core/models/receta"]
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

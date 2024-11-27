@@ -11,12 +11,7 @@ import { RecetasComponent } from './recetas/recetas.component';
     PagesRoutingModule,
     NbMenuModule,
   ],
-  declarations: [
-    
-  
-  
-    RecetasComponent
-  ],
+  declarations: [],
 })
 export class PagesModule {
 }

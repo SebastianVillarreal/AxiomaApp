@@ -23,4 +23,8 @@ export const insumos = {
   get: `${environment.urlBase}Insumos/Get`,
   update: `${environment.urlBase}Insumos/Update`,
   delete: `${environment.urlBase}Insumos/Delete`
+};
+
+export const recetas = {
+  get: `${environment.urlBase}Recetas/Get`
 }
