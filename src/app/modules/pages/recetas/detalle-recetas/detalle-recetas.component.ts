@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
-import { NgIf, NgFor } from '@angular/common';
+import { NgIf, NgFor, Location } from '@angular/common';
 import { CustomTableComponent } from '@Component/Table';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NbCardModule, NbInputModule, NbSelectModule, NbButtonModule } from '@nebular/theme';
@@ -7,6 +7,7 @@ import { DetalleRecetasModel, DetallesRecetaInsertRequest } from '@Models/Detall
 import { InsumoModel } from '@Models/Insumo';
 import { DetalleRecetasService } from '@Services';
 import { InsumoService } from '@Services';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-detalle-recetas',
@@ -19,11 +20,14 @@ export class DetalleRecetasComponent implements OnInit{
   @Input() idReceta: number = 0;
   @Input() nombreReceta: string = 'Receta';
 
+
   @Output() closeForm: EventEmitter<any> = new EventEmitter();
 
   private fb = inject(FormBuilder)
   private detalleRecetasService = inject(DetalleRecetasService)
   private insumoService = inject(InsumoService)
+  private route = inject(ActivatedRoute)
+  private location = inject(Location)
 
   insumosList: InsumoModel[] = []
   detalleRecetasList: DetalleRecetasModel[] = []
@@ -34,6 +38,8 @@ export class DetalleRecetasComponent implements OnInit{
   })
 
   ngOnInit(): void {
+    this.idReceta = +this.route.snapshot.paramMap.get('id')!
+    this.nombreReceta = this.route.snapshot.queryParamMap.get('nombre')!
     this.getInsumos();
     this.getDetallesRecetas();
   }
@@ -84,5 +90,6 @@ export class DetalleRecetasComponent implements OnInit{
 
   closeComponent(): void{
     this.closeForm.emit();
+    this.location.back()
   }
 }

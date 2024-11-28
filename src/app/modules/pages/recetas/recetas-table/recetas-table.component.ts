@@ -1,4 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgIf } from '@angular/common';
 import { CustomTableComponent } from '@Component/Table';
 import { SweetAlertService } from 'src/app/shared/services/sweet-alert.service';
@@ -15,6 +16,7 @@ import { RecetaModel } from '@Models/Receta';
 export class RecetasTableComponent implements OnInit{
   private recetaService = inject(RecetaService)
   private sweetAlertService = inject(SweetAlertService)
+  private router = inject(Router);
   
   recetasList: RecetaModel[] = []
 
@@ -58,5 +60,10 @@ export class RecetasTableComponent implements OnInit{
 
   showDetallesReceta(data: RecetaModel): void {
     console.log(data);
+    this.router.navigate(['pages/recetas/detalles',data.Id],
+      {
+        queryParams: {nombre: data.Nombre}
+      }
+    )
   }
 }

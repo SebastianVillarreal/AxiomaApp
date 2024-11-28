@@ -7,6 +7,8 @@ import { RecetasRoutingModule } from "./recetas-routing.module";
     imports: [
         RecetasRoutingModule,
         NbMenuModule
+    ],
+    declarations: [
     ]
 })
 export class RecetasModule {}

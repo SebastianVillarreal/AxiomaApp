@@ -13,7 +13,7 @@ import { detalleRecetas } from '@Global/endpoints';
   providedIn: 'root'
 })
 export class DetalleRecetasService {
-  private headers: HttpHeaders
+  private headers: HttpHeaders  
 
   constructor(private http: HttpClient) { 
     this.headers = new HttpHeaders({})
