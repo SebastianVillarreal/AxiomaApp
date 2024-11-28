@@ -1,3 +1,22 @@
+<ng-template #dialog let-data let-ref="dialogRef">
+    <form [formGroup]="form" (ngSubmit)="updateReceta()">
+        <nb-card>
+            <nb-card-header>Receta #{{data.Id}}</nb-card-header>
+            <nb-card-body>
+              <div>
+                  <input formControlName="nombre" nbInput type="text" [value]="data.Nombre" placeholder="Nombre de la receta">
+              </div>
+            </nb-card-body>
+            <nb-card-footer>
+                <div class="gap-x-5">
+                    <button nbButton status="primary"  type="submit">Guardar</button>
+                    <button nbButton (click)="ref.close()">Cerrar</button>
+                </div>
+            </nb-card-footer>
+          </nb-card>
+    </form>
+</ng-template>
+
 <div>
     <app-custom-table
         tableHead="Recetas | Tabla"

@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 
 import { recetas } from '@Global/endpoints';
 
-import { GetRecetaResponse, RecetaInsertRequest, RecetaInsertResponse, RecetaModel } from '@Models/Receta';
+import { GetRecetaResponse, RecetaInsertRequest, RecetaInsertResponse, RecetaModel, RecetaUpdateRequest } from '@Models/Receta';
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +35,16 @@ export class RecetaService {
         return res
       }
       )
+    )
+  }
+
+  updateReceta(receta: RecetaUpdateRequest): Observable<Boolean>{
+    const httpOptions = {headers: this.headers}
+    return this.http.put<Boolean>(recetas.update, receta, httpOptions)
+    .pipe(
+      map(res => {
+        return res
+      })
     )
   }
 

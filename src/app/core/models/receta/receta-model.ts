@@ -6,6 +6,12 @@ export interface RecetaInsertRequest {
     usuarioActualiza: number;
 }
 
+export interface RecetaUpdateRequest {
+    id: number;
+    nombre: string;
+    usuarioActualiza: number;
+}
+
 export type RecetaInsertResponse = ApiResponse<{data: number, Msg: string}>
 
 export type GetRecetaResponse = ApiResponse<RecetaData>;
@@ -16,7 +22,7 @@ export interface RecetaData {
 
 export interface RecetaModel {
     Id: number;
-    Nombre: number;
+    Nombre: string;
     FechaCreacion: string;
     FechaActualiza: string;
     UsuarioRegistra: string;
