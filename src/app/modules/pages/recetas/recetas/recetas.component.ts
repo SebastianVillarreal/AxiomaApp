@@ -1,9 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { CustomTableComponent } from '@Component/Table';
 import { DetalleRecetasComponent } from '../detalle-recetas/detalle-recetas.component';
-
+import { Router } from '@angular/router';
 import {trigger, transition, style, animate} from '@angular/animations';
 
 import { NbInputModule, NbSelectModule, NbCardModule, NbButtonModule } from '@nebular/theme';
@@ -32,6 +31,7 @@ import { RecetaInsertRequest, RecetaModel } from '@Models/Receta';
 export class RecetasComponent implements OnInit {
   private recetaService = inject(RecetaService)
   private fb = inject(FormBuilder);
+  private router = inject(Router);
 
   showDetalles = false;
   idReceta = 0;
@@ -69,8 +69,8 @@ export class RecetasComponent implements OnInit {
         next: (res: any) => {
           this.resetForm()
           this.getRecetas()
-          this.showDetalles = true;
           this.idReceta = res.response.data;
+          this.showDetallesReceta(this.idReceta, nombre)
         },
         error: (err: any) => {
           console.log(err)
@@ -87,7 +87,13 @@ export class RecetasComponent implements OnInit {
     )
   }
 
-
+  showDetallesReceta(id: number, nombre: string): void{
+    this.router.navigate(['pages/recetas/detalles',id],
+      {
+        queryParams: {nombre: nombre}
+      }
+    )
+  }
 
   hideDetalleRecetas(): void{
     this.showDetalles = false;
