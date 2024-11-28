@@ -19,9 +19,11 @@ export class CustomTableComponent implements OnInit{
   @Input() hasExport: boolean = false;
   @Input() hasEdit: boolean = false;
   @Input() hasDelete: boolean = false;
+  @Input() hasDetails: boolean = false;
   
   @Output() editEmit: EventEmitter<any> = new EventEmitter();
   @Output() deleteEmit: EventEmitter<any> = new EventEmitter();
+  @Output() detailsEmit: EventEmitter<any> = new EventEmitter();
 
   //Buscar elemento
   elementoBuscado: string = "";

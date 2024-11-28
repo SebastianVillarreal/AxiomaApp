@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="!showDetalles">
     <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
         <nb-card>
             <nb-card-header>
@@ -23,10 +23,14 @@
 </div>
 
 <!-- añadir un apartado para insertar los detalles receta -->
-<div *ngIf="showDetalles">
+<div *ngIf="showDetalles" @fadeInOut>
     <app-detalle-recetas
     [idReceta]="idReceta"
     [nombreReceta]="nombreReceta"
     (closeForm)="hideDetalleRecetas()"
     ></app-detalle-recetas>
 </div>
+
+
+
+

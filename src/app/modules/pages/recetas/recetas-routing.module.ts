@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { RecetasComponent } from "./recetas/recetas.component";
 import { RecetasTableComponent } from "./recetas-table/recetas-table.component";
+import { DetalleRecetasComponent } from "./detalle-recetas/detalle-recetas.component";
 
 export const routes: Routes = [
     {
@@ -21,6 +22,10 @@ export const routes: Routes = [
                 path: 'listado',
                 component: RecetasTableComponent,
                 title: 'Listado de Recetas'
+            },
+            {
+                path: 'detalles-receta/:id/:nombre',
+                component: DetalleRecetasComponent
             }
         ]
     }

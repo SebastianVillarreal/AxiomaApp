@@ -46,6 +46,9 @@
                             <button *ngIf="hasDelete" class="text-red-600 font-medium hover:underline ms-3"(click)="deleteRow(row)">
                                 <nb-icon icon="trash-outline"></nb-icon>
                             </button>
+                            <button *ngIf="hasDetails" class="text-purple-600 font-medium hover:underline ms-3">
+                                <nb-icon icon="list-outline"></nb-icon>
+                            </button>
                         </td>
                     </tr>
                 </tbody>
