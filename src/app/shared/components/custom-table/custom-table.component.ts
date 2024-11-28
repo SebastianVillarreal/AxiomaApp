@@ -93,4 +93,8 @@ export class CustomTableComponent implements OnInit{
   deleteRow(data: any){
     this.deleteEmit.emit(data[this.keyRow])
   }
+
+  showDetails(data: any){
+    this.detailsEmit.emit(data)
+  }
 }
