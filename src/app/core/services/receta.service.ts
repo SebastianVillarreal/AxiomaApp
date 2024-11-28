@@ -37,4 +37,14 @@ export class RecetaService {
       )
     )
   }
+
+  deleteReceta(id: number): Observable<Boolean>{
+    const httpOptions = {headers: this.headers}
+    return this.http.put<Boolean>(recetas.delete, {id}, httpOptions)
+    .pipe(
+      map(res => {
+        return res
+      })
+    )
+  }
 }
