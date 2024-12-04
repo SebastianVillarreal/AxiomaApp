@@ -19,10 +19,6 @@ export const routes: Routes = [
                 title: 'Nueva Receta'
             },
             {
-                path: 'editar/:id', component: RecetasComponent,
-                title: 'Editar Receta'
-            },
-            {
                 path: 'listado',
                 component: RecetasTableComponent,
                 title: 'Listado de Recetas'

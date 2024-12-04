@@ -35,6 +35,10 @@ const routes: Routes = [{
     {
       path: 'recetas',
       loadChildren: () => import('./recetas/recetas.module').then(m => m.RecetasModule)
+    },
+    {
+      path: 'ordenes-compras',
+      loadChildren: () => import('./ordenes-compras/ordenes-compras.module').then(m => m.OrdenesComprasModule)
     }
     // {
     //   path: '**',
