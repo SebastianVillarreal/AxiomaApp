@@ -5,3 +5,4 @@ export * from './insumo.service';
 export * from './receta.service';
 export * from './detalle-recetas.service'
 export * from './orden-compra.service'
+export * from './proveedor.service'

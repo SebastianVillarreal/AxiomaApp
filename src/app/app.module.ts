@@ -56,7 +56,6 @@ import { registerLocaleData } from '@angular/common';
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
     NbDialogService,
-    { provide: LOCALE_ID, useValue: 'es' } 
   ],
   bootstrap: [AppComponent]
 })
