@@ -44,3 +44,7 @@ export const ordenesCompras = {
 export const proveedores = {
   get: `${environment.urlBase}Proveedores/Get`
 }
+
+export const sucursales = {
+  get: `${environment.urlBase}Sucursales/Get`
+}
