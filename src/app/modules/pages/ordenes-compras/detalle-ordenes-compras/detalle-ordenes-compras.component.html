@@ -38,11 +38,6 @@
     keyRow="Id"
     [headers]="['#', '# Orden compra', 'Insumo', 'Cantidad', 'Cantidad Recibida', 'Costo', 'Costo Renglon','Fecha Registro', 'Fecha Actualiza', 'Usuario Actualiza', 'Mensaje']"
     [keys]="['Id', 'IdOrdenCompra', 'Insumo', 'Cantidad', 'CantidadRecibida', 'Costo', 'CostoRenglon','FechaRegistro','FechaActualiza', 'UsuarioActualiza', 'Mensaje']"
-    [data]="detallesOrdenCompraList"
-    [hasEdit]="true"
-    [hasSearch]="true"
-    [hasDelete]="true"
-    (deleteEmit)="deleteDetalle($event)"
-    (editEmit)="editDetalle($event)">
+    [data]="detallesOrdenCompraList">
     ></app-custom-table>
 </div>
