@@ -3,14 +3,15 @@ import { NgFor, NgIf } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NbCardModule, NbButtonModule, NbSelectModule, NbInputModule } from '@nebular/theme';
 import { ActivatedRoute } from '@angular/router';
-import { DetalleOrdenCompraInsertRequest } from '@Models/DetalleOrdenCOmpra';
+import { DetalleOrdenCompraInsertRequest, DetalleOrdenCompraModel } from '@Models/DetalleOrdenCOmpra';
 import { InsumoModel } from '@Models/Insumo';
+import { CustomTableComponent } from '@Component/Table';
 import { DetalleOrdenCompraService, InsumoService } from '@Services';
 
 @Component({
   selector: 'app-detalle-ordenes-compras',
   standalone: true,
-  imports: [ReactiveFormsModule, NgIf, NgFor, NbCardModule, NbButtonModule, NbSelectModule, NbInputModule],
+  imports: [ReactiveFormsModule, CustomTableComponent,NgIf, NgFor, NbCardModule, NbButtonModule, NbSelectModule, NbInputModule],
   templateUrl: './detalle-ordenes-compras.component.html',
   styleUrls: ['./detalle-ordenes-compras.component.scss']
 })
@@ -21,6 +22,7 @@ export class DetalleOrdenesComprasComponent implements OnInit{
   private route = inject(ActivatedRoute)
 
   insumosList: InsumoModel[] = []
+  detallesOrdenCompraList: DetalleOrdenCompraModel[] = []
   idOrdenCompra: number = 0
   form = this.fb.nonNullable.group({
     id: [0],
@@ -31,6 +33,13 @@ export class DetalleOrdenesComprasComponent implements OnInit{
   ngOnInit(): void {
     this.idOrdenCompra = +this.route.snapshot.paramMap.get("id")!
     this.getInsumos()
+    this.getDetallesOrdenCompra()
+  }
+
+  getDetallesOrdenCompra(): void {
+    this.detalleOrdenCompraService.getDetalleOrdenCompra(this.idOrdenCompra).subscribe((data) =>{
+      this.detallesOrdenCompraList = data.Response.data;
+    })
   }
 
   getInsumos(): void {
@@ -54,7 +63,8 @@ export class DetalleOrdenesComprasComponent implements OnInit{
       const serviceCall = this.detalleOrdenCompraService.insertDetalleOrdenCompra(request)
       serviceCall.subscribe({
         next: (res: any) => {
-          this.resetForm
+          this.resetForm()
+          this.getDetallesOrdenCompra()
         },
         error: (err: any) => {
           console.log(err)
@@ -70,4 +80,10 @@ export class DetalleOrdenesComprasComponent implements OnInit{
     })
   }
 
+  editDetalle(data: DetalleOrdenCompraModel): void{
+    console.log(data)
+  }
+  deleteDetalle(Id: number): void{
+    console.log(Id)
+  }
 }
