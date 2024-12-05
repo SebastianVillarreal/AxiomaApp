@@ -1,1 +1,33 @@
-<p>detalle-ordenes-compras works!</p>
+<div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+        <nb-card>
+            <nb-card-header>
+                <h5>
+                    Detalles Orden Compra #{{idOrdenCompra}} | Formulario
+                </h5>
+            </nb-card-header>
+            <nb-card-body class="form-grid">
+                <div>
+                    <label class="label">*Insumo</label>
+                    <nb-select formControlName="insumo" fullWidth>
+                        <nb-option value="0" disabled>Insumos</nb-option>
+                        <nb-option *ngFor="let insumo of insumosList" [value]="insumo.Insumo">{{insumo.Descripcion}}</nb-option>
+                    </nb-select>
+                    <div *ngIf="form.get('insumo')?.touched && form.get('insumo')?.invalid">
+                        <p class="text-danger text-sm italic" *ngIf="form.get('insumo')?.errors?.['insumo']">Insumo requerido*</p>
+                    </div>
+                </div>
+                <div>
+                    <label class="label">*Cantidad</label>
+                    <input formControlName="cantidad" type="number" nbInput fullWidth min="0">
+                    <div *ngIf="form.get('cantidad')?.touched && form.get('cantidad')?.invalid">
+                        <p class="text-danger text-sm italic" *ngIf="form.get('cantidad')?.errors?.['required']">Cantidad requerida*</p>
+                    </div>
+                </div>
+            </nb-card-body>
+            <nb-card-footer>
+                <button nbButton status="primary" [disabled]="!form.valid" type="submit">Guardar</button>
+            </nb-card-footer>
+        </nb-card>
+    </form>
+</div>

@@ -41,6 +41,10 @@ export const ordenesCompras = {
   insert: `${environment.urlBase}OrdenCompra/Insert`,
 }
 
+export const detalleOrdenesCompras = {
+  insert: `${environment.urlBase}DetalleOrdenCompra/Insert`
+}
+
 export const proveedores = {
   get: `${environment.urlBase}Proveedores/Get`
 }

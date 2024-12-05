@@ -18,7 +18,9 @@
       "@Models/DetalleRecetas": ["src/app/core/models/detalle-recetas"],
       "@Models/OrdenCompra": ["src/app/core/models/orden-compra"],
       "@Models/Proveedor": ["src/app/core/models/proveedor"],
-      "@Models/Sucursal": ["src/app/core/models/sucursal"]
+      "@Models/Sucursal": ["src/app/core/models/sucursal"],
+      "@Models/DetalleOrdenCOmpra": ["src/app/core/models/detalle-orden-compra"],
+      
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
