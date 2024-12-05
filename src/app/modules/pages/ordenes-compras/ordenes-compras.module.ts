@@ -6,6 +6,8 @@ import { NbMenuModule } from "@nebular/theme";
     imports: [
         OrdenesComprasRoutingModule,
         NbMenuModule
-    ]
+    ],
+    declarations: [
+  ]
 })
 export class OrdenesComprasModule {}

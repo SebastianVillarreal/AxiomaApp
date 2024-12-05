@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ordenesCompras } from '@Global/endpoints';
-import { OrdenCompraInsertRequest } from '@Models/OrdenCompra';
+import { GetOrdenCompraResponse, OrdenCompraInsertRequest } from '@Models/OrdenCompra';
 import { ReturnDataResponse } from '@Models/Response';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -14,6 +14,16 @@ export class OrdenCompraService {
   constructor(private http: HttpClient) {
     this.headers = new HttpHeaders({})
    }
+
+  getOrdenCompra(): Observable<GetOrdenCompraResponse>{
+    const httpOptions = {headers: this.headers}
+    return this.http.get<GetOrdenCompraResponse>(ordenesCompras.get, httpOptions)
+    .pipe(
+      map(res => {
+        return res
+      })
+    )
+  }
 
   insertOrdenCompra(ordenCompra: OrdenCompraInsertRequest): Observable<ReturnDataResponse>{
     const httpOptions = { headers: this.headers }

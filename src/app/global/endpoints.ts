@@ -39,6 +39,7 @@ export const detalleRecetas = {
 
 export const ordenesCompras = {
   insert: `${environment.urlBase}OrdenCompra/Insert`,
+  get: `${environment.urlBase}OrdenCompra/Get`,
 }
 
 export const detalleOrdenesCompras = {
