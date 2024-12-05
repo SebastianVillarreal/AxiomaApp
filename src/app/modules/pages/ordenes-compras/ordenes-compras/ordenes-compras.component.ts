@@ -7,6 +7,7 @@ import { OrdenCompraService, SucursalService } from '@Services';
 import { ProveedorModel } from '@Models/Proveedor';
 import { ProveedorService } from '@Services';
 import { SucursalModel } from '@Models/Sucursal';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ordenes-compras',
@@ -20,6 +21,7 @@ export class OrdenesComprasComponent implements OnInit{
   private proveedorService = inject(ProveedorService);
   private sucursalService = inject(SucursalService);
   private fb = inject(FormBuilder)
+  private router = inject(Router)
 
   proveedoresList: ProveedorModel[] = [];
   sucursalesList: SucursalModel[] = [];
@@ -74,11 +76,16 @@ export class OrdenesComprasComponent implements OnInit{
       serviceCall.subscribe({
         next: (res: any) => {
           console.log(res.response.data);
+          this.showDetalleOrdenCompra(res.response.data);
         },
         error: (err: any) => {
           console.log(err);
         }
       })
     }
+  }
+
+  showDetalleOrdenCompra(id: number): void {
+    this.router.navigate(['pages/ordenes-compras/detalles', id])
   }
 }
