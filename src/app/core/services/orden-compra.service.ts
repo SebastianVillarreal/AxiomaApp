@@ -34,4 +34,14 @@ export class OrdenCompraService {
       })
     )
   }
+
+  deleteOrdenCompra(id: number): Observable<Boolean>{
+    const httpOptions = { headers: this.headers }
+    return this.http.put<Boolean>(ordenesCompras.delete, {id}, httpOptions)
+    .pipe(
+      map(res => {
+        return res
+      })
+    )
+  }
 }

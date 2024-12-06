@@ -1,3 +1,4 @@
+import { enableDebugTools } from "@angular/platform-browser";
 import { environment } from "@Environment";
 
 export const auth = {
@@ -40,6 +41,7 @@ export const detalleRecetas = {
 export const ordenesCompras = {
   insert: `${environment.urlBase}OrdenCompra/Insert`,
   get: `${environment.urlBase}OrdenCompra/Get`,
+  delete: `${environment.urlBase}OrdenCompra/Delete`
 }
 
 export const detalleOrdenesCompras = {

@@ -6,5 +6,8 @@
         [keys]="['Id','IdProveedor', 'IdSurcursal', 'IdComprador', 'Total','FechaLlegada', 'FechaRegistro', 'UsuarioActualiza', 'Mensaje']"
         [data]="ordenesComprasList"
         [hasSearch]="true"
+        [hasDelete]="true"
+        (deleteEmit)="deleteOrdenCompra($event)"
+
     ></app-custom-table>
 </div>
