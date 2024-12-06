@@ -7,7 +7,9 @@
         [data]="ordenesComprasList"
         [hasSearch]="true"
         [hasDelete]="true"
+        [hasDetails]="true"
         (deleteEmit)="deleteOrdenCompra($event)"
+        (detailsEmit)="showDetallesOrdenCompra($event)"
 
     ></app-custom-table>
 </div>

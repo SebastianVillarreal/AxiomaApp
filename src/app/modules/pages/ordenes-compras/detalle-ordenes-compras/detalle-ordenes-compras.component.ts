@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { NgFor, NgIf } from '@angular/common';
+import { Location, NgFor, NgIf } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NbCardModule, NbButtonModule, NbSelectModule, NbInputModule } from '@nebular/theme';
 import { ActivatedRoute } from '@angular/router';
@@ -20,6 +20,7 @@ export class DetalleOrdenesComprasComponent implements OnInit{
   private insumoService = inject(InsumoService)
   private fb = inject(FormBuilder)
   private route = inject(ActivatedRoute)
+  private location = inject(Location)
 
   insumosList: InsumoModel[] = []
   detallesOrdenCompraList: DetalleOrdenCompraModel[] = []
@@ -85,5 +86,9 @@ export class DetalleOrdenesComprasComponent implements OnInit{
   }
   deleteDetalle(Id: number): void{
     console.log(Id)
+  }
+
+  closeComponent(): void{
+    this.location.back();
   }
 }

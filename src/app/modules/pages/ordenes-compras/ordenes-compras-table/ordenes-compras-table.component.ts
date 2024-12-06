@@ -1,4 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CustomTableComponent } from '@Component/Table';
 import { OrdenCompraModel } from '@Models/OrdenCompra';
 import { OrdenCompraService } from '@Services';
@@ -14,6 +15,7 @@ import { SweetAlertService } from 'src/app/shared/services/sweet-alert.service';
 export class OrdenesComprasTableComponent implements OnInit {
   private ordenCompraService = inject(OrdenCompraService)
   private sweetAlertService = inject(SweetAlertService)
+  private router = inject(Router)
 
   ordenesComprasList: OrdenCompraModel[] = []
 
@@ -44,5 +46,12 @@ export class OrdenesComprasTableComponent implements OnInit {
           });
       }
     });
+
+    
   }
+
+  showDetallesOrdenCompra(data: OrdenCompraModel): void{
+    this.router.navigate(['pages/ordenes-compras/detalles',data.Id])
+  }
+
 }
