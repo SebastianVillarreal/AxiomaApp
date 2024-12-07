@@ -48,7 +48,10 @@ export class CustomTableComponent implements OnInit{
     const elemento = this.elementoBuscado.toLowerCase();
     const filteredData = !elemento ? this.data : this.data.filter(row =>
         this.keys.some(key =>
-          row[key].toString().toLowerCase().includes(elemento)
+        {
+          const valor = row[key];
+          return valor != null && valor.toString().toLowerCase().includes(elemento);
+        }
         )
       )
     
