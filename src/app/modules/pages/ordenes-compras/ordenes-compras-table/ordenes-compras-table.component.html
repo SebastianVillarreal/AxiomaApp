@@ -1,0 +1,15 @@
+<div>
+    <app-custom-table
+        tableHead="Recetas | Tabla"
+        keyRow="Id"
+        [headers]="['#', 'Proveedor', 'Sucursal', 'Comprador', 'Total','Fecha Llegada', 'Fecha Registro', 'usuario actualiza', 'mensaje']"
+        [keys]="['Id','IdProveedor', 'IdSurcursal', 'IdComprador', 'Total','FechaLlegada', 'FechaRegistro', 'UsuarioActualiza', 'Mensaje']"
+        [data]="ordenesComprasList"
+        [hasSearch]="true"
+        [hasDelete]="true"
+        [hasDetails]="true"
+        (deleteEmit)="deleteOrdenCompra($event)"
+        (detailsEmit)="showDetallesOrdenCompra($event)"
+
+    ></app-custom-table>
+</div>

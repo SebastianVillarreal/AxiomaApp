@@ -36,7 +36,7 @@ export class ErrorInterceptor implements HttpInterceptor{
         if (event instanceof HttpResponse) {
           if (event.body.StatusCode === 200 || event.body.StatusCode === 201) {
             this.toastr.success(
-              event.body.response.data,
+              event.body.message,
               'Solicitud Exitosa'
             )
           } else if (event.body.StatusCode === 409 || event.body.StatusCode === 400) {

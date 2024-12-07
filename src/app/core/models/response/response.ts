@@ -6,3 +6,7 @@ export interface ApiResponse<T> {
     Response: T;
     response: T;
 }
+export interface ReturnDataResponse {
+    data: number;
+    Msg: string;
+}

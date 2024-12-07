@@ -6,11 +6,17 @@ import { BancosComponent } from './bancos/bancos.component';
 import { LayoutComponent } from 'src/app/layout/layout/layout.component';
 import { ArticulosComponent } from './articulos/articulos.component';
 import { InsumosComponent } from './insumos/insumos.component';
+import { RecetasComponent } from './recetas/recetas/recetas.component';
 
 const routes: Routes = [{
   path: '',
   component: LayoutComponent,
   children: [
+    {
+      path: '',
+      redirectTo: 'bancos',
+      pathMatch: 'full'
+    },
     {
       path: 'bancos',
       component: BancosComponent,
@@ -25,6 +31,14 @@ const routes: Routes = [{
       path: 'insumos',
       component: InsumosComponent,
       title: 'Insumos'
+    },
+    {
+      path: 'recetas',
+      loadChildren: () => import('./recetas/recetas.module').then(m => m.RecetasModule)
+    },
+    {
+      path: 'ordenes-compras',
+      loadChildren: () => import('./ordenes-compras/ordenes-compras.module').then(m => m.OrdenesComprasModule)
     }
     // {
     //   path: '**',

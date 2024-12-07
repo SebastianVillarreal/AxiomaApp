@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule, NbMenuModule, NbContextMenuModule, NbIconModule, NbToastrModule, NbToast, NbCardModule } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbMenuModule, NbContextMenuModule, NbIconModule, NbToastrModule, NbToast, NbCardModule, NbDialogService, NbDialogModule, NbDatepickerModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -15,11 +15,11 @@ import { NgxAuthModule } from './auth/auth.module';
 import { HeaderComponent } from './layout/components/header/header.component';
 import { HomeComponent } from './modules/home/home.component';
 import { LayoutComponent } from './layout/layout/layout.component';
-import { config } from 'rxjs';
-import { BancosComponent } from './modules/pages/bancos/bancos.component';
 import { CustomTableComponent } from './shared/components/custom-table/custom-table.component';
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 
+import es from '@angular/common/locales/es';
+import { registerLocaleData } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +34,9 @@ import { ErrorInterceptor } from './core/interceptors/error.interceptor';
     NbIconModule,
     NbCardModule,
     NbToastrModule.forRoot(),
+    NbDialogModule.forRoot(),
     NbMenuModule.forRoot(),
+    NbDatepickerModule.forRoot(),
     HttpClientModule,
     NbAuthModule.forRoot({
       strategies: [
@@ -52,7 +54,8 @@ import { ErrorInterceptor } from './core/interceptors/error.interceptor';
     CustomTableComponent,
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+    NbDialogService,
   ],
   bootstrap: [AppComponent]
 })

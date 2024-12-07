@@ -13,7 +13,14 @@
       "@Models/Auth": ["src/app/core/models/login"],
       "@Models/Banco": ["src/app/core/models/banco"],
       "@Models/Articulo": ["src/app/core/models/articulo"],
-      "@Models/Insumo": ["src/app/core/models/insumo"]
+      "@Models/Insumo": ["src/app/core/models/insumo"],
+      "@Models/Receta": ["src/app/core/models/receta"],
+      "@Models/DetalleRecetas": ["src/app/core/models/detalle-recetas"],
+      "@Models/OrdenCompra": ["src/app/core/models/orden-compra"],
+      "@Models/Proveedor": ["src/app/core/models/proveedor"],
+      "@Models/Sucursal": ["src/app/core/models/sucursal"],
+      "@Models/DetalleOrdenCOmpra": ["src/app/core/models/detalle-orden-compra"],
+      
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

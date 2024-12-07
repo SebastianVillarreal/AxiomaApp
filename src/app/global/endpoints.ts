@@ -1,3 +1,4 @@
+import { enableDebugTools } from "@angular/platform-browser";
 import { environment } from "@Environment";
 
 export const auth = {
@@ -23,4 +24,35 @@ export const insumos = {
   get: `${environment.urlBase}Insumos/Get`,
   update: `${environment.urlBase}Insumos/Update`,
   delete: `${environment.urlBase}Insumos/Delete`
+};
+
+export const recetas = {
+  insert: `${environment.urlBase}Recetas/Insert`,
+  get: `${environment.urlBase}Recetas/Get`,
+  update: `${environment.urlBase}Recetas/Update`,
+  delete: `${environment.urlBase}Recetas/Delete`
+}
+
+export const detalleRecetas = {
+  insert: `${environment.urlBase}DetalleReceta/Insert`,
+  get: `${environment.urlBase}DetalleReceta/Get`
+}
+
+export const ordenesCompras = {
+  insert: `${environment.urlBase}OrdenCompra/Insert`,
+  get: `${environment.urlBase}OrdenCompra/Get`,
+  delete: `${environment.urlBase}OrdenCompra/Delete`
+}
+
+export const detalleOrdenesCompras = {
+  insert: `${environment.urlBase}DetalleOrdenCompra/Insert`,
+  get: `${environment.urlBase}DetalleOrdenCompra/Get`
+}
+
+export const proveedores = {
+  get: `${environment.urlBase}Proveedores/Get`
+}
+
+export const sucursales = {
+  get: `${environment.urlBase}Sucursales/Get`
 }

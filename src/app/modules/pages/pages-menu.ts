@@ -1,8 +1,9 @@
+import { Title } from "@angular/platform-browser";
 import { NbMenuItem } from "@nebular/theme";
 
 export const MENU_ITEMS: NbMenuItem[] = [
     {
-        title: 'Home',
+        title: 'Inicio',
         icon: 'home',
         link: '/home',
         home: true
@@ -23,56 +24,35 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/pages/insumos',
       },
       {
-        title: 'FEATURES',
-        group: true,
-      },
-      {
-        title: 'Layout',
-        icon: 'layout-outline',
+        title: 'Recetas',
+        icon: 'file-text-outline',
         children: [
           {
-            title: 'Stepper',
-            link: '/pages/layout/stepper',
+            title: 'Nueva Receta',
+            link: '/pages/recetas/nueva',
+            icon: 'plus-square-outline'
           },
           {
-            title: 'List',
-            link: '/pages/layout/list',
-          },
-          {
-            title: 'Infinite List',
-            link: '/pages/layout/infinite-list',
-          },
-          {
-            title: 'Accordion',
-            link: '/pages/layout/accordion',
-          },
-          {
-            title: 'Tabs',
-            pathMatch: 'prefix',
-            link: '/pages/layout/tabs',
-          },
-        ],
+            title: 'Listado de Recetas',
+            link: '/pages/recetas/listado',
+            icon: 'list-outline'
+          }
+        ]
       },
       {
-        title: 'Forms',
-        icon: 'edit-2-outline',
+        title: 'Ordenes Compras',
+        icon: 'shopping-cart-outline',
         children: [
           {
-            title: 'Form Inputs',
-            link: '/pages/forms/inputs',
+            title: 'Nueva Orden de Compra',
+            link: '/pages/ordenes-compras/nueva',
+            icon: 'plus-square-outline'
           },
           {
-            title: 'Form Layouts',
-            link: '/pages/forms/layouts',
-          },
-          {
-            title: 'Buttons',
-            link: '/pages/forms/buttons',
-          },
-          {
-            title: 'Datepicker',
-            link: '/pages/forms/datepicker',
-          },
+            title: 'Listado de Ordenes de Compras',
+            link: '/pages/ordenes-compras/listado',
+            icon: 'list-outline'
+          }
         ],
       },
       {
