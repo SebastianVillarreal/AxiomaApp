@@ -4,11 +4,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule, NbMenuModule, NbContextMenuModule, NbIconModule, NbToastrModule, NbToast, NbCardModule, NbDialogService, NbDialogModule, NbDatepickerModule } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbMenuModule, NbContextMenuModule, NbIconModule, NbToastrModule, NbToast, NbCardModule, NbDialogService, NbDialogModule, NbDatepickerModule} from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
-
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-
 
 import { NbPasswordAuthStrategy, NbAuthModule } from '@nebular/auth';
 import { NgxAuthModule } from './auth/auth.module';
@@ -18,8 +16,12 @@ import { LayoutComponent } from './layout/layout/layout.component';
 import { CustomTableComponent } from './shared/components/custom-table/custom-table.component';
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 
-import es from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es';
+
+import { NbDateFnsDateModule } from '@nebular/date-fns';
+import es from 'date-fns/locale/es';
+registerLocaleData(localeEs, 'es');
 @NgModule({
   declarations: [
     AppComponent,

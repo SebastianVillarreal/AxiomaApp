@@ -9,6 +9,15 @@ export interface OrdenCompraInsertRequest {
     usuarioActualiza: number
 }
 
+export interface OrdenCompraUpdateRequest {
+    idOrden: number;
+    idProveedor: number;
+    fechaLlegada: string;
+    idSucursal: number;
+    idComprador: number;
+    usuarioActualiza: number;
+}
+
 export type GetOrdenCompraResponse = ApiResponse<OrdenCompraResponseData>
 
 export interface OrdenCompraResponseData {
@@ -19,7 +28,7 @@ export interface OrdenCompraModel {
     Id: number;
     IdProveedor: string;
     FechaLlegada: string;
-    IdSucursal: string;
+    IdSurcursal: string;
     IdComprador: string;
     FechaRegistro: string;
     UsuarioActualiza: string;

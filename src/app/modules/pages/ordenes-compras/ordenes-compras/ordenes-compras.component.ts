@@ -75,7 +75,6 @@ export class OrdenesComprasComponent implements OnInit{
       const serviceCall = this.ordenCompraService.insertOrdenCompra(request)
       serviceCall.subscribe({
         next: (res: any) => {
-          console.log(res.response.data);
           this.showDetalleOrdenCompra(res.response.data);
         },
         error: (err: any) => {

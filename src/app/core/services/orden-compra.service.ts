@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ordenesCompras } from '@Global/endpoints';
-import { GetOrdenCompraResponse, OrdenCompraInsertRequest } from '@Models/OrdenCompra';
+import { GetOrdenCompraResponse, OrdenCompraInsertRequest, OrdenCompraUpdateRequest } from '@Models/OrdenCompra';
 import { ReturnDataResponse } from '@Models/Response';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -38,6 +38,16 @@ export class OrdenCompraService {
   deleteOrdenCompra(id: number): Observable<Boolean>{
     const httpOptions = { headers: this.headers }
     return this.http.put<Boolean>(ordenesCompras.delete, {id}, httpOptions)
+    .pipe(
+      map(res => {
+        return res
+      })
+    )
+  }
+
+  updateOrdenCompra(orden: OrdenCompraUpdateRequest): Observable<Boolean>{
+    const httpOptions = { headers: this.headers }
+    return this.http.put<Boolean>(ordenesCompras.update, orden, httpOptions)
     .pipe(
       map(res => {
         return res

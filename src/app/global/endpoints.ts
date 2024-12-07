@@ -41,7 +41,8 @@ export const detalleRecetas = {
 export const ordenesCompras = {
   insert: `${environment.urlBase}OrdenCompra/Insert`,
   get: `${environment.urlBase}OrdenCompra/Get`,
-  delete: `${environment.urlBase}OrdenCompra/Delete`
+  delete: `${environment.urlBase}OrdenCompra/Delete`,
+  update: `${environment.urlBase}OrdenCompra/Update`
 }
 
 export const detalleOrdenesCompras = {
