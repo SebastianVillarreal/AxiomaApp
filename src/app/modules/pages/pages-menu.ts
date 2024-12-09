@@ -40,20 +40,29 @@ export const MENU_ITEMS: NbMenuItem[] = [
         ]
       },
       {
-        title: 'Ordenes Compras',
+        title: 'Compras',
         icon: 'shopping-cart-outline',
         children: [
           {
-            title: 'Nueva Orden de Compra',
-            link: '/pages/ordenes-compras/nueva',
-            icon: 'plus-square-outline'
+            title: 'Ordenes Compras',
+            icon: 'shopping-cart-outline',
+            children: [
+              {
+                title: 'Nueva Orden de Compra',
+                link: '/pages/ordenes-compras/nueva',
+                icon: 'plus-square-outline'
+              },
+              {
+                title: 'Listado de Ordenes de Compras',
+                link: '/pages/ordenes-compras/listado',
+                icon: 'list-outline'
+              }
+            ],
           },
           {
-            title: 'Listado de Ordenes de Compras',
-            link: '/pages/ordenes-compras/listado',
-            icon: 'list-outline'
+            title: 'Entradas'
           }
-        ],
+        ]
       },
       {
         title: 'UI Features',
