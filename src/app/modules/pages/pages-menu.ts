@@ -71,7 +71,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
               },
               {
                 title: 'Listado',
-                link: '/pages/comprasentradas/listado',
+                link: '/pages/compras/entradas/listado',
                 icon: 'list-outline'
               }
             ]

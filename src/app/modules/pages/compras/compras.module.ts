@@ -1,13 +1,16 @@
 import { NgModule } from "@angular/core";
-import { RecetasRoutingModule } from "../recetas/recetas-routing.module";
 import { NbMenuModule } from "@nebular/theme";
 import { ComprasRoutingModule } from "./compras-routing.module";
+import { EntradasComponent } from './entradas/entradas/entradas.component';
 
 @NgModule({
     imports: [
         ComprasRoutingModule,
         NbMenuModule
     ],
-    declarations: []
+    declarations: [
+  
+    EntradasComponent
+  ]
 })
 export class ComprasModule {}
