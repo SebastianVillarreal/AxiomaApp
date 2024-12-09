@@ -19,8 +19,6 @@ import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 
-import { NbDateFnsDateModule } from '@nebular/date-fns';
-import es from 'date-fns/locale/es';
 registerLocaleData(localeEs, 'es');
 @NgModule({
   declarations: [

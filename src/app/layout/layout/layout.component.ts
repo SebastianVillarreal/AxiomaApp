@@ -24,22 +24,4 @@ import { NbLayoutModule,
 })
 export class LayoutComponent {
   menu = MENU_ITEMS;
-  // private router = inject(Router);
-
-  // onMenuClick(event: MouseEvent): void {
-  //   const target = event.target as HTMLElement;
-
-
-  //   if(target.classList.contains('menu-title')){
-  //     const parentItem = target.closest('.menu-item') as HTMLElement;
-
-  //     const link = parentItem?.getAttribute('ng-reflect-link');
-
-  //     if (link) {
-  //       this.router.navigateByUrl(link);
-  //     }
-
-  //     event.stopPropagation();
-  //   }
-  // }
 }
