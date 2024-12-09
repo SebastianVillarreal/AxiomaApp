@@ -1,1 +1,51 @@
-<p>entradas works!</p>
+<form [formGroup]="form"  (ngSubmit)="onSubmit()" novalidate>
+    <nb-card>
+        <nb-card-header>
+            <h5>
+                Entrada | Formulario
+            </h5>
+        </nb-card-header>
+        <nb-card-body class="form-grid">
+            <div>
+                <label class="label">*Proveedor</label>
+                <nb-select formControlName="idProveedor" fullWidth>
+                    <nb-option value = "0" disabled>Proveedores</nb-option>
+                    <nb-option *ngFor="let p of proveedoresList" [value]="p.Id">
+                        {{p.Nombre}}
+                    </nb-option>
+                </nb-select>
+                <div *ngIf="form.get('idProveedor')?.touched && form.get('idProveedor')?.invalid">
+                    <p class="text-danger text-sm italic" *ngIf="form.get('idProveedor')?.errors?.['required']">Proveedor requerido*</p>
+                </div>
+                <div *ngIf="form.get('idProveedor')?.touched && form.get('idProveedor')?.invalid">
+                    <p class="text-danger text-sm italic" *ngIf="form.get('idProveedor')?.errors?.['min']">Seleccione un proveedor válido*</p>
+                </div>
+            </div>
+            <div>
+                <label class="label">*Sucursal</label>
+                <nb-select formControlName="idSucursal" fullWidth>
+                    <nb-option value="0" disabled>Sucursales</nb-option>
+                    <nb-option *ngFor="let s of sucursalesList" [value]="s.Id">
+                        {{s.Nombre}}
+                    </nb-option>
+                </nb-select>
+                <div *ngIf="form.get('idSucursal')?.touched && form.get('idSucursal')?.invalid">
+                    <p class="text-danger text-sm italic" *ngIf="form.get('idSucursal')?.errors?.['required']">Sucursal requerida*</p>
+                </div>
+                <div *ngIf="form.get('idSucursal')?.touched && form.get('idSucursal')?.invalid">
+                    <p class="text-danger text-sm italic" *ngIf="form.get('idSucursal')?.errors?.['min']">Seleccione una sucursal válida*</p>
+                </div>
+            </div>
+            <div>
+                <label class="label">*Factura</label>
+                <input type="text" nbInput fullWidth formControlName="factura">
+                <div *ngIf="form.get('factura')?.touched && form.get('factura')?.invalid">
+                    <p class="text-danger text-sm italic" *ngIf="form.get('factura')?.errors?.['required']">Factura requerida*</p>
+                </div>
+            </div>
+        </nb-card-body>
+        <nb-card-footer>
+            <button nbButton status="primary" type="submit" [disabled]="!form.valid">Guardar</button>
+        </nb-card-footer>
+    </nb-card>
+</form>

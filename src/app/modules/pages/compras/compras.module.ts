@@ -9,8 +9,6 @@ import { EntradasComponent } from './entradas/entradas/entradas.component';
         NbMenuModule
     ],
     declarations: [
-  
-    EntradasComponent
-  ]
+    ]
 })
 export class ComprasModule {}

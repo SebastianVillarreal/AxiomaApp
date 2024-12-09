@@ -20,7 +20,7 @@
       "@Models/Proveedor": ["src/app/core/models/proveedor"],
       "@Models/Sucursal": ["src/app/core/models/sucursal"],
       "@Models/DetalleOrdenCOmpra": ["src/app/core/models/detalle-orden-compra"],
-      
+      "@Models/Entrada": ["src/app/core/models/entrada"]
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

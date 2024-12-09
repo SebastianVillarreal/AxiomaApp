@@ -26,6 +26,14 @@ export const insumos = {
   delete: `${environment.urlBase}Insumos/Delete`
 };
 
+export const proveedores = {
+  get: `${environment.urlBase}Proveedores/Get`
+}
+
+export const sucursales = {
+  get: `${environment.urlBase}Sucursales/Get`
+}
+
 export const recetas = {
   insert: `${environment.urlBase}Recetas/Insert`,
   get: `${environment.urlBase}Recetas/Get`,
@@ -50,10 +58,6 @@ export const detalleOrdenesCompras = {
   get: `${environment.urlBase}DetalleOrdenCompra/Get`
 }
 
-export const proveedores = {
-  get: `${environment.urlBase}Proveedores/Get`
-}
-
-export const sucursales = {
-  get: `${environment.urlBase}Sucursales/Get`
+export const entradas = {
+  insert: `${environment.urlBase}Entradas/Insert`,
 }
