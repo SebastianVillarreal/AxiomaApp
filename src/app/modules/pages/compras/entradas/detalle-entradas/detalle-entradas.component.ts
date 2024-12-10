@@ -1,4 +1,4 @@
-import { NgFor, NgIf } from '@angular/common';
+import { NgFor, NgIf,Location } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -21,6 +21,7 @@ export class DetalleEntradasComponent implements OnInit {
   private articuloService = inject(ArticuloService)
   private fb = inject(FormBuilder)
   private route = inject(ActivatedRoute)
+  private location = inject(Location)
   private sweetAlertService = inject(SweetAlertService)
 
   detallesList: DetalleEntradaModel[] = []
@@ -105,4 +106,7 @@ export class DetalleEntradasComponent implements OnInit {
     });
   }
 
+  closeComponent(): void {
+    this.location.back()
+  }
 }
