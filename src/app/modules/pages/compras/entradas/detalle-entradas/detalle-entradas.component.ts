@@ -6,6 +6,7 @@ import { CustomTableComponent } from '@Component/Table';
 import { ArticuloModel } from '@Models/Articulo';
 import { DetalleEntradaInsertRequest, DetalleEntradaModel } from '@Models/DetalleEntrada';
 import { NbButtonModule, NbCardModule, NbInputModule, NbSelectModule } from '@nebular/theme';
+import { SweetAlertService } from '@Service/SweetAlert';
 import { ArticuloService, DetalleEntradaService } from '@Services';
 
 @Component({
@@ -20,6 +21,7 @@ export class DetalleEntradasComponent implements OnInit {
   private articuloService = inject(ArticuloService)
   private fb = inject(FormBuilder)
   private route = inject(ActivatedRoute)
+  private sweetAlertService = inject(SweetAlertService)
 
   detallesList: DetalleEntradaModel[] = []
   articulosList: ArticuloModel[] = []
@@ -83,4 +85,24 @@ export class DetalleEntradasComponent implements OnInit {
     }
     )
   }
+
+  deleteDetalle(Id: number): void {
+    this.sweetAlertService.confirm({
+      title: '¿Estás seguro que deseas eliminar este detalle de entrada?',
+      confirmButtonText: 'Eliminar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.detalleEntradaService.deleteDetalleEntrada(Id)
+          .subscribe({
+            next: (res) => {
+              this.getDetalles();
+            },
+            error: (err) => {
+              console.log(err);
+            }
+          });
+      }
+    });
+  }
+
 }
