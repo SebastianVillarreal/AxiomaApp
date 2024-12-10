@@ -7,6 +7,7 @@
         [keys]="['Id','Proveedor', 'Surcursal', 'Factura','FechaEntrega', 'FechaRegistro', 'FechaActualiza','UsuarioActualiza', 'Mensaje']"
         [data]="entradasList"
         [hasSearch]="true"
-
+        [hasDelete]="true"
+        (deleteEmit)="deleteEntrada($event)"
     ></app-custom-table>
 </div>

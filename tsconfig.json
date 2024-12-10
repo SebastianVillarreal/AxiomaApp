@@ -8,6 +8,7 @@
       "@Environment": ["src/environments/environment.ts"],
       "@EndPoints*": ["src/app/global/endpoints.ts"],
       "@Services": ["src/app/core/services"],
+      "@Service/SweetAlert": ["src/app/shared/services/sweet-alert.service.ts"],
       "@Component/Table": ["src/app/shared/components/custom-table/custom-table.component.ts"],
       "@Models/Response": ["src/app/core/models/response/response.ts"],
       "@Models/Auth": ["src/app/core/models/login"],
