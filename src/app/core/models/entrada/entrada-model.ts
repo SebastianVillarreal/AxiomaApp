@@ -7,6 +7,16 @@ export interface EntradaInsertRequest {
     usuarioActualiza: number;
 }
 
+export interface EntradaUpdateRequest {
+    id: number;
+    idProveedor: number;
+    factura: string;
+    idSurcursal: number;
+    fechaEntrega: string,
+    usuarioActualiza: number;
+    fechaActualiza: string;
+}
+
 export type GetEntradaResponse = ApiResponse<EntradaResponseData>
 
 export interface EntradaResponseData {
