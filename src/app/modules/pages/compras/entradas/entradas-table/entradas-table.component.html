@@ -1,0 +1,12 @@
+
+<div>
+    <app-custom-table
+        tableHead="Entradas | Tabla"
+        keyRow="Id"
+        [headers]="['#', 'Proveedor', 'Sucursal', 'Factura','Fecha Entrega', 'Fecha Registro','Fecha Actualiza', 'usuario actualiza', 'mensaje']"
+        [keys]="['Id','Proveedor', 'Surcursal', 'Factura','FechaEntrega', 'FechaRegistro', 'FechaActualiza','UsuarioActualiza', 'Mensaje']"
+        [data]="entradasList"
+        [hasSearch]="true"
+
+    ></app-custom-table>
+</div>
