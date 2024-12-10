@@ -64,3 +64,7 @@ export const entradas = {
   update: `${environment.urlBase}Entradas/Update`,
   delete: `${environment.urlBase}Entradas/Delete`
 }
+
+export const detalleEntradas = {
+  insert: `${environment.urlBase}DetalleEntrada/Insert`
+}

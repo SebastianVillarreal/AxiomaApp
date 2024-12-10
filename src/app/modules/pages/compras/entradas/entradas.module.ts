@@ -10,8 +10,6 @@ import { DetalleEntradasComponent } from './detalle-entradas/detalle-entradas.co
         NbMenuModule
     ],
     declarations: [
-  
-    DetalleEntradasComponent
-  ]
+    ]
 })
 export class EntradasModule {}

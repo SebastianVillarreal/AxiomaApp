@@ -1,0 +1,1 @@
+export * from './detalle-entrada-model'
