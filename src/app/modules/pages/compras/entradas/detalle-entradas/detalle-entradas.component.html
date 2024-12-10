@@ -45,3 +45,13 @@
         </nb-card>
     </form>
 </div>
+
+<div>
+    <app-custom-table
+    tableHead="Detalles Receta | Tabla"
+    keyRow="Id"
+    [headers]="['#', 'Códgio', 'Artículo', 'Cantidad', 'Costo', 'Descuento', 'Monto Descuento', 'Cantidad sin cargo','Total','Fecha Registro', 'Fecha Actualiza', 'Usuario Actualiza', 'Mensaje']"
+    [keys]="['Id', 'Codigo', 'Articulo','Cantidad','Costo', 'Descuento', 'MontoDescuento','CantidadSinCargo','Total','FechaReg','FechaAct', 'UsuarioAct', 'Mensaje']"
+    [data]="detallesList">
+    ></app-custom-table>
+</div>

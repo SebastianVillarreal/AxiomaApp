@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { detalleEntradas } from '@Global/endpoints';
-import { DetalleEntradaInsertRequest } from '@Models/DetalleEntrada';
+import { DetalleEntradaInsertRequest, GetDetalleEntradaResponse } from '@Models/DetalleEntrada';
 import { map, Observable } from 'rxjs';
 
 @Injectable({
@@ -22,4 +22,16 @@ export class DetalleEntradaService {
       })
     )
   }
+
+  getDetalleEntrada(idEntrada: number): Observable<GetDetalleEntradaResponse> {
+    const httpOptions = { headers: this.headers }
+    const url = `${detalleEntradas.get}?idEntrada=${idEntrada}`
+    return this.http.get<GetDetalleEntradaResponse>(url, httpOptions)   
+      .pipe(
+        map(res => {
+          return res
+        }
+      )
+    )
+  } 
 }

@@ -66,5 +66,6 @@ export const entradas = {
 }
 
 export const detalleEntradas = {
-  insert: `${environment.urlBase}DetalleEntrada/Insert`
+  insert: `${environment.urlBase}DetalleEntrada/Insert`,
+  get: `${environment.urlBase}DetalleEntrada/Get`
 }

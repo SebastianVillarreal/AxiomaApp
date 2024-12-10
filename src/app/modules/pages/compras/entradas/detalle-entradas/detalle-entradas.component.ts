@@ -2,15 +2,16 @@ import { NgFor, NgIf } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { CustomTableComponent } from '@Component/Table';
 import { ArticuloModel } from '@Models/Articulo';
-import { DetalleEntradaInsertRequest } from '@Models/DetalleEntrada';
+import { DetalleEntradaInsertRequest, DetalleEntradaModel } from '@Models/DetalleEntrada';
 import { NbButtonModule, NbCardModule, NbInputModule, NbSelectModule } from '@nebular/theme';
 import { ArticuloService, DetalleEntradaService } from '@Services';
 
 @Component({
   selector:'app-detalle-entradas',
   standalone: true,
-  imports: [ReactiveFormsModule, NgIf, NgFor, NbCardModule, NbInputModule, NbSelectModule, NbButtonModule],
+  imports: [ReactiveFormsModule, CustomTableComponent,NgIf, NgFor, NbCardModule, NbInputModule, NbSelectModule, NbButtonModule],
   templateUrl: './detalle-entradas.component.html',
   styleUrls: ['./detalle-entradas.component.scss']
 })
@@ -20,6 +21,7 @@ export class DetalleEntradasComponent implements OnInit {
   private fb = inject(FormBuilder)
   private route = inject(ActivatedRoute)
 
+  detallesList: DetalleEntradaModel[] = []
   articulosList: ArticuloModel[] = []
   idEntrada: number = 0
   form = this.fb.nonNullable.group({
@@ -32,6 +34,13 @@ export class DetalleEntradasComponent implements OnInit {
   ngOnInit(): void {
     this.idEntrada = +this.route.snapshot.paramMap.get("id")!
     this.getArticulos()
+    this.getDetalles()
+  }
+
+  getDetalles(): void {
+    this.detalleEntradaService.getDetalleEntrada(this.idEntrada).subscribe((data) => {
+      this.detallesList = data.Response.data
+    })
   }
 
   getArticulos(): void {
@@ -59,6 +68,7 @@ export class DetalleEntradasComponent implements OnInit {
       serviceCall.subscribe({
         next: (res: any) => {
           this.resetForm()
+          this.getDetalles()
         }
       })
     }
