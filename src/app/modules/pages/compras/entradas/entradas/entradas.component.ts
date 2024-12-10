@@ -6,6 +6,7 @@ import { EntradaInsertRequest } from '@Models/Entrada';
 import { ProveedorModel } from '@Models/Proveedor';
 import { SucursalModel } from '@Models/Sucursal';
 import { EntradaService, ProveedorService, SucursalService } from '@Services';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-entradas',
@@ -19,6 +20,7 @@ export class EntradasComponent implements OnInit{
   private entradaService = inject(EntradaService)
   private sucursalService = inject(SucursalService)
   private proveedorService = inject(ProveedorService)
+  private router = inject(Router)
 
   sucursalesList: SucursalModel[] = []
   proveedoresList: ProveedorModel[] = []
@@ -61,7 +63,7 @@ export class EntradasComponent implements OnInit{
       this.entradaService.insertEntrada(request).subscribe(
         {
           next: (res: any) => {
-            console.log(res)
+            this.showDetalleEntrada(res.response.data)
           },
           error: (err: any) => {
             console.log(err)
@@ -69,5 +71,9 @@ export class EntradasComponent implements OnInit{
         }
       )
     }
+  }
+
+  showDetalleEntrada(id: number): void {
+    this.router.navigate(['pages/compras/entradas/detalles', id])
   }
 }

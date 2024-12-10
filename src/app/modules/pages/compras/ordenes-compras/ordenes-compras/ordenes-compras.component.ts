@@ -85,6 +85,6 @@ export class OrdenesComprasComponent implements OnInit{
   }
 
   showDetalleOrdenCompra(id: number): void {
-    this.router.navigate(['pages/ordenes-compras/detalles', id])
+    this.router.navigate(['pages/compras/ordenes-compras/detalles', id])
   }
 }

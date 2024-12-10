@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { EntradasRoutingModule } from "./entradas-routing.module";
 import { NbMenuModule } from "@nebular/theme";
 import { EntradasTableComponent } from './entradas-table/entradas-table.component';
+import { DetalleEntradasComponent } from './detalle-entradas/detalle-entradas.component';
 
 @NgModule({
     imports: [
@@ -9,6 +10,8 @@ import { EntradasTableComponent } from './entradas-table/entradas-table.componen
         NbMenuModule
     ],
     declarations: [
+  
+    DetalleEntradasComponent
   ]
 })
 export class EntradasModule {}
