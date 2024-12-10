@@ -80,7 +80,16 @@
             (deleteEmit)="deleteEntrada($event)"
         ></app-custom-table>
         </nb-tab>
-        <nb-tab tabTitle="Reporte Entradas"></nb-tab>
+        <nb-tab tabTitle="Reporte Entradas">
+            <app-custom-table
+            tableHead="Reporte Entradas | Tabla"
+            keyRow="Id"
+            [headers]="['#', 'Entrada Ligada', 'Codigo', 'Proveedor','Sucursal', 'Cantidad','Costo', 'Descuento', 'Monto Descuento', 'Cantidad sin Cargo', 'Total', 'Fecha Inicio','Fecha Fin','Usuario Actualiza','FechaRegistro','Estatus']"
+            [keys]="['Id','Entrada_Ligada', 'Codigo', 'NombreProveedor','NombreSucursal', 'Cantidad', 'Costo','Descuento', 'MontoDescuento', 'CantidadSinCargo', 'Total', 'FechaInicio', 'FechaFin','UsuarioActualiza','FechaRegistro','Estatus']"
+            [data]="reportEntradasList"
+            [hasSearch]="true"
+        ></app-custom-table>
+        </nb-tab>
     </nb-tabset>
 
 </div>

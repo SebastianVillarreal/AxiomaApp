@@ -1,6 +1,6 @@
 import { Component, inject, OnInit, ViewChild, TemplateRef, Optional } from '@angular/core';
 import { NgIf, NgFor } from '@angular/common';
-import { EntradaService, ProveedorService, SucursalService } from '@Services';
+import { DetalleEntradaService, EntradaService, ProveedorService, SucursalService } from '@Services';
 import { CustomTableComponent } from '@Component/Table';
 import { EntradaModel, EntradaUpdateRequest } from '@Models/Entrada';
 import { SweetAlertService } from '@Service/SweetAlert';
@@ -8,6 +8,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NbButtonModule, NbCardModule, NbDatepickerModule, NbDialogModule, NbDialogRef, NbDialogService, NbInputModule, NbSelectModule, NbTabsetModule } from '@nebular/theme';
 import { ProveedorModel } from '@Models/Proveedor';
 import { SucursalModel } from '@Models/Sucursal';
+import { ReporteEntradaModel } from '@Models/DetalleEntrada';
 
 @Component({
   selector: 'app-entradas-table',
@@ -18,6 +19,7 @@ import { SucursalModel } from '@Models/Sucursal';
 })
 export class EntradasTableComponent implements OnInit {
   private entradasService = inject(EntradaService)
+  private detalleEntradaService = inject(DetalleEntradaService)
   private sweetAlertService = inject(SweetAlertService)
   private proveedorService = inject(ProveedorService)
   private sucursalService = inject(SucursalService)
@@ -27,6 +29,7 @@ export class EntradasTableComponent implements OnInit {
   constructor(@Optional() private dialogRef: NbDialogRef<any>){}
 
   entradasList: EntradaModel[] = []
+  reportEntradasList: ReporteEntradaModel[] = []
   proveedoresList: ProveedorModel[] = []
   sucursalesList: SucursalModel[] = []
 
@@ -41,10 +44,16 @@ export class EntradasTableComponent implements OnInit {
     fechaActualiza: ['']
   })
 
+  filterFecha = this.fb.nonNullable.group({
+    fechaInicio: [''],
+    fechaFin: ['']
+  })
+
   ngOnInit(): void {
     this.getEntradas()
     this.getProveedores()
     this.getSucursales()
+    this.getReportEntradas()
   }
 
   getEntradas(): void {
@@ -53,6 +62,11 @@ export class EntradasTableComponent implements OnInit {
     })
   }
 
+  getReportEntradas(): void {
+    this.detalleEntradaService.getReportEntradas().subscribe((data) => {
+      this.reportEntradasList = data
+    })
+  }
   getProveedores(): void {
     this.proveedorService.getProveedores().subscribe((data) =>
       this.proveedoresList = data.Response.data

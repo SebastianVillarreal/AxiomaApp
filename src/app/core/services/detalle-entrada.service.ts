@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { detalleEntradas } from '@Global/endpoints';
-import { DetalleEntradaInsertRequest, GetDetalleEntradaResponse } from '@Models/DetalleEntrada';
+import { DetalleEntradaInsertRequest, GetDetalleEntradaResponse, GetReporteEntradaResponse } from '@Models/DetalleEntrada';
 import { map, Observable } from 'rxjs';
 
 @Injectable({
@@ -34,6 +34,17 @@ export class DetalleEntradaService {
       )
     )
   } 
+
+  getReportEntradas(fechaInicio: string = '', fechaFin: string = ''): Observable<GetReporteEntradaResponse>{
+    const httpOptions = { headers: this.headers }
+    const url =`${detalleEntradas.getReporte}?FechaInicio=${fechaInicio}&FechaFin=${fechaFin}`
+    return this.http.get<GetReporteEntradaResponse>(url, httpOptions)
+    .pipe(
+      map(res => {
+        return res
+      })
+    )
+  }
 
   deleteDetalleEntrada(id: number): Observable<boolean> {
     const httpOptions = { headers: this.headers }

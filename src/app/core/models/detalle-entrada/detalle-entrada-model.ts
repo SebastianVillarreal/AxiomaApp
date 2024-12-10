@@ -10,6 +10,7 @@ export interface DetalleEntradaInsertRequest {
 }
 
 export type GetDetalleEntradaResponse = ApiResponse<DetalleEntradaResponseData>
+export type GetReporteEntradaResponse = ReporteEntradaModel[]
 
 export interface DetalleEntradaResponseData {
     data: DetalleEntradaModel[]
@@ -30,4 +31,24 @@ export interface DetalleEntradaModel {
     FechaAct: string;
     UsuarioAct: string;
     Mensaje: string | null
+}
+
+
+export interface ReporteEntradaModel {
+    Id: number;
+    Entrada_Ligada: number;
+    Codigo: string;
+    NombreProveedor: string;
+    NombreSucursal: string;
+    Cantidad: number;
+    Costo: number;
+    Descuento: number;
+    MontoDescuento: number;
+    CanitdadSinCargo: number;
+    Total: number;
+    Estatus: string;
+    UsuarioActualiza: string;
+    FechaRegistro: string;
+    FechaInicio: string | null;
+    FechaFinal: string | null;
 }
