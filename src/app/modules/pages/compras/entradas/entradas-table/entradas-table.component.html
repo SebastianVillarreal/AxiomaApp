@@ -65,16 +65,22 @@
 </ng-template>
 
 <div>
-    <app-custom-table
-        tableHead="Entradas | Tabla"
-        keyRow="Id"
-        [headers]="['#', 'Proveedor', 'Sucursal', 'Factura','Fecha Entrega', 'Fecha Registro','Fecha Actualiza', 'usuario actualiza', 'mensaje']"
-        [keys]="['Id','Proveedor', 'Surcursal', 'Factura','FechaEntrega', 'FechaRegistro', 'FechaActualiza','UsuarioActualiza', 'Mensaje']"
-        [data]="entradasList"
-        [hasSearch]="true"
-        [hasDelete]="true"
-        [hasEdit]="true"
-        (editEmit)="editEntrada($event)"
-        (deleteEmit)="deleteEntrada($event)"
-    ></app-custom-table>
+    <nb-tabset>
+        <nb-tab tabTitle="Tabla Entradas">
+            <app-custom-table
+            tableHead="Entradas | Tabla"
+            keyRow="Id"
+            [headers]="['#', 'Proveedor', 'Sucursal', 'Factura','Fecha Entrega', 'Fecha Registro','Fecha Actualiza', 'usuario actualiza', 'mensaje']"
+            [keys]="['Id','Proveedor', 'Surcursal', 'Factura','FechaEntrega', 'FechaRegistro', 'FechaActualiza','UsuarioActualiza', 'Mensaje']"
+            [data]="entradasList"
+            [hasSearch]="true"
+            [hasDelete]="true"
+            [hasEdit]="true"
+            (editEmit)="editEntrada($event)"
+            (deleteEmit)="deleteEntrada($event)"
+        ></app-custom-table>
+        </nb-tab>
+        <nb-tab tabTitle="Reporte Entradas"></nb-tab>
+    </nb-tabset>
+
 </div>

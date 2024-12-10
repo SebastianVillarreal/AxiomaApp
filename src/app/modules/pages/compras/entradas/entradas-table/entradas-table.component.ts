@@ -5,14 +5,14 @@ import { CustomTableComponent } from '@Component/Table';
 import { EntradaModel, EntradaUpdateRequest } from '@Models/Entrada';
 import { SweetAlertService } from '@Service/SweetAlert';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { NbButtonModule, NbCardModule, NbDatepickerModule, NbDialogModule, NbDialogRef, NbDialogService, NbInputModule, NbSelectModule } from '@nebular/theme';
+import { NbButtonModule, NbCardModule, NbDatepickerModule, NbDialogModule, NbDialogRef, NbDialogService, NbInputModule, NbSelectModule, NbTabsetModule } from '@nebular/theme';
 import { ProveedorModel } from '@Models/Proveedor';
 import { SucursalModel } from '@Models/Sucursal';
 
 @Component({
   selector: 'app-entradas-table',
   standalone: true,
-  imports: [CustomTableComponent, NgIf, NgFor,ReactiveFormsModule, NbDialogModule, NbButtonModule, NbInputModule, NbSelectModule, NbCardModule, NbDatepickerModule],
+  imports: [CustomTableComponent, NgIf, NgFor,ReactiveFormsModule, NbDialogModule, NbButtonModule, NbInputModule, NbSelectModule, NbCardModule, NbDatepickerModule, NbTabsetModule],
   templateUrl: './entradas-table.component.html',
   styleUrls: ['./entradas-table.component.scss']
 })
