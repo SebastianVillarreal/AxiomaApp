@@ -9,6 +9,8 @@ import { NbButtonModule, NbCardModule, NbDatepickerModule, NbDialogModule, NbDia
 import { ProveedorModel } from '@Models/Proveedor';
 import { SucursalModel } from '@Models/Sucursal';
 import { ReporteEntradaModel } from '@Models/DetalleEntrada';
+import * as moment from 'moment';
+
 
 @Component({
   selector: 'app-entradas-table',
@@ -45,8 +47,8 @@ export class EntradasTableComponent implements OnInit {
   })
 
   filterFecha = this.fb.nonNullable.group({
-    fechaInicio: [''],
-    fechaFin: ['']
+    fechaInicio: ['', [Validators.required]],
+    fechaFin: ['', [Validators.required]]
   })
 
   ngOnInit(): void {
@@ -62,8 +64,8 @@ export class EntradasTableComponent implements OnInit {
     })
   }
 
-  getReportEntradas(): void {
-    this.detalleEntradaService.getReportEntradas().subscribe((data) => {
+  getReportEntradas(fechaInicio:string = '', fechaFin: string = ''): void {
+    this.detalleEntradaService.getReportEntradas(fechaInicio, fechaFin).subscribe((data) => {
       this.reportEntradasList = data
     })
   }
@@ -79,6 +81,23 @@ export class EntradasTableComponent implements OnInit {
     )
   }
 
+  filter(): void {
+    const {fechaInicio, fechaFin} = this.filterFecha.getRawValue()
+    const formatoFechaInicio = moment(fechaInicio).format('MM/DD/yyyy')
+    const formatoFechaFin = moment(fechaFin).format('MM/DD/yyyy')
+    this.getReportEntradas(formatoFechaInicio, formatoFechaFin)
+    this.resetFilter()
+  }
+
+  
+  resetFilter(): void {
+    this.filterFecha.reset(
+      {
+        fechaInicio: '',
+        fechaFin: '',
+      }
+    )
+  }
   open(dialog: TemplateRef<any>, data:EntradaModel) {
     this.dialogRef = this.dialogService.open(dialog, {context: data})
   }
@@ -151,6 +170,7 @@ export class EntradasTableComponent implements OnInit {
       }
     });
   }
+
 
 
 

@@ -37,7 +37,7 @@ export class DetalleEntradaService {
 
   getReportEntradas(fechaInicio: string = '', fechaFin: string = ''): Observable<GetReporteEntradaResponse>{
     const httpOptions = { headers: this.headers }
-    const url =`${detalleEntradas.getReporte}?FechaInicio=${fechaInicio}&FechaFin=${fechaFin}`
+    const url =`${detalleEntradas.getReporte}?FechaInicio=${fechaInicio}&FechaFinal=${fechaFin}`
     return this.http.get<GetReporteEntradaResponse>(url, httpOptions)
     .pipe(
       map(res => {

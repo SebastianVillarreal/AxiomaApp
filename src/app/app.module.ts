@@ -18,6 +18,8 @@ import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
+import { NbDateFnsDateModule } from '@nebular/date-fns';
+import { NbMomentDateModule } from '@nebular/moment';
 
 registerLocaleData(localeEs, 'es');
 @NgModule({
@@ -34,6 +36,7 @@ registerLocaleData(localeEs, 'es');
     NbIconModule,
     NbCardModule,
     NbToastrModule.forRoot(),
+    NbDateFnsDateModule.forRoot({ format: 'MM/dd/yyyy' }),
     NbDialogModule.forRoot(),
     NbMenuModule.forRoot(),
     NbDatepickerModule.forRoot(),

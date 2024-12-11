@@ -66,6 +66,7 @@
 
 <div>
     <nb-tabset>
+
         <nb-tab tabTitle="Tabla Entradas">
             <app-custom-table
             tableHead="Entradas | Tabla"
@@ -79,16 +80,42 @@
             (editEmit)="editEntrada($event)"
             (deleteEmit)="deleteEntrada($event)"
         ></app-custom-table>
+
         </nb-tab>
         <nb-tab tabTitle="Reporte Entradas">
-            <app-custom-table
-            tableHead="Reporte Entradas | Tabla"
-            keyRow="Id"
-            [headers]="['#', 'Entrada Ligada', 'Codigo', 'Proveedor','Sucursal', 'Cantidad','Costo', 'Descuento', 'Monto Descuento', 'Cantidad sin Cargo', 'Total', 'Fecha Inicio','Fecha Fin','Usuario Actualiza','FechaRegistro','Estatus']"
-            [keys]="['Id','Entrada_Ligada', 'Codigo', 'NombreProveedor','NombreSucursal', 'Cantidad', 'Costo','Descuento', 'MontoDescuento', 'CantidadSinCargo', 'Total', 'FechaInicio', 'FechaFin','UsuarioActualiza','FechaRegistro','Estatus']"
-            [data]="reportEntradasList"
-            [hasSearch]="true"
-        ></app-custom-table>
+            <div class="mb-5">
+                <form [formGroup]="filterFecha"  (ngSubmit)="filter()" novalidate>
+                    <h6>
+                        Filtrar por fecha
+                    </h6>
+                    <div class="form-grid">
+                        <div>
+                            <label class="label">Fecha Inicio</label>
+                            <input formControlName="fechaInicio" nbInput [nbDatepicker]="fechaInicio" fullWidth>
+                            <nb-datepicker #fechaInicio></nb-datepicker>
+                        </div>
+                        <div>
+                            <label class="label">Fecha Fin</label>
+                            <input formControlName="fechaFin" nbInput [nbDatepicker]="fechaFin" fullWidth>
+                            <nb-datepicker #fechaFin></nb-datepicker>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <button nbButton status="primary" type="submit" [disabled]="!filterFecha.valid">Filtrar</button>
+                    </div>
+                </form>
+            </div>
+            <div>
+                <app-custom-table
+                tableHead="Reporte Entradas | Tabla"
+                keyRow="Id"
+                [headers]="['#', 'Entrada Ligada', 'Codigo', 'Proveedor','Sucursal', 'Cantidad','Costo', 'Descuento', 'Monto Descuento', 'Cantidad sin Cargo', 'Total', 'Fecha Inicio','Fecha Fin','Usuario Actualiza','FechaRegistro','Estatus']"
+                [keys]="['Id','Entrada_Ligada', 'Codigo', 'NombreProveedor','NombreSucursal', 'Cantidad', 'Costo','Descuento', 'MontoDescuento', 'CantidadSinCargo', 'Total', 'FechaInicio', 'FechaFin','UsuarioActualiza','FechaRegistro','Estatus']"
+                [data]="reportEntradasList"
+                [hasSearch]="true"
+            ></app-custom-table>
+            </div>
+
         </nb-tab>
     </nb-tabset>
 
