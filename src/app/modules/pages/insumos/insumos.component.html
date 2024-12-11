@@ -29,12 +29,6 @@
                             {{ insumo.Descripcion }}
                         </nb-option>
                     </nb-select>
-                    <div *ngIf="form.get('insumosUP')?.touched && form.get('insumosUP')?.invalid">
-                        <p class="text-danger text-sm italic" *ngIf="form.get('insumosUP')?.errors?.['required']">Insumo UP requerida*</p>
-                    </div>
-                    <div *ngIf="form.get('insumosUP')?.touched && form.get('insumosUP')?.invalid">
-                        <p class="text-danger text-sm italic" *ngIf="form.get('insumosUP')?.errors?.['min']">Seleccione una insumo*</p>
-                    </div>
                 </div>
                 <div>
                     <label class="label">*Unidad de medida</label>

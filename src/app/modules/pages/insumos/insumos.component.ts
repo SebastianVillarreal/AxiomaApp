@@ -38,7 +38,7 @@ export class InsumosComponent implements OnInit{
     id: [0],
     insumo: ['',[Validators.required]],
     descripcion: ['', [Validators.required]],
-    insumosUP: ['', [Validators.required]],
+    insumosUP: [''],
     idUm: [0, [Validators.required, Validators.min(1)]],
     costo: [0, [Validators.required]],
   })
