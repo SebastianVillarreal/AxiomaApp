@@ -12,9 +12,9 @@ export interface EntradaUpdateRequest {
     idProveedor: number;
     factura: string;
     idSurcursal: number;
-    fechaEntrega: string,
+    fechaEntrega: Date,
     usuarioActualiza: number;
-    fechaActualiza: string;
+    fechaActualiza: Date;
 }
 
 export type GetEntradaResponse = ApiResponse<EntradaResponseData>
