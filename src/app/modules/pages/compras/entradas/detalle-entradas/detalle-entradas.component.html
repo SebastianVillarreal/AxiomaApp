@@ -33,7 +33,7 @@
                 </div>
                 <div>
                     <label class="label">*Descuento</label>
-                    <input formControlName="cantidad" type="number" nbInput fullWidth min="0">
+                    <input formControlName="descuento" type="number" nbInput fullWidth min="0">
                     <div *ngIf="form.get('descuento')?.touched && form.get('descuento')?.invalid">
                         <p class="text-danger text-sm italic" *ngIf="form.get('descuento')?.errors?.['required']">Descuento requerido*</p>
                     </div>
