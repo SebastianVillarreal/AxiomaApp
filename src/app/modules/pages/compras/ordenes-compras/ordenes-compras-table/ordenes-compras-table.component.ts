@@ -9,9 +9,7 @@ import { OrdenCompraService, ProveedorService, SucursalService } from '@Services
 import { SweetAlertService } from 'src/app/shared/services/sweet-alert.service';
 import { ProveedorModel } from '@Models/Proveedor';
 import { SucursalModel } from '@Models/Sucursal';
-
-
-
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-ordenes-compras-table',
@@ -48,7 +46,7 @@ export class OrdenesComprasTableComponent implements OnInit {
   form = this.fb.nonNullable.group({
     id: [0],
     idProveedor: [0, [Validators.required, Validators.min(1)]],
-    fechaLlegada: ['', [Validators.required]],
+    fechaLlegada: [new Date(), [Validators.required]],
     idSucursal: [0, [Validators.required, Validators.min(1)]],
     idComprador: [0, [Validators.required, Validators.min(1)]]
   })
@@ -76,17 +74,22 @@ export class OrdenesComprasTableComponent implements OnInit {
     )
   }
 
+  
+  open(dialog: TemplateRef<any>, data:OrdenCompraModel) {
+    this.dialogRef = this.dialogService.open(dialog, {context: data})
+  }
+
   updateOrdenCompra(): void {
     if (this.form.valid) {
       const {id, idProveedor, fechaLlegada, idComprador, idSucursal} = this.form.getRawValue()
-      const usuarioActualiza = parseInt(localStorage.getItem('IdUsuario')??'0')
+      const usuarioActualiza = parseInt(localStorage.getItem('idUsuario')??'0')
 
       const requestUpdate: OrdenCompraUpdateRequest = {
         idOrden: id,
         idProveedor: idProveedor,
         fechaLlegada: fechaLlegada,
         idComprador: idComprador,
-        idSucursal: idSucursal,
+        idSurcursal: idSucursal,
         usuarioActualiza: usuarioActualiza
       }
 
@@ -102,14 +105,11 @@ export class OrdenesComprasTableComponent implements OnInit {
     }
   }
 
-  open(dialog: TemplateRef<any>, data:OrdenCompraModel) {
-    this.dialogRef = this.dialogService.open(dialog, {context: data})
-  }
 
-  formatFecha(fecha: string): string {   
+  formatoFecha(fecha: string): Date {   
     const partesFecha = fecha.split('/')
-    const fechaValida = `${partesFecha[2]}/${partesFecha[1]}/${partesFecha[0]}`
-    return fechaValida
+    const formatoFechaValida = `${partesFecha[2]}/${partesFecha[1]}/${partesFecha[0]}`
+    return new Date(formatoFechaValida)
   }
 
   editOrdenCompra(data: OrdenCompraModel): void {
@@ -121,11 +121,13 @@ export class OrdenesComprasTableComponent implements OnInit {
     this.form.patchValue({
       id: data.Id,
       idProveedor: proveedor?.Id,
-      fechaLlegada: this.formatFecha(data.FechaLlegada),
+      fechaLlegada: this.formatoFecha(data.FechaLlegada),
       idSucursal: sucursal?.Id,
       idComprador: comprador?.id
     })
+
   }
+
   deleteOrdenCompra(Id: number): void {
     this.sweetAlertService.confirm({
       title: '¿Estás seguro que deseas eliminar esta orden de compra?',
@@ -142,9 +144,7 @@ export class OrdenesComprasTableComponent implements OnInit {
             }
           });
       }
-    });
-
-    
+    });    
   }
 
   showDetallesOrdenCompra(data: OrdenCompraModel): void{

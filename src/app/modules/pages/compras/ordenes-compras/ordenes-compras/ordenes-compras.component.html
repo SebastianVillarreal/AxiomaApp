@@ -23,11 +23,11 @@
             </div>
             <div>
                 <label class="label">*Fecha Llegada</label>
-                <input formControlName="fechaLlegada" nbInput [nbDatepicker]="dateTimePicker" fullWidth>
+                <input type="text" formControlName="fechaLlegada" nbInput [nbDatepicker]="dateTimePicker" fullWidth>
                 <nb-datepicker #dateTimePicker></nb-datepicker>
-                <div *ngIf="form.get('fechaLlegada')?.touched && form.get('fechaLlegada')?.invalid">
+                <!-- <div *ngIf="form.get('fechaLlegada')?.touched && form.get('fechaLlegada')?.invalid">
                     <p class="text-danger text-sm italic" *ngIf="form.get('fechaLlegada')?.errors?.['required']">Fecha de llegada requerida*</p>
-                </div>
+                </div> -->
             </div>
             <div>
                 <label class="label">*Sucursal</label>

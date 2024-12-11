@@ -12,8 +12,8 @@ export interface OrdenCompraInsertRequest {
 export interface OrdenCompraUpdateRequest {
     idOrden: number;
     idProveedor: number;
-    fechaLlegada: string;
-    idSucursal: number;
+    fechaLlegada: Date;
+    idSurcursal: number;
     idComprador: number;
     usuarioActualiza: number;
 }

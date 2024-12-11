@@ -30,6 +30,9 @@
                                 <nb-icon *ngIf="sortKey === keys[i]" [icon]="sortDirection === 'asc' ? 'arrow-up-outline' : 'arrow-down-outline'"></nb-icon>
                             </div>
                         </th>
+                        <th *ngIf="hasStatus">
+                            Estatus
+                        </th>
                         <th *ngIf="hasEdit || hasDelete">
                             Acciones
                         </th>
