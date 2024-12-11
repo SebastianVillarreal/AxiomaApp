@@ -10,6 +10,7 @@ import { ProveedorModel } from '@Models/Proveedor';
 import { SucursalModel } from '@Models/Sucursal';
 import { ReporteEntradaModel } from '@Models/DetalleEntrada';
 import * as moment from 'moment';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -27,6 +28,7 @@ export class EntradasTableComponent implements OnInit {
   private sucursalService = inject(SucursalService)
   private dialogService = inject(NbDialogService)
   private fb = inject(FormBuilder)
+  private router = inject(Router)
 
   constructor(@Optional() private dialogRef: NbDialogRef<any>){}
 
@@ -42,8 +44,8 @@ export class EntradasTableComponent implements OnInit {
     idProveedor: [0, [Validators.required, Validators.min(1)]],
     factura: ['', [Validators.required]],
     idSucursal: [0, [Validators.required, Validators.min(1)]],
-    fechaEntrega: ['', [Validators.required]],
-    fechaActualiza: ['']
+    fechaEntrega: [new Date(), [Validators.required]],
+    fechaActualiza: [new Date()]
   })
 
   filterFecha = this.fb.nonNullable.group({
@@ -102,10 +104,10 @@ export class EntradasTableComponent implements OnInit {
     this.dialogRef = this.dialogService.open(dialog, {context: data})
   }
 
-  formatFecha(fecha: string): string {   
+  formatoFecha(fecha: string): Date {   
     const partesFecha = fecha.split('/')
-    const fechaValida = `${partesFecha[2]}/${partesFecha[1]}/${partesFecha[0]}`
-    return fechaValida
+    const formatoFechaValida = `${partesFecha[2]}/${partesFecha[1]}/${partesFecha[0]}`
+    return new Date(formatoFechaValida)
   }
 
   editEntrada(data: EntradaModel): void {
@@ -118,8 +120,8 @@ export class EntradasTableComponent implements OnInit {
       idProveedor: proveedor?.Id,
       factura: data.Factura,
       idSucursal: sucursal?.Id,
-      fechaEntrega: this.formatFecha(data.FechaEntrega),
-      fechaActualiza: this.formatFecha(data.FechaActualiza)
+      fechaEntrega: this.formatoFecha(data.FechaEntrega),
+      fechaActualiza: this.formatoFecha(data.FechaActualiza)
     })
   }
 
@@ -184,7 +186,9 @@ export class EntradasTableComponent implements OnInit {
     })
   }
 
-
+  showDetallesEntrada(data: EntradaModel): void {
+    this.router.navigate(['pages/compras/entradas/detalles', data.Id])
+  }
 
 
 

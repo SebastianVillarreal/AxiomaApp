@@ -79,8 +79,10 @@
             [hasDelete]="true"
             [hasEdit]="true"
             [hasStatus]="true"
+            [hasDetails]="true"
             (editEmit)="editEntrada($event)"
             (deleteEmit)="deleteEntrada($event)"
+            (detailsEmit)="showDetallesEntrada($event)"
         ></app-custom-table>
 
         </nb-tab>
