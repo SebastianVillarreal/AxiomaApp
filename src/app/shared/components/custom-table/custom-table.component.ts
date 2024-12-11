@@ -24,6 +24,7 @@ export class CustomTableComponent implements OnInit{
   @Output() editEmit: EventEmitter<any> = new EventEmitter();
   @Output() deleteEmit: EventEmitter<any> = new EventEmitter();
   @Output() detailsEmit: EventEmitter<any> = new EventEmitter();
+  @Output() exportEmit: EventEmitter<any> = new EventEmitter();
 
   //Buscar elemento
   elementoBuscado: string = "";
@@ -53,9 +54,7 @@ export class CustomTableComponent implements OnInit{
           return valor != null && valor.toString().toLowerCase().includes(elemento);
         }
         )
-      )
-    
-
+      ) 
     this.totalItems = filteredData.length;
     return filteredData.slice((this.currentPage - 1) * this.currentPerPage, this.currentPage  * this.currentPerPage)
   }
@@ -92,6 +91,7 @@ export class CustomTableComponent implements OnInit{
   editRow(data: any){
     this.editEmit.emit(data)
   }
+  
 
   deleteRow(data: any){
     this.deleteEmit.emit(data[this.keyRow])
@@ -99,5 +99,9 @@ export class CustomTableComponent implements OnInit{
 
   showDetails(data: any){
     this.detailsEmit.emit(data)
+  }
+
+  exportData() {
+    this.exportEmit.emit()
   }
 }

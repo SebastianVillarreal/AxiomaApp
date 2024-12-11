@@ -55,4 +55,14 @@ export class DetalleEntradaService {
       })
     )
   }
+  
+  exportReportEntradas(): Observable<Blob>{
+    const httpOptions = { headers: this.headers, responseType: 'blob' as 'json' }
+    return this.http.get<Blob>(detalleEntradas.exportReport, httpOptions)
+      .pipe(
+        map(res => {
+        return res
+      })
+    )
+  }
 }

@@ -88,7 +88,6 @@ export class EntradasTableComponent implements OnInit {
     this.getReportEntradas(formatoFechaInicio, formatoFechaFin)
     this.resetFilter()
   }
-
   
   resetFilter(): void {
     this.filterFecha.reset(
@@ -98,6 +97,7 @@ export class EntradasTableComponent implements OnInit {
       }
     )
   }
+
   open(dialog: TemplateRef<any>, data:EntradaModel) {
     this.dialogRef = this.dialogService.open(dialog, {context: data})
   }
@@ -171,6 +171,18 @@ export class EntradasTableComponent implements OnInit {
     });
   }
 
+  exportEntradas(): void {
+    this.detalleEntradaService.exportReportEntradas().subscribe((data) => {
+      const url = window.URL.createObjectURL(data);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'ReportEntradas.xlsx';
+      a.click();
+    },
+      error => {
+      console.log(error)
+    })
+  }
 
 
 

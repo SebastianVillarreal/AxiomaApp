@@ -69,5 +69,6 @@ export const detalleEntradas = {
   insert: `${environment.urlBase}DetalleEntrada/Insert`,
   get: `${environment.urlBase}DetalleEntrada/Get`,
   getReporte: `${environment.urlBase}DetalleEntrada/GetReportEntradas`,
+  exportReport: `${environment.urlBase}DetalleEntrada/ExportarReportEntradasAExcel`,
   delete: `${environment.urlBase}DetalleEntrada/Delete`
 }

@@ -113,6 +113,8 @@
                 [keys]="['Id','Entrada_Ligada', 'Codigo', 'NombreProveedor','NombreSucursal', 'Cantidad', 'Costo','Descuento', 'MontoDescuento', 'CantidadSinCargo', 'Total', 'FechaInicio', 'FechaFin','UsuarioActualiza','FechaRegistro','Estatus']"
                 [data]="reportEntradasList"
                 [hasSearch]="true"
+                [hasExport]="true"
+                (exportEmit)="exportEntradas()"
             ></app-custom-table>
             </div>
 
