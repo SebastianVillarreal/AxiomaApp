@@ -40,6 +40,16 @@
                         <td *ngFor="let key of keys"class="px-6 py-4">
                            {{row[key]}}
                         </td>
+                        <td *ngIf="hasStatus" class="px-6 py-4">
+                            <span
+                            [ngClass]="{
+                                'bg-red-100 text-red-800 border-red-400': row[keyStatus] === 0,
+                                'bg-green-100 text-green-800 border-green-400': row[keyStatus] === 1
+                            }"
+                            class="text-xs font-medium me-2 px-2.5 py-0.5 rounded border">
+                            {{row[keyStatus] === 1 ? 'Activo' : 'Inactivo'}}
+                            </span>
+                        </td>
                         <td *ngIf="hasEdit || hasDelete">
                             <button *ngIf="hasEdit" class="text-blue-600 font-medium hover:underline" (click)="editRow(row)">
                                 <nb-icon icon="edit-outline"></nb-icon>

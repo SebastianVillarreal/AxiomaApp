@@ -1,16 +1,17 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { NgFor, NgIf, } from '@angular/common';
+import { NgFor, NgIf, NgClass } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NbIconModule,NbButtonModule, NbInputModule, NbCardModule } from '@nebular/theme';
 @Component({
   selector: 'app-custom-table',
   standalone: true,
-  imports: [NgFor, NgIf, NbIconModule, FormsModule, NbButtonModule, NbCardModule],
+  imports: [NgFor, NgIf, NgClass, NbIconModule, FormsModule, NbButtonModule, NbCardModule],
   templateUrl: './custom-table.component.html',
   styleUrls: ['./custom-table.component.scss']
 })
 export class CustomTableComponent implements OnInit{
   @Input() keyRow: string = "Id";
+  @Input() keyStatus: string = "Estatus";
   @Input() tableHead: string = "Tabla";
   @Input() headers: any[] = [];
   @Input() data: any[] = [];
@@ -20,6 +21,7 @@ export class CustomTableComponent implements OnInit{
   @Input() hasEdit: boolean = false;
   @Input() hasDelete: boolean = false;
   @Input() hasDetails: boolean = false;
+  @Input() hasStatus: boolean = false;
   
   @Output() editEmit: EventEmitter<any> = new EventEmitter();
   @Output() deleteEmit: EventEmitter<any> = new EventEmitter();

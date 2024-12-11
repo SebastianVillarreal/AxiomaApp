@@ -71,12 +71,14 @@
             <app-custom-table
             tableHead="Entradas | Tabla"
             keyRow="Id"
+            keyStatus="Estatus"
             [headers]="['#', 'Proveedor', 'Sucursal', 'Factura','Fecha Entrega', 'Fecha Registro','Fecha Actualiza', 'usuario actualiza', 'mensaje']"
             [keys]="['Id','Proveedor', 'Surcursal', 'Factura','FechaEntrega', 'FechaRegistro', 'FechaActualiza','UsuarioActualiza', 'Mensaje']"
             [data]="entradasList"
             [hasSearch]="true"
             [hasDelete]="true"
             [hasEdit]="true"
+            [hasStatus]="true"
             (editEmit)="editEntrada($event)"
             (deleteEmit)="deleteEntrada($event)"
         ></app-custom-table>
