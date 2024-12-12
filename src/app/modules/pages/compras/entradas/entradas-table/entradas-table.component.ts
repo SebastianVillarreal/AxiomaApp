@@ -128,7 +128,7 @@ export class EntradasTableComponent implements OnInit {
   updateEntrada(): void {
     if (this.form.valid) {
       const { id, idProveedor, factura, idSucursal, fechaEntrega, fechaActualiza } = this.form.getRawValue()
-      const usuarioActualiza = parseInt(localStorage.getItem('IdUsuario') ?? '0')
+      const usuarioActualiza = parseInt(localStorage.getItem('idUsuario') ?? '0')
       
       const requestUpdate: EntradaUpdateRequest = {
         id: id,
