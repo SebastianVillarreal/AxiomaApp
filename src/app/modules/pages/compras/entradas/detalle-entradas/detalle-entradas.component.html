@@ -46,6 +46,30 @@
     </form>
 </div>
 
+<ng-template #dialog let-data let-ref="dialogRef">
+    <form [formGroup]="formCantidad"  (ngSubmit)="updateCantidad()" novalidate>
+        <nb-card>
+            <nb-card-header>
+                Detalle #{{data.Id}}
+            </nb-card-header>
+            
+            <nb-card-body class="form-grid">
+                <div>
+                    <label class="label">*Cantidad</label>
+                    <input formControlName="cantidad" type="number" nbInput fullWidth min="0">
+                    <div *ngIf="form.get('cantidad')?.touched && form.get('cantidad')?.invalid">
+                        <p class="text-danger text-sm italic" *ngIf="form.get('cantidad')?.errors?.['required']">Cantidad requerida*</p>
+                    </div>
+                </div>
+            </nb-card-body>
+            <nb-card-footer class="gap-x-5">
+                <button nbButton status="primary" type="submit" [disabled]="!formCantidad.valid">Guardar</button>
+                <button nbButton status="danger" (click)="ref.close()">Cerrar</button>
+            </nb-card-footer>
+        </nb-card>
+    </form>
+</ng-template>
+
 <div>
     <app-custom-table
     tableHead="Detalles Receta | Tabla"
@@ -54,7 +78,9 @@
     [keys]="['Id', 'Codigo', 'Articulo','Cantidad','Costo', 'Descuento', 'MontoDescuento','CantidadSinCargo','Total','FechaReg','FechaAct', 'UsuarioAct', 'Mensaje']"
     [data]="detallesList"
     [hasDelete]="true"
+    [hasEdit]="true"
     (deleteEmit)="deleteDetalle($event)"
+    (editEmit)="editDetalle($event)"
     ></app-custom-table>
 </div>
 

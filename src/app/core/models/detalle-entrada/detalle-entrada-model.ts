@@ -9,6 +9,11 @@ export interface DetalleEntradaInsertRequest {
     usuarioActualiza: number;
 }
 
+export interface DetalleEntradaUpdateRequest {
+    id: number,
+    cantidad: number
+}
+
 export type GetDetalleEntradaResponse = ApiResponse<DetalleEntradaResponseData>
 export type GetReporteEntradaResponse = ReporteEntradaModel[]
 

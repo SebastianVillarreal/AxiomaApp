@@ -1,11 +1,11 @@
 import { NgFor, NgIf,Location } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, Optional, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CustomTableComponent } from '@Component/Table';
 import { ArticuloModel } from '@Models/Articulo';
-import { DetalleEntradaInsertRequest, DetalleEntradaModel } from '@Models/DetalleEntrada';
-import { NbButtonModule, NbCardModule, NbInputModule, NbSelectModule } from '@nebular/theme';
+import { DetalleEntradaInsertRequest, DetalleEntradaModel, DetalleEntradaUpdateRequest } from '@Models/DetalleEntrada';
+import { NbButtonModule, NbCardModule, NbDialogRef, NbDialogService, NbInputModule, NbSelectModule } from '@nebular/theme';
 import { SweetAlertService } from '@Service/SweetAlert';
 import { ArticuloService, DetalleEntradaService } from '@Services';
 
@@ -23,15 +23,26 @@ export class DetalleEntradasComponent implements OnInit {
   private route = inject(ActivatedRoute)
   private location = inject(Location)
   private sweetAlertService = inject(SweetAlertService)
+  private dialogService = inject(NbDialogService)
+
+
+  constructor(@Optional() private dialogRef: NbDialogRef<any>){}
 
   detallesList: DetalleEntradaModel[] = []
   articulosList: ArticuloModel[] = []
+
+  @ViewChild('dialog') dialog!: TemplateRef<any>
   idEntrada: number = 0
   form = this.fb.nonNullable.group({
     codigo: ['', [Validators.required]],
     cantidad: [0, [Validators.required]],
     costo: [0, [Validators.required]],
     descuento: [0, [Validators.required]],
+  })
+
+  formCantidad = this.fb.nonNullable.group({
+    id: [0],
+    cantidad: [0]
   })
 
   ngOnInit(): void {
@@ -55,7 +66,7 @@ export class DetalleEntradasComponent implements OnInit {
   onSubmit(): void {
     if (this.form.valid)
     {
-      const { codigo, cantidad, costo, descuento } = this.form.getRawValue()
+      const {codigo, cantidad, costo, descuento } = this.form.getRawValue()
       const usuarioActualiza = parseInt(localStorage.getItem('idUsuario') ?? '0')
       
       const request: DetalleEntradaInsertRequest = {
@@ -66,6 +77,7 @@ export class DetalleEntradasComponent implements OnInit {
         descuento: descuento,
         usuarioActualiza: usuarioActualiza
       }
+
 
       const serviceCall = this.detalleEntradaService.insertDetalleEntrada(request)
       serviceCall.subscribe({
@@ -104,6 +116,40 @@ export class DetalleEntradasComponent implements OnInit {
           });
       }
     });
+  }
+
+  open(dialog: TemplateRef<any>, data:DetalleEntradaModel) {
+    this.dialogRef = this.dialogService.open(dialog, {context: data})
+  }
+
+  updateCantidad(): void {
+    if (this.formCantidad.valid) {
+      const { id, cantidad } = this.formCantidad.getRawValue()
+      const usuarioActualiza = parseInt(localStorage.getItem('idUsuario') ?? '0')
+
+      const requestUpdate: DetalleEntradaUpdateRequest = {
+        id: id,
+        cantidad: cantidad
+      }
+
+      this.detalleEntradaService.updateCantidad(requestUpdate).subscribe({
+        next: (res) => {
+          this.getDetalles();
+          this.dialogRef.close()
+        },
+        error: (err: any) => {
+          console.error(err)
+        }
+      })
+    }
+  }
+
+  editDetalle(data: DetalleEntradaModel): void {
+    this.formCantidad.patchValue({
+      id: data.Id,
+      cantidad: data.CantidadSinCargo,
+    })
+    this.open(this.dialog, data)
   }
 
   closeComponent(): void {

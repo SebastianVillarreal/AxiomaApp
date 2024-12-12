@@ -70,5 +70,6 @@ export const detalleEntradas = {
   get: `${environment.urlBase}DetalleEntrada/Get`,
   getReporte: `${environment.urlBase}DetalleEntrada/GetReportEntradas`,
   exportReport: `${environment.urlBase}DetalleEntrada/ExportarReportEntradasAExcel`,
+  updateCant: `${environment.urlBase}DetalleEntrada/UpdateCantSinCArgo`,
   delete: `${environment.urlBase}DetalleEntrada/Delete`
 }

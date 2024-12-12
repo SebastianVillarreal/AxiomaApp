@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { detalleEntradas } from '@Global/endpoints';
-import { DetalleEntradaInsertRequest, GetDetalleEntradaResponse, GetReporteEntradaResponse } from '@Models/DetalleEntrada';
+import { DetalleEntradaInsertRequest, DetalleEntradaUpdateRequest, GetDetalleEntradaResponse, GetReporteEntradaResponse } from '@Models/DetalleEntrada';
 import { map, Observable } from 'rxjs';
 
 @Injectable({
@@ -49,6 +49,16 @@ export class DetalleEntradaService {
   deleteDetalleEntrada(id: number): Observable<boolean> {
     const httpOptions = { headers: this.headers }
     return this.http.put<boolean>(detalleEntradas.delete, { id }, httpOptions)
+      .pipe(
+        map(res => {
+        return res
+      })
+    )
+  }
+
+  updateCantidad(detalle: DetalleEntradaUpdateRequest): Observable<boolean> {
+    const httpOptions = { headers: this.headers }
+    return this.http.put<boolean>(detalleEntradas.updateCant, detalle, httpOptions)
       .pipe(
         map(res => {
         return res
