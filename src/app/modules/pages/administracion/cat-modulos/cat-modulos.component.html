@@ -18,7 +18,7 @@
                     <label class="label">*Descripción</label>
                     <textarea formControlName="descripcion" type="text" nbInput fullWidth></textarea>
                     <div *ngIf="form.get('descripcion')?.touched && form.get('descripcion')?.invalid">
-                        <p class="text-danger text-sm italic" *ngIf="form.get('descripcion')?.errors?.['required']">Descripción de artículo requerida*</p>
+                        <p class="text-danger text-sm italic" *ngIf="form.get('descripcion')?.errors?.['required']">Descripción de categoría requerida*</p>
                     </div>
                 </div>
             </nb-card-body>
