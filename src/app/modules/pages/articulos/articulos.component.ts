@@ -100,6 +100,7 @@ export class ArticulosComponent implements OnInit{
         next: (res: any) => {
           console.log(res);
           this.getAllArticulos();
+          this.resetForm()
         },
         error: (err: any) => {
           console.log(err)
