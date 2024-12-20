@@ -23,7 +23,7 @@ export class ModulosComponent implements OnInit{
   categoriasList: CatModuloModel[] = []
   form = this.fb.nonNullable.group({
     nombreModulo: ['', Validators.required],
-    categoriaModulo: [0, [Validators.required, Validators.min(0)]]
+    categoriaModulo: [0, [Validators.required, Validators.min(1)]]
   })
 
   ngOnInit(): void {

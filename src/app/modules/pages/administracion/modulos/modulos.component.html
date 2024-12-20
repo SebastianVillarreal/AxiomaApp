@@ -24,6 +24,8 @@
                     </nb-select>
                     <div *ngIf="form.get('categoriaModulo')?.touched && form.get('categoriaModulo')?.invalid">
                         <p class="text-danger text-sm italic" *ngIf="form.get('categoriaModulo')?.errors?.['required']">Categoría requerida*</p>
+                    </div>
+                    <div *ngIf="form.get('categoriaModulo')?.touched && form.get('categoriaModulo')?.invalid">
                         <p class="text-danger text-sm italic" *ngIf="form.get('categoriaModulo')?.errors?.['min']">Seleccione una categoría*</p>
                     </div>
                 </div>
