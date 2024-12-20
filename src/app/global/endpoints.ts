@@ -73,3 +73,7 @@ export const detalleEntradas = {
   updateCant: `${environment.urlBase}DetalleEntrada/UpdateCantSinCArgo`,
   delete: `${environment.urlBase}DetalleEntrada/Delete`
 }
+
+export const catModulos = {
+  get: `${environment.urlBase}CatModulo/Get`
+}

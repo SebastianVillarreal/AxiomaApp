@@ -9,10 +9,6 @@ import { CatModulosComponent } from './administracion/cat-modulos/cat-modulos.co
     PagesRoutingModule,
     NbMenuModule,
   ],
-  declarations: [
-    
-    CatModulosComponent
-  ],
 })
 export class PagesModule {
 }

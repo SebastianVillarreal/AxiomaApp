@@ -1,1 +1,12 @@
-<p>cat-modulos works!</p>
+<div>
+    <app-custom-table
+        tableHead="Categorías Módulos"
+        keyRow="Id"
+        [headers]="['#', 'Nombre', 'Descripción', 'Mensaje','Fecha registro', 'Fecha Actualiza', 'Usuario']"
+        [keys]="['Id','Nombre', 'Descripcion', 'Mensaje','FechaRegistro','FechaActualiza', 'Usuario']"
+        [data]="categoriasList"
+        [hasEdit]="true"
+        [hasDelete]="true"
+        [hasSearch]="true">
+    ></app-custom-table>
+</div>

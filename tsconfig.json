@@ -22,7 +22,8 @@
       "@Models/Sucursal": ["src/app/core/models/sucursal"],
       "@Models/DetalleOrdenCOmpra": ["src/app/core/models/detalle-orden-compra"],
       "@Models/Entrada": ["src/app/core/models/entrada"],
-      "@Models/DetalleEntrada": ["src/app/core/models/detalle-entrada"]
+      "@Models/DetalleEntrada": ["src/app/core/models/detalle-entrada"],
+      "@Models/CatModulo": ["src/app/core/models/cat-modulo"]
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
