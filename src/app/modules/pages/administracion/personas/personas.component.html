@@ -1,4 +1,61 @@
 <div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <nb-card>
+            <nb-card-header>
+                <h5>
+                    Persona | Formulario
+                </h5>
+            </nb-card-header>
+            <nb-card-body class="form-grid">
+                <div>
+                    <label class="label">Nombre</label>
+                    <input type="text" nbInput formControlName="nombre" fullWidth>
+                    <div *ngIf="form.get('nombre')?.touched && form.get('nombre')?.invalid">
+                        <p class="text-danger text-sm italic" *ngIf="form.get('nombre')?.errors?.['required']">Nombre requerido*</p>
+                    </div>
+                </div>
+                <div>
+                    <label class="label">Apellido Paterno</label>
+                    <input type="text" nbInput formControlName="apPaterno" fullWidth>
+                    <div *ngIf="form.get('apPaterno')?.touched && form.get('apPaterno')?.invalid">
+                        <p class="text-danger text-sm italic" *ngIf="form.get('apPaterno')?.errors?.['required']">Apellido Paterno requerido*</p>
+                    </div>
+                </div>
+                <div>
+                    <label class="label">Apellido Materno</label>
+                    <input type="text" nbInput formControlName="apMaterno" fullWidth>
+                    <div *ngIf="form.get('apMaterno')?.touched && form.get('apMaterno')?.invalid">
+                        <p class="text-danger text-sm italic" *ngIf="form.get('apMaterno')?.errors?.['required']">Apellido Materno requerido*</p>
+                    </div>
+                </div>
+                <div>
+                    <label class="label">Dirección</label>
+                    <input type="text" nbInput formControlName="direccion" fullWidth>
+                    <div *ngIf="form.get('direccion')?.touched && form.get('direccion')?.invalid">
+                        <p class="text-danger text-sm italic" *ngIf="form.get('direccion')?.errors?.['required']">Dirección requerida*</p>
+                    </div>
+                </div>
+                <div>
+                    <label class="label">Contraseña</label>
+                    <nb-form-field>
+                        <input [type]="getInputType()" nbInput formControlName="pass" fullWidth>
+                        <button nbSuffix nbButton ghost (click)="toggleShowPassword($event)">
+                            <nb-icon [icon]="showPassword ? 'eye-outline' : 'eye-off-2-outline'"></nb-icon>
+                        </button>
+                    </nb-form-field>
+                    <div *ngIf="form.get('pass')?.touched && form.get('pass')?.invalid">
+                        <p class="text-danger text-sm italic" *ngIf="form.get('pass')?.errors?.['required']">Contraseña requerida*</p>
+                    </div>
+                </div>
+            </nb-card-body>
+            <nb-card-footer>
+                <button nbButton type="submit" status="primary" [disabled]="!form.valid">Guardar</button>
+            </nb-card-footer>
+        </nb-card>
+    </form>
+</div>
+
+<div>
     <app-custom-table
         tableHead="Personas | Tabla"
         keyRow="Id"

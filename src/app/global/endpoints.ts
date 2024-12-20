@@ -89,5 +89,6 @@ export const modulos = {
 }
 
 export const personas = {
+  insert: `${environment.urlBase}Personas/Insert`,
   get: `${environment.urlBase}Personas/Get`
 }
