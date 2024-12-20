@@ -6,8 +6,6 @@ import { PersonasComponent } from './personas/personas.component';
 
 @NgModule({
     imports: [AdministracionRoutingModule, NbMenuModule],
-    declarations: [
-      PersonasComponent
-    ],
+
 })
 export class AdministracionModule {}

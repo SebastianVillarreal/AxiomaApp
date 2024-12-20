@@ -1,1 +1,12 @@
-<p>personas works!</p>
+<div>
+    <app-custom-table
+        tableHead="Personas | Tabla"
+        keyRow="Id"
+        [headers]="['#', 'Nombre', 'Apellido Paterno', 'Apellido Materno', 'Direccion', 'Mensaje','Fecha registro','Fecha Actualiza', 'Usuario']"
+        [keys]="['Id','Nombre', 'ApPaterno', 'ApMaterno', 'Direccion', 'Mensaje','FechaReg','FechaAct','Usuario']"
+        [data]="personasList"
+        [hasEdit]="true"
+        [hasDelete]="true"
+        [hasSearch]="true">
+    ></app-custom-table>
+</div>

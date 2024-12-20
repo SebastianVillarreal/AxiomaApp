@@ -86,5 +86,8 @@ export const modulos = {
   get: `${environment.urlBase}Modulos/Get`,
   update: `${environment.urlBase}Modulos/Update`,
   delete: `${environment.urlBase}Modulos/Delete`
+}
 
+export const personas = {
+  get: `${environment.urlBase}Personas/Get`
 }
