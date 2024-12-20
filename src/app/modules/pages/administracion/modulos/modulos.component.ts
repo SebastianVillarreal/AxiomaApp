@@ -5,6 +5,7 @@ import { CustomTableComponent } from '@Component/Table';
 import { CatModuloModel } from '@Models/CatModulo';
 import { ModuloInsertRequest, ModuloModel, ModuloUpdateRequest } from '@Models/Modulo';
 import { NbButton, NbButtonModule, NbCardModule, NbInputModule, NbSelectModule } from '@nebular/theme';
+import { SweetAlertService } from '@Service/SweetAlert';
 import { CatModuloService, ModuloService, } from '@Services';
 
 @Component({
@@ -17,6 +18,7 @@ import { CatModuloService, ModuloService, } from '@Services';
 export class ModulosComponent implements OnInit{
   private moduloService = inject(ModuloService)
   private categoriaService = inject(CatModuloService)
+  private sweetAlertService = inject(SweetAlertService)
   private fb = inject(FormBuilder)
 
   modulosList: ModuloModel[] = []
@@ -91,6 +93,26 @@ export class ModulosComponent implements OnInit{
       id: data.Id,
       nombreModulo: data.Modulo,
       categoriaModulo: categoriaModulo?.Id
+    })
+  }
+
+  deleteModulo(Id: number): void {
+    this.sweetAlertService.confirm({
+      title: '¿Estás seguro que deseas eliminar este módulo?',
+      confirmButtonText: 'Eliminar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.moduloService.deleteModulo(Id)
+          .subscribe({
+            next: (res: any) => {
+              console.log(res)
+              this.getModulos()
+            },
+            error: (err: any) => {
+              console.log(err)
+            }
+        })
+      }
     })
   }
 }

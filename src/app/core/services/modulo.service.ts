@@ -43,4 +43,14 @@ export class ModuloService {
       })
     )
   }
+
+  deleteModulo(id: number): Observable<boolean> {
+    const httpOptions = { headers: this.headers }
+    return this.http.put<boolean>(modulos.delete, { id }, httpOptions)
+      .pipe(
+        map(res => {
+        return res
+      })
+    )
+  }
 }
