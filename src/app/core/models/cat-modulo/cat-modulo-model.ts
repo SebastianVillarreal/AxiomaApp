@@ -1,5 +1,10 @@
 import { ApiResponse } from "@Models/Response";
 
+export interface CatModuloInsertRequest {
+    nombre: string,
+    descripcion: string,
+    usuario: number
+}
 
 export type GetCatModuloResponse = ApiResponse<CatModuloResponseData>
 
