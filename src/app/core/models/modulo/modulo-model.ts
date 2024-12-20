@@ -1,5 +1,11 @@
 import { ApiResponse } from "@Models/Response";
 
+export interface ModuloInsertRequest {
+    nombreModulo: string, 
+    categoriaModulo: number,
+    usuario: number
+}
+
 export type GetModuloResponseData = ApiResponse<ModuloResponseData>
 
 export interface ModuloResponseData {

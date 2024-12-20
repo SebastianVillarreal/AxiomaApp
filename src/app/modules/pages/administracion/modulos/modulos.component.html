@@ -1,4 +1,41 @@
 <div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <nb-card>
+            <nb-card-header>
+                <h5>
+                    Módulo | Formulario
+                </h5>
+            </nb-card-header>
+            <nb-card-body class="form-grid">
+                <div>
+                    <label class="label">Nombre</label>
+                    <input type="text" nbInput formControlName="nombreModulo" fullWidth>
+                    <div *ngIf="form.get('nombreModulo')?.touched && form.get('nombreModulo')?.invalid">
+                        <p class="text-danger text-sm italic" *ngIf="form.get('nombreModulo')?.errors?.['required']">Nombre de módulo requerido*</p>
+                    </div>
+                </div>
+                <div>
+                    <label class="label">Categoría</label>
+                    <nb-select formControlName="categoriaModulo" fullWidth>
+                        <nb-option value="0" disabled>Categorías</nb-option>
+                        <nb-option *ngFor="let categoria of categoriasList" [value]="categoria.Id">
+                            {{ categoria.Nombre }}
+                        </nb-option>
+                    </nb-select>
+                    <div *ngIf="form.get('categoriaModulo')?.touched && form.get('categoriaModulo')?.invalid">
+                        <p class="text-danger text-sm italic" *ngIf="form.get('categoriaModulo')?.errors?.['required']">Categoría requerida*</p>
+                        <p class="text-danger text-sm italic" *ngIf="form.get('categoriaModulo')?.errors?.['min']">Seleccione una categoría*</p>
+                    </div>
+                </div>
+            </nb-card-body>
+            <nb-card-footer>
+                <button nbButton type="submit" status="primary" [disabled]="!form.valid">Guardar</button>
+            </nb-card-footer>
+        </nb-card>
+    </form>
+</div>
+
+<div>
     <app-custom-table
         tableHead="Módulos | Tabla"
         keyRow="Id"

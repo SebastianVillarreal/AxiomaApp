@@ -82,5 +82,7 @@ export const catModulos = {
 }
 
 export const modulos = {
-  get: `${environment.urlBase}Modulos/Get`
+  insert: `${environment.urlBase}Modulos/Insert`,
+  get: `${environment.urlBase}Modulos/Get`,
+
 }

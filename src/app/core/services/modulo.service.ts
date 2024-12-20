@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { modulos } from '@Global/endpoints';
-import { GetModuloResponseData } from '@Models/Modulo';
+import { GetModuloResponseData, ModuloInsertRequest } from '@Models/Modulo';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -12,6 +12,16 @@ export class ModuloService {
   private headers: HttpHeaders
   constructor(private http: HttpClient) {
     this.headers = new HttpHeaders({})
+  }
+
+  insertModulo(modulo: ModuloInsertRequest): Observable<boolean> {
+    const httpOptions = { headers: this.headers }
+    return this.http.post<boolean>(modulos.insert, modulo,httpOptions)
+      .pipe(
+        map(res => {
+        return res
+      })
+    )
   }
 
   getModulos(): Observable<GetModuloResponseData> {
