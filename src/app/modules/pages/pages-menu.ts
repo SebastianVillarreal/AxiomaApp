@@ -86,6 +86,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: 'Categorías Modulos',
         icon: 'menu-outline',
         link: '/pages/administracion/categorias-modulos'
+      },
+      {
+        title: 'Módulos',
+        icon: 'menu-outline',
+        link: '/pages/administracion/modulos'
       }
       
 ]
