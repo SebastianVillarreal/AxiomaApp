@@ -6,6 +6,9 @@ export interface CatModuloInsertRequest {
     usuario: number
 }
 
+export interface CatModuloUpdateRequest extends CatModuloInsertRequest {
+    id: number
+}
 export type GetCatModuloResponse = ApiResponse<CatModuloResponseData>
 
 export interface CatModuloResponseData {

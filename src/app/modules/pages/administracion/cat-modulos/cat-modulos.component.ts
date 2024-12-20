@@ -2,7 +2,7 @@ import { NgIf } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CustomTableComponent } from '@Component/Table';
-import { CatModuloInsertRequest, CatModuloModel } from '@Models/CatModulo';
+import { CatModuloInsertRequest, CatModuloModel, CatModuloUpdateRequest } from '@Models/CatModulo';
 import { NbButtonModule, NbCardModule, NbInputModule } from '@nebular/theme';
 import { CatModuloService } from '@Services';
 
@@ -19,6 +19,7 @@ export class CatModulosComponent implements OnInit{
 
   categoriasList: CatModuloModel[] = []
   form = this.fb.nonNullable.group({
+    id: [0],
     nombre: ['', Validators.required],
     descripcion: ['', Validators.required]
   })
@@ -35,7 +36,7 @@ export class CatModulosComponent implements OnInit{
 
   onSubmit(): void {
     if (this.form.valid) {
-      const { nombre, descripcion } = this.form.getRawValue()
+      const {id, nombre, descripcion } = this.form.getRawValue()
       const usuarioActualiza = parseInt(localStorage.getItem('idUsuario') ?? '0')
       
       const insertRequest: CatModuloInsertRequest = {
@@ -44,7 +45,14 @@ export class CatModulosComponent implements OnInit{
         usuario: usuarioActualiza
       }
 
-      const serviceCall = this.categoriaService.insertCategoria(insertRequest)
+      const updateRequest: CatModuloUpdateRequest = {
+        id: id,
+        nombre: nombre,
+        descripcion: descripcion,
+        usuario: usuarioActualiza
+      }
+
+      const serviceCall = id == 0 ? this.categoriaService.insertCategoria(insertRequest) : this.categoriaService.updateCategoria(updateRequest)
       serviceCall.subscribe({
         next: (res: any) => {
           console.log(res)
@@ -60,8 +68,17 @@ export class CatModulosComponent implements OnInit{
 
   resetForm(): void{
     this.form.reset({
+      id: 0,
       nombre: '',
       descripcion: ''
+    })
+  }
+
+  editCategoria(data: CatModuloModel): void{
+    this.form.patchValue({
+      id: data.Id,
+      nombre: data.Nombre,
+      descripcion: data.Descripcion
     })
   }
 

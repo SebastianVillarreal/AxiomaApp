@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catModulos } from '@Global/endpoints';
-import { CatModuloInsertRequest, GetCatModuloResponse } from '@Models/CatModulo';
+import { CatModuloInsertRequest, CatModuloUpdateRequest, GetCatModuloResponse } from '@Models/CatModulo';
 import { map, Observable } from 'rxjs';
 
 @Injectable({
@@ -26,6 +26,16 @@ export class CatModuloService {
   getCategorias(): Observable<GetCatModuloResponse> {
     const httpOptions = { headers: this.headers }
     return this.http.get<GetCatModuloResponse>(catModulos.get, httpOptions)
+      .pipe(
+        map(res => {
+        return res
+      })
+    )
+  }
+
+  updateCategoria(categoria: CatModuloUpdateRequest): Observable<boolean> {
+    const httpOptions = { headers: this.headers }
+    return this.http.put<boolean>(catModulos.update, categoria, httpOptions)
       .pipe(
         map(res => {
         return res

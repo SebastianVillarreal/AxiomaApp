@@ -76,5 +76,6 @@ export const detalleEntradas = {
 
 export const catModulos = {
   insert: `${environment.urlBase}CatModulo/Insert`,
-  get: `${environment.urlBase}CatModulo/Get`
+  get: `${environment.urlBase}CatModulo/Get`,
+  update: `${environment.urlBase}CatModulo/Update`
 }

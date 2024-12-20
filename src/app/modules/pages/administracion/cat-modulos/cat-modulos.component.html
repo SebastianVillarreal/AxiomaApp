@@ -38,6 +38,7 @@
         [data]="categoriasList"
         [hasEdit]="true"
         [hasDelete]="true"
-        [hasSearch]="true">
+        [hasSearch]="true"
+        (editEmit)="editCategoria($event)">
     ></app-custom-table>
 </div>
