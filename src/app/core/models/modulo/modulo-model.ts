@@ -6,6 +6,10 @@ export interface ModuloInsertRequest {
     usuario: number
 }
 
+export interface ModuloUpdateRequest extends ModuloInsertRequest {
+    id: number
+}
+
 export type GetModuloResponseData = ApiResponse<ModuloResponseData>
 
 export interface ModuloResponseData {

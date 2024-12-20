@@ -46,6 +46,7 @@
         [data]="modulosList"
         [hasEdit]="true"
         [hasDelete]="true"
-        [hasSearch]="true">
+        [hasSearch]="true"
+        (editEmit)="editModulo($event)">
     ></app-custom-table>
 </div>

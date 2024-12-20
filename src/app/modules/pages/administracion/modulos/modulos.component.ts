@@ -3,7 +3,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CustomTableComponent } from '@Component/Table';
 import { CatModuloModel } from '@Models/CatModulo';
-import { ModuloInsertRequest, ModuloModel } from '@Models/Modulo';
+import { ModuloInsertRequest, ModuloModel, ModuloUpdateRequest } from '@Models/Modulo';
 import { NbButton, NbButtonModule, NbCardModule, NbInputModule, NbSelectModule } from '@nebular/theme';
 import { CatModuloService, ModuloService, } from '@Services';
 
@@ -22,6 +22,7 @@ export class ModulosComponent implements OnInit{
   modulosList: ModuloModel[] = []
   categoriasList: CatModuloModel[] = []
   form = this.fb.nonNullable.group({
+    id: [0],
     nombreModulo: ['', Validators.required],
     categoriaModulo: [0, [Validators.required, Validators.min(1)]]
   })
@@ -46,7 +47,7 @@ export class ModulosComponent implements OnInit{
 
   onSubmit(): void {
     if (this.form.valid) {
-      const { nombreModulo, categoriaModulo } = this.form.getRawValue()
+      const { id, nombreModulo, categoriaModulo } = this.form.getRawValue()
       const usuarioActualiza = parseInt(localStorage.getItem('idUsuario') ?? '0')
       
       const insertRequest: ModuloInsertRequest = {
@@ -55,7 +56,14 @@ export class ModulosComponent implements OnInit{
         usuario: usuarioActualiza
       }
 
-      const serviceCall = this.moduloService.insertModulo(insertRequest)
+      const updateRequest: ModuloUpdateRequest = {
+        id: id,
+        nombreModulo: nombreModulo,
+        categoriaModulo: categoriaModulo,
+        usuario: usuarioActualiza
+      }
+
+      const serviceCall = id == 0 ? this.moduloService.insertModulo(insertRequest) : this.moduloService.updateModulo(updateRequest)
       serviceCall.subscribe({
         next: (res: any) => {
           console.log(res)
@@ -71,8 +79,18 @@ export class ModulosComponent implements OnInit{
 
   resetForm(): void {
     this.form.reset({
+      id: 0,
       nombreModulo: '',
       categoriaModulo: 0
+    })
+  }
+
+  editModulo(data: ModuloModel): void {
+    const categoriaModulo = this.categoriasList.find(categoria => categoria.Nombre === data.CategoriaModulo)
+    this.form.patchValue({
+      id: data.Id,
+      nombreModulo: data.Modulo,
+      categoriaModulo: categoriaModulo?.Id
     })
   }
 }

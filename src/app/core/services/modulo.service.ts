@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { modulos } from '@Global/endpoints';
-import { GetModuloResponseData, ModuloInsertRequest } from '@Models/Modulo';
+import { GetModuloResponseData, ModuloInsertRequest, ModuloUpdateRequest } from '@Models/Modulo';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -27,6 +27,16 @@ export class ModuloService {
   getModulos(): Observable<GetModuloResponseData> {
     const httpOptions = { headers: this.headers }
     return this.http.get<GetModuloResponseData>(modulos.get, httpOptions)
+      .pipe(
+        map(res => {
+        return res
+      })
+    )
+  }
+
+  updateModulo(modulo: ModuloUpdateRequest): Observable<boolean> {
+    const httpOptions = { headers: this.headers }
+    return this.http.put<boolean>(modulos.update, modulo, httpOptions)
       .pipe(
         map(res => {
         return res
