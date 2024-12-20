@@ -1,26 +1,32 @@
-import { NgIf } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CustomTableComponent } from '@Component/Table';
-import { PersonaInsertRequest, PersonaModel } from '@Models/Persona';
-import { NbButtonModule, NbCardModule, NbFormFieldModule, NbIconModule, NbInputModule } from '@nebular/theme';
-import { PersonaService } from '@Services';
+import { PersonaInsertRequest, PersonaModel, PersonaUpdateRequest } from '@Models/Persona';
+import { SucursalModel } from '@Models/Sucursal';
+import { NbButtonModule, NbCardModule, NbFormFieldModule, NbIconModule, NbInputModule, NbSelectModule } from '@nebular/theme';
+import { PersonaService, SucursalService } from '@Services';
 
 @Component({
   selector: 'app-personas',
   standalone: true,
-  imports: [CustomTableComponent, ReactiveFormsModule, NgIf,NbCardModule, NbInputModule, NbButtonModule, NbFormFieldModule, NbIconModule],
+  imports: [CustomTableComponent, ReactiveFormsModule, NgIf, NgFor,NbCardModule, NbInputModule, NbButtonModule, NbFormFieldModule, NbIconModule, NbSelectModule],
   templateUrl: './personas.component.html',
   styleUrls: ['./personas.component.scss']
 })
 export class PersonasComponent implements OnInit {
   private personaService = inject(PersonaService)
+  private sucursalService = inject(SucursalService)
   private fb = inject(FormBuilder)
 
   showPassword = false
+  editMode = false
 
   personasList: PersonaModel[] = []
+  sucursalesList: SucursalModel[] = []
   form = this.fb.nonNullable.group({
+    id: [0],
+    sucursal: [0],
     nombre: ['', [Validators.required]],
     apPaterno: ['', [Validators.required]],
     apMaterno: ['', [Validators.required]],
@@ -30,11 +36,18 @@ export class PersonasComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPersonas()
+    this.getSucursales()
   }
 
-  private getPersonas(): void {
+  getPersonas(): void {
     this.personaService.getPersonas().subscribe((data) => {
       this.personasList = data.Response.data
+    })
+  }
+
+  getSucursales(): void {
+    this.sucursalService.getSucursales().subscribe((data) => {
+      this.sucursalesList = data
     })
   }
 
@@ -44,13 +57,14 @@ export class PersonasComponent implements OnInit {
     }
     return 'password'
   }
+
   toggleShowPassword(event: Event) {
-    event.preventDefault()
     this.showPassword = !this.showPassword
   }
+
   onSubmit(): void {
     if (this.form.valid) {
-      const { nombre, apPaterno, apMaterno, direccion, pass } = this.form.getRawValue()
+      const {id, sucursal,nombre, apPaterno, apMaterno, direccion, pass } = this.form.getRawValue()
       const usuarioActualiza = parseInt(localStorage.getItem('idUsuario') ?? '0')
       
       const insertRequest: PersonaInsertRequest = {
@@ -62,12 +76,24 @@ export class PersonasComponent implements OnInit {
         usuario: usuarioActualiza
       }
 
-      const serviceCall = this.personaService.insertPersona(insertRequest)
+      const updateRequest: PersonaUpdateRequest = {
+        id: id,
+        sucursal: sucursal,
+        nombre: nombre,
+        apPaterno: apPaterno,
+        apMaterno: apMaterno,
+        direccion: direccion,
+        usuario: usuarioActualiza
+      }
+
+      const serviceCall = id === 0 ? this.personaService.insertPersona(insertRequest) : this.personaService.updatePersona(updateRequest)
       serviceCall.subscribe({
         next: (res: any) => {
           console.log(res)
           this.getPersonas()
           this.resetForm()
+          this.editMode = false
+          this.setPasswordValidators()
         },
         error: (err: any) => {
           console.log(err)
@@ -78,11 +104,34 @@ export class PersonasComponent implements OnInit {
 
   resetForm(): void {
     this.form.reset({
+      id: 0,
+      sucursal: 0,
       nombre: '',
       apPaterno: '',
       apMaterno: '',
       direccion: '',
       pass: ''
     })
+  }
+
+  editPersona(data: PersonaModel) {
+    this.form.patchValue({
+      id: data.Id,
+      nombre: data.Nombre,
+      apPaterno: data.ApPaterno,
+      apMaterno: data.ApMaterno,
+      direccion: data.Direccion,
+    })
+    this.editMode = true
+    this.setPasswordValidators()
+  }
+
+  setPasswordValidators(): void {
+    if (this.editMode) {
+      this.form.get('pass')?.clearValidators();
+    } else {
+      this.form.get('pass')?.setValidators([Validators.required]);
+    }
+    this.form.get('pass')?.updateValueAndValidity();
   }
 }

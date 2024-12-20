@@ -35,17 +35,26 @@
                         <p class="text-danger text-sm italic" *ngIf="form.get('direccion')?.errors?.['required']">Dirección requerida*</p>
                     </div>
                 </div>
-                <div>
+                <div [hidden]="this.editMode">
                     <label class="label">Contraseña</label>
                     <nb-form-field>
                         <input [type]="getInputType()" nbInput formControlName="pass" fullWidth>
-                        <button nbSuffix nbButton ghost (click)="toggleShowPassword($event)">
+                        <button type="button" nbSuffix nbButton ghost (click)="toggleShowPassword($event)">
                             <nb-icon [icon]="showPassword ? 'eye-outline' : 'eye-off-2-outline'"></nb-icon>
                         </button>
                     </nb-form-field>
                     <div *ngIf="form.get('pass')?.touched && form.get('pass')?.invalid">
                         <p class="text-danger text-sm italic" *ngIf="form.get('pass')?.errors?.['required']">Contraseña requerida*</p>
                     </div>
+                </div>
+                <div [hidden]="!this.editMode">
+                    <label class="label">Sucursal</label>
+                    <nb-select formControlName="sucursal" fullWidth>
+                        <nb-option value="0" disabled>Sucursales</nb-option>
+                        <nb-option *ngFor="let sucursal of sucursalesList" [value]="sucursal.Id">
+                            {{sucursal.Nombre}}
+                        </nb-option>
+                    </nb-select>
                 </div>
             </nb-card-body>
             <nb-card-footer>
@@ -64,6 +73,7 @@
         [data]="personasList"
         [hasEdit]="true"
         [hasDelete]="true"
-        [hasSearch]="true">
+        [hasSearch]="true"
+        (editEmit)="editPersona($event)">
     ></app-custom-table>
 </div>
