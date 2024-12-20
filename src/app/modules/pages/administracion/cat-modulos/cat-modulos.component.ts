@@ -4,6 +4,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CustomTableComponent } from '@Component/Table';
 import { CatModuloInsertRequest, CatModuloModel, CatModuloUpdateRequest } from '@Models/CatModulo';
 import { NbButtonModule, NbCardModule, NbInputModule } from '@nebular/theme';
+import { SweetAlertService } from '@Service/SweetAlert';
 import { CatModuloService } from '@Services';
 
 @Component({
@@ -15,6 +16,7 @@ import { CatModuloService } from '@Services';
 })
 export class CatModulosComponent implements OnInit{
   private categoriaService = inject(CatModuloService)
+  private sweetAlertService = inject(SweetAlertService)
   private fb = inject(FormBuilder)
 
   categoriasList: CatModuloModel[] = []
@@ -80,6 +82,26 @@ export class CatModulosComponent implements OnInit{
       nombre: data.Nombre,
       descripcion: data.Descripcion
     })
+  }
+
+  deleteCategoria(Id: number): void {
+    this.sweetAlertService.confirm({
+      title: '¿Estás seguro que deseas eliminar esta categoría?',
+      confirmButtonText: 'Eliminar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.categoriaService.deleteCategoria(Id)
+          .subscribe({
+            next: (res) => {
+              console.log(res)
+              this.getCategorias();
+            },
+            error: (err) => {
+              console.log(err);
+            }
+          });
+      }
+    });
   }
 
 }
