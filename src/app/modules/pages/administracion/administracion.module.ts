@@ -5,8 +5,5 @@ import { ModulosComponent } from './modulos/modulos.component';
 
 @NgModule({
     imports: [AdministracionRoutingModule, NbMenuModule],
-    declarations: [
-      ModulosComponent
-    ]
 })
 export class AdministracionModule {}

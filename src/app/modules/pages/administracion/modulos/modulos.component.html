@@ -1,1 +1,12 @@
-<p>modulos works!</p>
+<div>
+    <app-custom-table
+        tableHead="Módulos | Tabla"
+        keyRow="Id"
+        [headers]="['#', 'Nombre', 'Categoría', 'Fecha registro','Fecha Actualiza', 'Usuario']"
+        [keys]="['Id','Modulo', 'CategoriaModulo', 'FechaReg','FechaAct','Usuario']"
+        [data]="modulosList"
+        [hasEdit]="true"
+        [hasDelete]="true"
+        [hasSearch]="true">
+    ></app-custom-table>
+</div>

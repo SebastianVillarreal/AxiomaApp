@@ -80,3 +80,7 @@ export const catModulos = {
   update: `${environment.urlBase}CatModulo/Update`,
   delete: `${environment.urlBase}CatModulo/Delete`
 }
+
+export const modulos = {
+  get: `${environment.urlBase}Modulos/Get`
+}
