@@ -19,6 +19,10 @@ export const articulos = {
   delete: `${environment.urlBase}Articulos/Delete`
 };
 
+export const unidadesMedidas = {
+  get: `${environment.urlBase}UnidadMedida/Get`
+}
+
 export const insumos = {
   insert: `${environment.urlBase}Insumos/Insert`,
   get: `${environment.urlBase}Insumos/Get`,
@@ -113,3 +117,4 @@ export const usuarios = {
   update: `${environment.urlBase}Usuarios/Update`,
   delete: `${environment.urlBase}Usuarios/Delete`
 }
+

@@ -27,7 +27,8 @@
       "@Models/Modulo": ["src/app/core/models/modulo"],
       "@Models/Persona": ["src/app/core/models/persona"],
       "@Models/Usuario": ["src/app/core/models/usuario"],
-      "@Models/Existencia": ["src/app/core/models/existencia"]
+      "@Models/Existencia": ["src/app/core/models/existencia"],
+      "@Models/UnidadMedida": ["src/app/core/models/unidad-medida"]
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

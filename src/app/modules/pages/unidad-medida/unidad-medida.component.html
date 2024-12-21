@@ -1,1 +1,12 @@
-<p>unidad-medida works!</p>
+<div>
+    <app-custom-table
+        tableHead="Unidades Medidas | Tabla"
+        keyRow="Id"
+        [headers]="['#', 'Nombre','Fecha registro','Fecha Actualiza', 'Usuario']"
+        [keys]="['Id','Nombre','FechaRegistro','FechaActualiza','UsuarioActualiza']"
+        [data]="unidadesMedidasList"
+        [hasEdit]="true"
+        [hasDelete]="true"
+        [hasSearch]="true">
+    ></app-custom-table>
+</div>

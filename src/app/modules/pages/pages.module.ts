@@ -13,9 +13,6 @@ import { UnidadMedidaComponent } from './unidad-medida/unidad-medida.component';
     PagesRoutingModule,
     NbMenuModule,
   ],
-  declarations: [
-    UnidadMedidaComponent
-  ],
 })
 export class PagesModule {
 }
