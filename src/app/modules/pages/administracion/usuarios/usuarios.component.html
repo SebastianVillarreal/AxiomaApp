@@ -7,6 +7,7 @@
         [data]="usuariosList"
         [hasEdit]="true"
         [hasDelete]="true"
-        [hasSearch]="true">
+        [hasSearch]="true"
+        (deleteEmit)="deleteUsuario($event)">
     ></app-custom-table>
 </div>

@@ -1,5 +1,4 @@
-import { ApiResponse } from "@Models/Response";
-
+export interface UsuarioInsertRequest {}
 export type GetUsuarioResponse = UsuarioModel[]
 
 export interface UsuarioModel {
