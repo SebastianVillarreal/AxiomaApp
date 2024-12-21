@@ -20,6 +20,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/pages/sucursales'
       },
       {
+        title: 'Proveedores',
+        icon: 'shopping-cart-outline',
+        link: '/pages/proveedores'
+      },
+      {
         title: 'Artículos',
         icon: 'cube-outline',
         link: '/pages/articulos',
