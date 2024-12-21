@@ -5,6 +5,7 @@ import { CustomTableComponent } from '@Component/Table';
 import { ExistenciaInsertRequest, ExistenciaModel, ExistenciaUpdateRequest } from '@Models/Existencia';
 import { InsumoModel } from '@Models/Insumo';
 import { NbButtonModule, NbCardModule, NbInputModule, NbSelectModule } from '@nebular/theme';
+import { SweetAlertService } from '@Service/SweetAlert';
 import { ExistenciaService, InsumoService } from '@Services';
 
 @Component({
@@ -17,6 +18,7 @@ import { ExistenciaService, InsumoService } from '@Services';
 export class ExistenciasComponent implements OnInit{
   private existenciaService = inject(ExistenciaService)
   private insumoService = inject(InsumoService)
+  private sweetAlertService = inject(SweetAlertService)
   private fb = inject(FormBuilder)
 
   existenciasList: ExistenciaModel[] = []
@@ -94,6 +96,26 @@ export class ExistenciasComponent implements OnInit{
       insumo: data.Insumo,
       idAlmacen: data.IdAlmacen,
       cantidad: data.Cantidad
+    })
+  }
+
+  deleteExistencia(Id: number): void {
+    this.sweetAlertService.confirm({
+      title: 'Eliminar Existencia',
+      text: '¿Estás seguro que desea eliminar la existencia?',
+      confirmButtonText: 'Eliminar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.existenciaService.deleteExistencia(Id).subscribe({
+          next: (res: any) => {
+            console.log(res)
+            this.getExistencias()
+          },
+          error: (err: any) => {
+            console.log(err)
+          }
+        })
+      }
     })
   }
 }

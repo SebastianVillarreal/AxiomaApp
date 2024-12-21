@@ -33,6 +33,16 @@ export class ExistenciaService {
     )
   }
 
+  deleteExistencia(id: number): Observable<boolean> {
+    const httpOptions = { headers: this.headers }
+    return this.http.put<boolean>(existencias.delete, { id }, httpOptions)
+      .pipe(
+        map(res => {
+        return res
+      })
+    )
+  }
+
   getExistencias(): Observable<GetExistenciaResponse> {
     const httpOptions = { headers: this.headers }
     return this.http.get<GetExistenciaResponse>(existencias.get, httpOptions)
