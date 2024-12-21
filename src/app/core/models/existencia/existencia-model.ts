@@ -1,5 +1,12 @@
 import { ApiResponse } from "@Models/Response";
 
+export interface ExistenciaInsertRequest {
+    insumo: string;
+    idAlmacen: number;
+    cantidad: number;
+    usuarioActualiza: number;
+}
+
 export type GetExistenciaResponse = ApiResponse<ExistenciaResponseData>
 
 export interface ExistenciaResponseData {
