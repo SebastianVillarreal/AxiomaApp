@@ -13,6 +13,7 @@ export class PersonaService {
   constructor(private http: HttpClient) {
     this.headers = new HttpHeaders({})
   }
+
   insertPersona(persona: PersonaInsertRequest): Observable<boolean> {
     const httpOptions = { headers: this.headers }
     return this.http.post<boolean>(personas.insert, persona, httpOptions)
@@ -23,6 +24,7 @@ export class PersonaService {
       )
     )
   }
+
   getPersonas(): Observable<GetPersonaRespone>{
     const httpOptions = { headers: this.headers }
     return this.http.get<GetPersonaRespone>(personas.get, httpOptions)
@@ -32,9 +34,20 @@ export class PersonaService {
       })
     )
   }
+
   updatePersona(persona: PersonaUpdateRequest): Observable<boolean>{
     const httpOptions = { headers: this.headers }
     return this.http.put<boolean>(personas.update, persona, httpOptions)
+      .pipe(
+        map(res => {
+        return res
+      })
+    )
+  }
+
+  deletePersona(id: number): Observable<boolean>{
+    const httpOptions = { headers: this.headers }
+    return this.http.put<boolean>(personas.delete, { id }, httpOptions)
       .pipe(
         map(res => {
         return res

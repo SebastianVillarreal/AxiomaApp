@@ -91,5 +91,6 @@ export const modulos = {
 export const personas = {
   insert: `${environment.urlBase}Personas/Insert`,
   get: `${environment.urlBase}Personas/Get`,
-  update: `${environment.urlBase}Personas/Update`
+  update: `${environment.urlBase}Personas/Update`,
+  delete: `${environment.urlBase}Personas/Delete`
 }

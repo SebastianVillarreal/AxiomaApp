@@ -5,6 +5,7 @@ import { CustomTableComponent } from '@Component/Table';
 import { PersonaInsertRequest, PersonaModel, PersonaUpdateRequest } from '@Models/Persona';
 import { SucursalModel } from '@Models/Sucursal';
 import { NbButtonModule, NbCardModule, NbFormFieldModule, NbIconModule, NbInputModule, NbSelectModule } from '@nebular/theme';
+import { SweetAlertService } from '@Service/SweetAlert';
 import { PersonaService, SucursalService } from '@Services';
 
 @Component({
@@ -17,6 +18,7 @@ import { PersonaService, SucursalService } from '@Services';
 export class PersonasComponent implements OnInit {
   private personaService = inject(PersonaService)
   private sucursalService = inject(SucursalService)
+  private sweetAlertService = inject(SweetAlertService)
   private fb = inject(FormBuilder)
 
   showPassword = false
@@ -133,5 +135,25 @@ export class PersonasComponent implements OnInit {
       this.form.get('pass')?.setValidators([Validators.required]);
     }
     this.form.get('pass')?.updateValueAndValidity();
+  }
+
+  deletePersona(Id: number) {
+    this.sweetAlertService.confirm({
+      title: 'Eliminar Persona',
+      text: '¿Estás seguro que deseas eliminar esta persona?',
+      confirmButtonText: 'Eliminar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.personaService.deletePersona(Id).subscribe({
+          next: (res: any) => {
+            console.log(res)
+            this.getPersonas()
+          },
+          error: (err: any) => {
+            console.log(err)
+          }
+        })
+      }
+    })
   }
 }
