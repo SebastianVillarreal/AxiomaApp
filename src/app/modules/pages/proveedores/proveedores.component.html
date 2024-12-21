@@ -1,6 +1,93 @@
 <div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <nb-card>
+            <nb-card-header>
+                <h5>
+                    Proveedor | Formulario
+                </h5>
+            </nb-card-header>
+            <nb-card-body class="form-grid">
+                <div>
+                    <label class="label">Nombre:</label>
+                    <input type="text" nbInput formControlName="nombre" fullWidth>
+                    <div *ngIf="form.get('nombre')?.touched && form.get('nombre')?.invalid">
+                        <p class="text-danger text-sm italic" *ngIf="form.get('nombre')?.errors?.['required']">Nombre requerido*</p>
+                    </div>
+                </div>
+                <div>
+                    <label class="label">Dirección:</label>
+                    <input type="text" nbInput formControlName="direccion" fullWidth>
+                    <div *ngIf="form.get('direccion')?.touched && form.get('direccion')?.invalid">
+                        <p class="text-danger text-sm italic" *ngIf="form.get('direccion')?.errors?.['required']">Dirección requerida*</p>
+                    </div>
+                </div>
+                <div>
+                    <label class="label">Teléfono:</label>
+                    <input type="tel" nbInput formControlName="telefono" fullWidth>
+                    <div *ngIf="form.get('telefono')?.touched && form.get('telefono')?.invalid">
+                        <p class="text-danger text-sm italic" *ngIf="form.get('telefono')?.errors?.['required']">Teléfono requerido*</p>
+                    </div>
+                </div>
+                <div>
+                    <label class="label">Banco:</label>
+                    <nb-select formControlName="idBanco" fullWidth>
+                        <nb-option value="0" disabled="">Bancos</nb-option>
+                        <nb-option *ngFor="let banco of bancosList" [value]="banco.Id">{{banco.Nombre}}</nb-option>
+                    </nb-select>
+                    <div *ngIf="form.get('idBanco')?.touched && form.get('idBanco')?.invalid">
+                        <p class="text-danger text-sm italic" *ngIf="form.get('idBanco')?.errors?.['required']">Banco requerido*</p>
+                    </div>
+                    <div *ngIf="form.get('idBanco')?.touched && form.get('idBanco')?.invalid">
+                        <p class="text-danger text-sm italic" *ngIf="form.get('idBanco')?.errors?.['min']">Seleccione un banco*</p>
+                    </div>
+                </div>
+                <div>
+                    <label class="label">Plazo Pago:</label>
+                    <input type="number" nbInput formControlName="plazoPago" fullWidth>
+                    <div *ngIf="form.get('plazoPago')?.touched && form.get('plazoPago')?.invalid">
+                        <p class="text-danger text-sm italic" *ngIf="form.get('plazoPago')?.errors?.['required']">Plazo pago requerido*</p>
+                    </div>
+                </div>
+                <div>
+                    <label class="label">Correo:</label>
+                    <input type="email" nbInput formControlName="correo" fullWidth>
+                    <div *ngIf="form.get('correo')?.touched && form.get('correo')?.invalid">
+                        <p class="text-danger text-sm italic" *ngIf="form.get('correo')?.errors?.['required']">Correo requerido*</p>
+                    </div>
+                </div>
+                <div>
+                    <label class="label">RFC:</label>
+                    <input type="text" nbInput formControlName="rfc" fullWidth>
+                    <div *ngIf="form.get('rfc')?.touched && form.get('rfc')?.invalid">
+                        <p class="text-danger text-sm italic" *ngIf="form.get('rfc')?.errors?.['required']">RFC requerido*</p>
+                    </div>
+                </div>
+                <div>
+                    <label class="label">Razón Social:</label>
+                    <input type="text" nbInput formControlName="razonSocial" fullWidth>
+                    <div *ngIf="form.get('razonSocial')?.touched && form.get('razonSocial')?.invalid">
+                        <p class="text-danger text-sm italic" *ngIf="form.get('razonSocial')?.errors?.['required']">Razón social requerida*</p>
+                    </div>
+                </div>
+                <div>
+                    <label class="label">CLABE:</label>
+                    <input type="text" nbInput formControlName="clabe" fullWidth>
+                    <div *ngIf="form.get('clabe')?.touched && form.get('clabe')?.invalid">
+                        <p class="text-danger text-sm italic" *ngIf="form.get('clabe')?.errors?.['required']">CLABE requerida*</p>
+                    </div>
+                </div>
+            </nb-card-body>
+            <nb-card-footer>
+                <button nbButton status="primary" typE="submit" [disabled]="!form.valid">Guardar</button>
+            </nb-card-footer>
+        </nb-card>
+    </form>
+</div>
+
+
+<div>
     <app-custom-table
-        tableHead="Sucursales | Tabla"
+        tableHead="Proveedores | Tabla"
         keyRow="Id"
         [headers]="['#', 'Nombre', 'Direccion', 'Teléfono', 'Id Banco','Plazo Pago','Correo','RFC','RazonSocial','CLABE','Fecha registro','Fecha Actualiza', 'Usuario']"
         [keys]="['Id','Nombre', 'Direccion', 'Telefono', 'IdBanco','PlazoPago','Correo','RFC','RazonSocial','CLABE','FechaRegistro','FechaActualiza','UsuarioActualiza']"

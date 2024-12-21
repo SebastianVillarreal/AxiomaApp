@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { proveedores } from '@Global/endpoints';
-import { GetProveedorResponse } from '@Models/Proveedor';
+import { GetProveedorResponse, ProveedorInsertRequest } from '@Models/Proveedor';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -12,6 +12,16 @@ export class ProveedorService {
   private headers: HttpHeaders
   constructor(private http: HttpClient) { 
     this.headers = new HttpHeaders({})
+  }
+
+  insertProveedor(proveedor: ProveedorInsertRequest): Observable<boolean> {
+    const httpOptions = { headers: this.headers }
+    return this.http.post<boolean>(proveedores.insert, proveedor, httpOptions)
+      .pipe(
+        map(res => {
+        return res
+      })
+    )
   }
 
   getProveedores(): Observable<GetProveedorResponse> {

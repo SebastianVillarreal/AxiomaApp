@@ -1,5 +1,19 @@
 import { ApiResponse } from "@Models/Response";
 
+export interface ProveedorInsertRequest {
+    nombre: string;
+    direccion: string;
+    telefono: string;
+    idBanco: number;
+    plazoPago: number;
+    correo: string;
+    rfc: string;
+    razonSocial: string;
+    clabe: string;
+    usuarioActualiza: number
+
+}
+
 export type GetProveedorResponse = ApiResponse<ProveedorResponseData>
 
 export interface ProveedorResponseData  {
