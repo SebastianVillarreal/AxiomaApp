@@ -1,8 +1,13 @@
-export interface UsuarioInsertRequest {}
+export interface UsuarioUpdateRequest {
+    id: number;
+    contrasena: string;
+    usuario: number
+}
+
 export type GetUsuarioResponse = UsuarioModel[]
 
 export interface UsuarioModel {
-    Id: string;
+    Id: number;
     NombreP: string;
     Nombre: string;
     Contrasena: string;
