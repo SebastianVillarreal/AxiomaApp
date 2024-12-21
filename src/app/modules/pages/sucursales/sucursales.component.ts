@@ -2,7 +2,7 @@ import { NgIf } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CustomTableComponent } from '@Component/Table';
-import { SucursalInsertRequest, SucursalModel } from '@Models/Sucursal';
+import { SucursalInsertRequest, SucursalModel, SucursalUpdateRequest } from '@Models/Sucursal';
 import { NbButton, NbButtonModule, NbCardModule, NbInputModule } from '@nebular/theme';
 import { SucursalService } from '@Services';
 
@@ -19,6 +19,7 @@ export class SucursalesComponent implements OnInit {
 
   sucursalesList: SucursalModel[] = [];
   form = this.fb.nonNullable.group({
+    id: [0],
     nombre: ['', [Validators.required]],
     direccion: ['', [Validators.required]],
   })
@@ -35,7 +36,7 @@ export class SucursalesComponent implements OnInit {
 
   onSubmit(): void {
     if (this.form.valid) {
-      const { nombre, direccion } = this.form.getRawValue()
+      const { id, nombre, direccion } = this.form.getRawValue()
       const usuarioActualiza = parseInt(localStorage.getItem('idUsuario') ?? '0')
       
       const insertRequest: SucursalInsertRequest = {
@@ -44,7 +45,14 @@ export class SucursalesComponent implements OnInit {
         idUsuario: usuarioActualiza
       }
 
-      const serviceCall = this.sucursalService.insertSucursal(insertRequest)
+      const updateRequest: SucursalUpdateRequest = {
+        id: id,
+        nombre: nombre,
+        direccion: direccion,
+        idUsuario: usuarioActualiza
+      }
+
+      const serviceCall = id === 0 ? this.sucursalService.insertSucursal(insertRequest) : this.sucursalService.updateSucursal(updateRequest)
       serviceCall.subscribe({
         next: (res: any) => {
           console.log(res)
@@ -62,8 +70,17 @@ export class SucursalesComponent implements OnInit {
 
   resetForm(): void {
     this.form.reset({
+      id: 0,
       nombre: '',
       direccion: ''
+    })
+  }
+
+  editSucursal(data: SucursalModel) {
+    this.form.patchValue({
+      id: data.Id,
+      nombre: data.Nombre,
+      direccion: data.Direccion
     })
   }
 }

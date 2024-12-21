@@ -37,6 +37,7 @@
         [data]="sucursalesList"
         [hasEdit]="true"
         [hasDelete]="true"
-        [hasSearch]="true">
+        [hasSearch]="true"
+        (editEmit)="editSucursal($event)">
     ></app-custom-table>
 </div>

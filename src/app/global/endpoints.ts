@@ -32,7 +32,8 @@ export const proveedores = {
 
 export const sucursales = {
   insert: `${environment.urlBase}Sucursales/Insert`,
-  get: `${environment.urlBase}Sucursales/Get`
+  get: `${environment.urlBase}Sucursales/Get`,
+  update: `${environment.urlBase}Sucursales/Update`
 }
 
 export const recetas = {

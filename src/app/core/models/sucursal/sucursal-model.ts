@@ -5,6 +5,10 @@ export interface SucursalInsertRequest {
     idUsuario: number
 }
 
+export interface SucursalUpdateRequest extends SucursalInsertRequest {
+    id: number;
+}
+
 export type GetSucursalResponse = SucursalModel[]
 export interface SucursalModel {
     Id: number;
