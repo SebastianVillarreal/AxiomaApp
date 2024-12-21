@@ -5,6 +5,7 @@ import { CustomTableComponent } from '@Component/Table';
 import { BancoModel } from '@Models/Banco';
 import { ProveedorInsertRequest, ProveedorModel, ProveedorUpdateRequest } from '@Models/Proveedor';
 import { NbButtonModule, NbCardModule, NbInputModule, NbSelectModule } from '@nebular/theme';
+import { SweetAlertService } from '@Service/SweetAlert';
 import { BancoService, ProveedorService } from '@Services';
 
 @Component({
@@ -17,6 +18,7 @@ import { BancoService, ProveedorService } from '@Services';
 export class ProveedoresComponent implements OnInit{
   private proveedorService = inject(ProveedorService)
   private bancoService = inject(BancoService)
+  private sweetAlertService = inject(SweetAlertService)
   private fb = inject(FormBuilder)
 
   proveedoresList: ProveedorModel[] = []
@@ -125,6 +127,26 @@ export class ProveedoresComponent implements OnInit{
       rfc: data.RFC,
       razonSocial: data.RazonSocial,
       clabe: data.CLABE
+    })
+  }
+
+  deleteProveedor(Id: number) {
+    this.sweetAlertService.confirm({
+      title: 'Eliminar Proveedor',
+      text: '¿Estás seguro que desea eliminar este proveedor?',
+      confirmButtonText: 'Eliminar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.proveedorService.deleteProveedor(Id).subscribe({
+          next: (res: any) => {
+            console.log(res)
+            this.getProveedores()
+          },
+          error: (err: any) => {
+            console.error(err)
+          }
+        })
+      }
     })
   }
 }

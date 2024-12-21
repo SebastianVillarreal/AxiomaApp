@@ -34,6 +34,15 @@ export class ProveedorService {
     )
   }
 
+  deleteProveedor(id: number): Observable<boolean> {
+    const httpOptions = { headers: this.headers }
+    return this.http.put<boolean>(proveedores.delete, { id }, httpOptions)
+      .pipe(
+        map(res => {
+        return res
+      })
+    )
+  }
   getProveedores(): Observable<GetProveedorResponse> {
     const httpOptions = {headers: this.headers}
     return this.http.get<GetProveedorResponse>(proveedores.get, httpOptions)
