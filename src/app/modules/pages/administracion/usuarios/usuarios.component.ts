@@ -5,7 +5,7 @@ import { CustomTableComponent } from '@Component/Table';
 import { UsuarioModel, UsuarioUpdateRequest } from '@Models/Usuario';
 import { NbButtonModule, NbCardModule, NbDialogModule, NbDialogRef, NbDialogService, NbFormFieldModule, NbIconModule, NbInputModule } from '@nebular/theme';
 import { SweetAlertService } from '@Service/SweetAlert';
-import { UsuarioService } from 'src/app/core/services/usuario.service';
+import { UsuarioService } from '@Services';
 
 @Component({
   selector: 'app-usuarios',
