@@ -3,6 +3,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { CatModulosComponent } from "./cat-modulos/cat-modulos.component";
 import { ModulosComponent } from "./modulos/modulos.component";
 import { PersonasComponent } from "./personas/personas.component";
+import { UsuariosComponent } from "./usuarios/usuarios.component";
 
 export const routes: Routes = [
     {
@@ -24,6 +25,10 @@ export const routes: Routes = [
             {
                 path: 'personas',
                 component: PersonasComponent
+            },
+            {
+                path: 'usuarios',
+                component: UsuariosComponent
             }
         ]
     }
