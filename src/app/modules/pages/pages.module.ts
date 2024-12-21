@@ -12,9 +12,6 @@ import { ExistenciasComponent } from './existencias/existencias.component';
     PagesRoutingModule,
     NbMenuModule,
   ],
-  declarations: [
-    ExistenciasComponent
-  ],
 })
 export class PagesModule {
 }

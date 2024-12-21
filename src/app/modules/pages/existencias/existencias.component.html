@@ -1,1 +1,12 @@
-<p>existencias works!</p>
+<div>
+    <app-custom-table
+        tableHead="Proveedores | Tabla"
+        keyRow="Id"
+        [headers]="['#', 'Insumo', 'Id Almacen', 'Cantidad', 'Fecha','Fecha Actualiza','Usuario']"
+        [keys]="['Id','Insumo', 'IdAlmacen', 'Cantidad', 'Fecha','FechaActualiza','UsuarioActualiza']"
+        [data]="existenciasList"
+        [hasEdit]="true"
+        [hasDelete]="true"
+        [hasSearch]="true">
+    ></app-custom-table>
+</div>
