@@ -34,6 +34,16 @@ export class SucursalService {
     )
   }
 
+  deleteSucursal(id: number): Observable<boolean> {
+    const httpOptions = { headers: this.headers }
+    return this.http.put<boolean>(sucursales.delete, { id }, httpOptions)
+      .pipe(
+        map(res => {
+        return res
+      })
+    )
+  }
+
   getSucursales(): Observable<GetSucursalResponse> {
     const httpOptions = {headers: this.headers}
     return this.http.get<GetSucursalResponse>(sucursales.get, httpOptions)

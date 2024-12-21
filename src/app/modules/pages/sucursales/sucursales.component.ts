@@ -5,6 +5,7 @@ import { CustomTableComponent } from '@Component/Table';
 import { SucursalInsertRequest, SucursalModel, SucursalUpdateRequest } from '@Models/Sucursal';
 import { NbButton, NbButtonModule, NbCardModule, NbInputModule } from '@nebular/theme';
 import { SucursalService } from '@Services';
+import { SweetAlertService } from '@Service/SweetAlert';
 
 @Component({
   selector: 'app-sucursales',
@@ -15,6 +16,7 @@ import { SucursalService } from '@Services';
 })
 export class SucursalesComponent implements OnInit {
   private sucursalService = inject(SucursalService);
+  private sweetAlertService = inject(SweetAlertService);
   private fb = inject(FormBuilder)
 
   sucursalesList: SucursalModel[] = [];
@@ -81,6 +83,26 @@ export class SucursalesComponent implements OnInit {
       id: data.Id,
       nombre: data.Nombre,
       direccion: data.Direccion
+    })
+  }
+
+  deleteSucursal(Id: number) {
+    this.sweetAlertService.confirm({
+      title: 'Eliminar Sucursal',
+      text: '¿Estás seguro de eliminar la sucursal?',
+      confirmButtonText: 'Eliminar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.sucursalService.deleteSucursal(Id).subscribe({
+          next: (res: any) => {
+            console.log(res)
+            this.getSucursales()
+          },
+          error: (err: any) => {
+            console.log(err)
+          }
+        })
+      }
     })
   }
 }
