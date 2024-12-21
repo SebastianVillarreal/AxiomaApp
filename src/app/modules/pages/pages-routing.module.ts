@@ -9,6 +9,7 @@ import { InsumosComponent } from './insumos/insumos.component';
 import { RecetasComponent } from './recetas/recetas/recetas.component';
 import { SucursalesComponent } from './sucursales/sucursales.component';
 import { ProveedoresComponent } from './proveedores/proveedores.component';
+import { ExistenciasComponent } from './existencias/existencias.component';
 
 const routes: Routes = [{
   path: '',
@@ -33,6 +34,11 @@ const routes: Routes = [{
       path: 'insumos',
       component: InsumosComponent,
       title: 'Insumos'
+    },
+    {
+      path: 'existencias',
+      component: ExistenciasComponent,
+      title: 'Existencias'
     },
     {
       path: 'recetas',
