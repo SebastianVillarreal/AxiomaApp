@@ -11,9 +11,6 @@ import { ProveedoresComponent } from './proveedores/proveedores.component';
     PagesRoutingModule,
     NbMenuModule,
   ],
-  declarations: [
-    ProveedoresComponent
-  ],
 })
 export class PagesModule {
 }

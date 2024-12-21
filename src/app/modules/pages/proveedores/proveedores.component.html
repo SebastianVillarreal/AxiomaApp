@@ -1,1 +1,12 @@
-<p>proveedores works!</p>
+<div>
+    <app-custom-table
+        tableHead="Sucursales | Tabla"
+        keyRow="Id"
+        [headers]="['#', 'Nombre', 'Direccion', 'Teléfono', 'Id Banco','Plazo Pago','Correo','RFC','RazonSocial','CLABE','Fecha registro','Fecha Actualiza', 'Usuario']"
+        [keys]="['Id','Nombre', 'Direccion', 'Telefono', 'IdBanco','PlazoPago','Correo','RFC','RazonSocial','CLABE','FechaRegistro','FechaActualiza','UsuarioActualiza']"
+        [data]="proveedoresList"
+        [hasEdit]="true"
+        [hasDelete]="true"
+        [hasSearch]="true">
+    ></app-custom-table>
+</div>
