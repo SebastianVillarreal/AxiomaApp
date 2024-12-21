@@ -10,6 +10,7 @@ import { RecetasComponent } from './recetas/recetas/recetas.component';
 import { SucursalesComponent } from './sucursales/sucursales.component';
 import { ProveedoresComponent } from './proveedores/proveedores.component';
 import { ExistenciasComponent } from './existencias/existencias.component';
+import { UnidadMedidaComponent } from './unidad-medida/unidad-medida.component';
 
 const routes: Routes = [{
   path: '',
@@ -24,6 +25,11 @@ const routes: Routes = [{
       path: 'bancos',
       component: BancosComponent,
       title: 'Bancos'
+    },
+    {
+      path: 'unidades-medida',
+      component: UnidadMedidaComponent,
+      title: 'Unidades de Medida'
     },
     {
       path: 'articulos',

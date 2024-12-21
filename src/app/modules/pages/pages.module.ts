@@ -6,11 +6,15 @@ import { CatModulosComponent } from './administracion/cat-modulos/cat-modulos.co
 import { SucursalesComponent } from './sucursales/sucursales.component';
 import { ProveedoresComponent } from './proveedores/proveedores.component';
 import { ExistenciasComponent } from './existencias/existencias.component';
+import { UnidadMedidaComponent } from './unidad-medida/unidad-medida.component';
 
 @NgModule({
   imports: [
     PagesRoutingModule,
     NbMenuModule,
+  ],
+  declarations: [
+    UnidadMedidaComponent
   ],
 })
 export class PagesModule {
