@@ -7,9 +7,5 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
 
 @NgModule({
     imports: [AdministracionRoutingModule, NbMenuModule],
-    declarations: [
-      UsuariosComponent
-    ],
-
 })
 export class AdministracionModule {}

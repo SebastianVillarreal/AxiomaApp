@@ -1,1 +1,12 @@
-<p>usuarios works!</p>
+<div>
+    <app-custom-table
+        tableHead="Usuarios | Tabla"
+        keyRow="Id"
+        [headers]="['#', 'Nombre Usuario', 'Nombre', 'Rol','Id Persona', 'Contraseña', 'Mensaje','Fecha registro','Fecha Actualiza', 'Usuario']"
+        [keys]="['Id','Nombre', 'NombreP', 'Rol', 'IdPersona', 'Contrasena','Mensaje','FechaReg','FechaAct','Usuario']"
+        [data]="usuariosList"
+        [hasEdit]="true"
+        [hasDelete]="true"
+        [hasSearch]="true">
+    ></app-custom-table>
+</div>

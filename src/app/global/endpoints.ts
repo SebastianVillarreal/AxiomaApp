@@ -94,3 +94,7 @@ export const personas = {
   update: `${environment.urlBase}Personas/Update`,
   delete: `${environment.urlBase}Personas/Delete`
 }
+
+export const usuarios = {
+  get: `${environment.urlBase}Usuarios/Get`
+}

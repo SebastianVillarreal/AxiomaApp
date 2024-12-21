@@ -25,7 +25,8 @@
       "@Models/DetalleEntrada": ["src/app/core/models/detalle-entrada"],
       "@Models/CatModulo": ["src/app/core/models/cat-modulo"],
       "@Models/Modulo": ["src/app/core/models/modulo"],
-      "@Models/Persona": ["src/app/core/models/persona"]
+      "@Models/Persona": ["src/app/core/models/persona"],
+      "@Models/Usuario": ["src/app/core/models/usuario"]
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
