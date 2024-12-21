@@ -8,11 +8,16 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/home',
         
         home: true
-    },
-    {
+      },
+      {
         title: 'Bancos',
         icon: 'credit-card-outline',
         link: '/pages/bancos',
+      },
+      {
+        title: 'Sucursales',
+        icon: 'pin-outline',
+        link: '/pages/sucursales'
       },
       {
         title: 'Artículos',

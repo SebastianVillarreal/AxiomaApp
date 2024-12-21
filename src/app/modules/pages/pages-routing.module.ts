@@ -7,6 +7,7 @@ import { LayoutComponent } from 'src/app/layout/layout/layout.component';
 import { ArticulosComponent } from './articulos/articulos.component';
 import { InsumosComponent } from './insumos/insumos.component';
 import { RecetasComponent } from './recetas/recetas/recetas.component';
+import { SucursalesComponent } from './sucursales/sucursales.component';
 
 const routes: Routes = [{
   path: '',
@@ -39,6 +40,11 @@ const routes: Routes = [{
     {
       path: 'compras',
       loadChildren: () => import('./compras/compras.module').then(m => m.ComprasModule)
+    },
+    {
+      path: 'sucursales',
+      component: SucursalesComponent,
+      title: 'Sucursales'
     },
     {
       path: 'administracion',
