@@ -1,1 +1,12 @@
-<p>sucursales works!</p>
+<div>
+    <app-custom-table
+        tableHead="Sucursales | Tabla"
+        keyRow="Id"
+        [headers]="['#', 'Nombre', 'Direccion','Fecha registro','Fecha Actualiza', 'Usuario']"
+        [keys]="['Id','Nombre', 'Direccion','FechaReg','FechaAct','Usuario']"
+        [data]="sucursalesList"
+        [hasEdit]="true"
+        [hasDelete]="true"
+        [hasSearch]="true">
+    ></app-custom-table>
+</div>

@@ -10,9 +10,6 @@ import { SucursalesComponent } from './sucursales/sucursales.component';
     PagesRoutingModule,
     NbMenuModule,
   ],
-  declarations: [
-    SucursalesComponent
-  ],
 })
 export class PagesModule {
 }
