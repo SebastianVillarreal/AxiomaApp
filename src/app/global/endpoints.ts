@@ -31,6 +31,7 @@ export const proveedores = {
 }
 
 export const sucursales = {
+  insert: `${environment.urlBase}Sucursales/Insert`,
   get: `${environment.urlBase}Sucursales/Get`
 }
 

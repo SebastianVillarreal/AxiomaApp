@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { sucursales } from '@Global/endpoints';
-import { GetSucursalResponse } from '@Models/Sucursal';
+import { GetSucursalResponse, SucursalInsertRequest } from '@Models/Sucursal';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -12,7 +12,17 @@ export class SucursalService {
   private headers: HttpHeaders
   constructor(private http: HttpClient) {
     this.headers = new HttpHeaders({})
-   }
+  }
+  
+  insertSucursal(sucursal: SucursalInsertRequest): Observable<boolean> {
+    const httpOptions = { headers: this.headers }
+    return this.http.post<boolean>(sucursales.insert, sucursal, httpOptions)
+      .pipe(
+        map(res => {
+        return res
+      })
+    )
+  } 
 
   getSucursales(): Observable<GetSucursalResponse> {
     const httpOptions = {headers: this.headers}
