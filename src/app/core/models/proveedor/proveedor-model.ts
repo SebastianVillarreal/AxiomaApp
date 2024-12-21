@@ -14,6 +14,10 @@ export interface ProveedorInsertRequest {
 
 }
 
+export interface ProveedorUpdateRequest extends ProveedorInsertRequest{
+    id: number;
+}
+
 export type GetProveedorResponse = ApiResponse<ProveedorResponseData>
 
 export interface ProveedorResponseData  {

@@ -3,7 +3,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CustomTableComponent } from '@Component/Table';
 import { BancoModel } from '@Models/Banco';
-import { ProveedorInsertRequest, ProveedorModel } from '@Models/Proveedor';
+import { ProveedorInsertRequest, ProveedorModel, ProveedorUpdateRequest } from '@Models/Proveedor';
 import { NbButtonModule, NbCardModule, NbInputModule, NbSelectModule } from '@nebular/theme';
 import { BancoService, ProveedorService } from '@Services';
 
@@ -22,6 +22,7 @@ export class ProveedoresComponent implements OnInit{
   proveedoresList: ProveedorModel[] = []
   bancosList: BancoModel[] = []
   form = this.fb.nonNullable.group({
+    id: [0],
     nombre: ['', [Validators.required]],
     direccion: ['', [Validators.required]],
     telefono: ['', [Validators.required]],
@@ -52,7 +53,7 @@ export class ProveedoresComponent implements OnInit{
 
   onSubmit(): void {
     if (this.form.valid) {
-      const { nombre, direccion, telefono, idBanco, plazoPago, correo, rfc, razonSocial, clabe } = this.form.getRawValue()
+      const { id,nombre, direccion, telefono, idBanco, plazoPago, correo, rfc, razonSocial, clabe } = this.form.getRawValue()
       const usuarioActualiza = parseInt(localStorage.getItem('idUsuario') ?? '0')
 
       const insertRequest: ProveedorInsertRequest = {
@@ -68,7 +69,21 @@ export class ProveedoresComponent implements OnInit{
         usuarioActualiza: usuarioActualiza
       }
 
-      const serviceCall = this.proveedorService.insertProveedor(insertRequest)
+      const updateRequest: ProveedorUpdateRequest = {
+        id: id,
+        nombre: nombre,
+        direccion: direccion,
+        telefono: telefono,
+        idBanco: idBanco,
+        plazoPago: plazoPago,
+        correo: correo,
+        rfc: rfc,
+        razonSocial: razonSocial,
+        clabe: clabe,
+        usuarioActualiza: usuarioActualiza
+      }
+
+      const serviceCall = id == 0 ? this.proveedorService.insertProveedor(insertRequest) : this.proveedorService.updateProveedor(updateRequest)
 
       serviceCall.subscribe({
         next: (res: any) => {
@@ -85,6 +100,7 @@ export class ProveedoresComponent implements OnInit{
 
   resetForm(): void {
     this.form.reset({
+      id: 0,
       nombre: '',
       direccion: '',
       telefono: '',
@@ -94,6 +110,21 @@ export class ProveedoresComponent implements OnInit{
       rfc: '',
       razonSocial: '',
       clabe: ''
+    })
+  }
+
+  editProveedor(data: ProveedorModel) {
+    this.form.patchValue({
+      id: data.Id,
+      nombre: data.Nombre,
+      direccion: data.Direccion,
+      telefono: data.Telefono,
+      idBanco: data.IdBanco,
+      plazoPago: data.PlazoPago,
+      correo: data.Correo,
+      rfc: data.RFC,
+      razonSocial: data.RazonSocial,
+      clabe: data.CLABE
     })
   }
 }

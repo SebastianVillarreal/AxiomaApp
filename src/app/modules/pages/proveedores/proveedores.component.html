@@ -89,11 +89,12 @@
     <app-custom-table
         tableHead="Proveedores | Tabla"
         keyRow="Id"
-        [headers]="['#', 'Nombre', 'Direccion', 'Teléfono', 'Id Banco','Plazo Pago','Correo','RFC','RazonSocial','CLABE','Fecha registro','Fecha Actualiza', 'Usuario']"
-        [keys]="['Id','Nombre', 'Direccion', 'Telefono', 'IdBanco','PlazoPago','Correo','RFC','RazonSocial','CLABE','FechaRegistro','FechaActualiza','UsuarioActualiza']"
+        [headers]="['#', 'Nombre', 'Direccion', 'Teléfono', 'Correo','Id Banco','Plazo Pago','RFC','RazonSocial','CLABE','Fecha registro','Fecha Actualiza', 'Usuario']"
+        [keys]="['Id','Nombre', 'Direccion', 'Telefono', 'Correo','IdBanco','PlazoPago','RFC','RazonSocial','CLABE','FechaRegistro','FechaActualiza','UsuarioActualiza']"
         [data]="proveedoresList"
         [hasEdit]="true"
         [hasDelete]="true"
-        [hasSearch]="true">
+        [hasSearch]="true"
+        (editEmit)="editProveedor($event)">
     ></app-custom-table>
 </div>
