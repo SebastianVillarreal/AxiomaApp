@@ -28,7 +28,8 @@ export const insumos = {
 
 export const existencias = {
   insert: `${environment.urlBase}Existencias/Insert`,
-  get:  `${environment.urlBase}Existencias/Get`
+  get: `${environment.urlBase}Existencias/Get`,
+  update: `${environment.urlBase}Existencias/Update`
 }
 
 export const proveedores = {

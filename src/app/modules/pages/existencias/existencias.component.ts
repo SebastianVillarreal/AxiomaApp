@@ -2,7 +2,7 @@ import { NgFor, NgIf } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CustomTableComponent } from '@Component/Table';
-import { ExistenciaInsertRequest, ExistenciaModel } from '@Models/Existencia';
+import { ExistenciaInsertRequest, ExistenciaModel, ExistenciaUpdateRequest } from '@Models/Existencia';
 import { InsumoModel } from '@Models/Insumo';
 import { NbButtonModule, NbCardModule, NbInputModule, NbSelectModule } from '@nebular/theme';
 import { ExistenciaService, InsumoService } from '@Services';
@@ -23,6 +23,7 @@ export class ExistenciasComponent implements OnInit{
   insumosList: InsumoModel[] = []
 
   form = this.fb.nonNullable.group({
+    id: [0],
     insumo: ['', [Validators.required]],
     idAlmacen: [0, [Validators.required, Validators.min(1)]],
     cantidad: [0, [Validators.required]],
@@ -47,7 +48,7 @@ export class ExistenciasComponent implements OnInit{
 
   onSubmit(): void {
     if (this.form.valid) {
-      const { insumo, idAlmacen, cantidad } = this.form.getRawValue()
+      const { id, insumo, idAlmacen, cantidad } = this.form.getRawValue()
       const usuarioActualiza = parseInt(localStorage.getItem('idUsuario') ?? '0')
       
       const insertRequest: ExistenciaInsertRequest = {
@@ -57,7 +58,15 @@ export class ExistenciasComponent implements OnInit{
         usuarioActualiza: usuarioActualiza
       }
 
-      const serviceCall = this.existenciaService.insertExistencia(insertRequest)
+      const updateRequest: ExistenciaUpdateRequest = {
+        id: id,
+        insumo: insumo,
+        idAlmacen: idAlmacen,
+        cantidad: cantidad,
+        usuarioActualiza: usuarioActualiza
+      }
+
+      const serviceCall = id === 0 ? this.existenciaService.insertExistencia(insertRequest) : this.existenciaService.updateExistencia(updateRequest)
       serviceCall.subscribe({
         next: (res: any) => {
           console.log(res)
@@ -76,6 +85,15 @@ export class ExistenciasComponent implements OnInit{
       insumo: '',
       idAlmacen: 0,
       cantidad: 0
+    })
+  }
+
+  editExistencia(data: ExistenciaModel): void{
+    this.form.patchValue({
+      id: data.Id,
+      insumo: data.Insumo,
+      idAlmacen: data.IdAlmacen,
+      cantidad: data.Cantidad
     })
   }
 }

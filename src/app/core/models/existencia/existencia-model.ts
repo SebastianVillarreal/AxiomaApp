@@ -7,6 +7,10 @@ export interface ExistenciaInsertRequest {
     usuarioActualiza: number;
 }
 
+export interface ExistenciaUpdateRequest extends ExistenciaInsertRequest{
+    id: number
+}
+
 export type GetExistenciaResponse = ApiResponse<ExistenciaResponseData>
 
 export interface ExistenciaResponseData {

@@ -54,6 +54,7 @@
         [data]="existenciasList"
         [hasEdit]="true"
         [hasDelete]="true"
-        [hasSearch]="true">
+        [hasSearch]="true"
+        (editEmit)="editExistencia($event)">
     ></app-custom-table>
 </div>
