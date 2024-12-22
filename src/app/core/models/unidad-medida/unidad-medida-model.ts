@@ -3,6 +3,10 @@ export interface UnidadMedidaInsertRequest {
     usuarioActualiza: number
 }
 
+export interface UnidadMedidaUpdateRequest extends UnidadMedidaInsertRequest {
+    id: number;
+}
+
 export type GetUnidadMedidaResponse = UnidadMedidaModel[]
 
 export interface UnidadMedidaModel {

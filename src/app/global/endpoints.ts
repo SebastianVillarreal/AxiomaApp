@@ -21,7 +21,9 @@ export const articulos = {
 
 export const unidadesMedidas = {
   insert: `${environment.urlBase}UnidadMedida/Insert`,
-  get: `${environment.urlBase}UnidadMedida/Get`
+  get: `${environment.urlBase}UnidadMedida/Get`,
+  update: `${environment.urlBase}UnidadMedida/Update`,
+  delete: `${environment.urlBase}UnidadMedida/Delete`
 }
 
 export const insumos = {

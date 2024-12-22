@@ -31,6 +31,8 @@
         [data]="unidadesMedidasList"
         [hasEdit]="true"
         [hasDelete]="true"
-        [hasSearch]="true">
+        [hasSearch]="true"
+        (editEmit)="editUnidadMedida($event)"
+        (deleteEmit)="deleteUnidadMedida($event)">
     ></app-custom-table>
 </div>
