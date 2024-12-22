@@ -1,4 +1,7 @@
-import { ApiResponse } from "@Models/Response";
+export interface UnidadMedidaInsertRequest {
+    nombre: string;
+    usuarioActualiza: number
+}
 
 export type GetUnidadMedidaResponse = UnidadMedidaModel[]
 

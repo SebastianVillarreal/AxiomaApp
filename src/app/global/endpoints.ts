@@ -20,6 +20,7 @@ export const articulos = {
 };
 
 export const unidadesMedidas = {
+  insert: `${environment.urlBase}UnidadMedida/Insert`,
   get: `${environment.urlBase}UnidadMedida/Get`
 }
 

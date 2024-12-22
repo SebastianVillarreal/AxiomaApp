@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { unidadesMedidas } from '@Global/endpoints';
-import { GetUnidadMedidaResponse } from '@Models/UnidadMedida';
+import { GetUnidadMedidaResponse, UnidadMedidaInsertRequest } from '@Models/UnidadMedida';
 import { map, Observable } from 'rxjs';
 
 @Injectable({
@@ -11,6 +11,16 @@ export class UnidadMedidaService {
   private headers: HttpHeaders
   constructor(private http: HttpClient) {
     this.headers = new HttpHeaders({})
+  }
+
+  insertUnidadMedida(um: UnidadMedidaInsertRequest): Observable<boolean> {
+    const httpOptions = { headers: this.headers }
+    return this.http.post<boolean>(unidadesMedidas.insert, um, httpOptions)
+      .pipe(
+        map(res => {
+        return res
+      })
+    )
   }
   
   getUnidadesMedidas(): Observable<GetUnidadMedidaResponse> {

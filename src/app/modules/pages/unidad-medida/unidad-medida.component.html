@@ -1,4 +1,28 @@
 <div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <nb-card>
+            <nb-card-header>
+                <h5>
+                    Proveedor | Formulario
+                </h5>
+            </nb-card-header>
+            <nb-card-body class="form-grid">
+                <div>
+                    <label class="label">Nombre:</label>
+                    <input type="text" nbInput formControlName="nombre" fullWidth>
+                    <div *ngIf="form.get('nombre')?.touched && form.get('nombre')?.invalid">
+                        <p class="text-danger text-sm italic" *ngIf="form.get('nombre')?.errors?.['required']">Nombre requerido*</p>
+                    </div>
+                </div>
+            </nb-card-body>
+            <nb-card-footer>
+                <button nbButton status="primary" typE="submit" [disabled]="!form.valid">Guardar</button>
+            </nb-card-footer>
+        </nb-card>
+    </form>
+</div>
+
+<div>
     <app-custom-table
         tableHead="Unidades Medidas | Tabla"
         keyRow="Id"
