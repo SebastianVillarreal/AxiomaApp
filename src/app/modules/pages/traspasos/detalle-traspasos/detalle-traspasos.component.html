@@ -24,6 +24,13 @@
                         <p class="text-danger text-sm italic" *ngIf="form.get('cantidadEnviada')?.errors?.['required']">Cantidad Enviada requerida*</p>
                     </div>
                 </div>
+                <div *ngIf="form.get('id')?.value !== 0">
+                    <label class="label">*Cantidad Recibida:</label>
+                    <input formControlName="cantidadRecibida" type="number" nbInput fullWidth min="0">
+                    <div *ngIf="form.get('cantidadRecibida')?.touched && form.get('cantidadRecibida')?.invalid">
+                        <p class="text-danger text-sm italic" *ngIf="form.get('cantidadRecibida')?.errors?.['required']">Cantidad Recibida requerida*</p>
+                    </div>
+                </div>
             </nb-card-body>
             <nb-card-footer>
                 <button nbButton status="primary" [disabled]="!form.valid" type="submit">Guardar</button>
@@ -37,9 +44,10 @@
     tableHead="Detalles Traspaso | Tabla"
     keyRow="Id"
     [headers]="['#', '# Traspaso', 'Insumo', 'Almacen Origen', 'Almacen Destino', 'Cantidad Enviada', 'Cantidad Recibida', 'Fecha Registro','Fecha Actualiza','Usuario Actualiza', 'Usuario Envía', 'Usuario Recibe', 'Fecha Inicio', 'Fecha Final']"
-    [keys]="['Id', 'IdTraspaso', 'Insumo','AlmacenOrigen','AlmacenDestino', 'CantidadEnviada', 'CantidadRecibida','FechaRegistro','FechaActualiza','UsuarioActualiza','UsuarioEnvía', 'UsuarioRecibe', 'FechaInicio', 'FechaFinal']"
+    [keys]="['Id', 'IdTraspaso', 'Insumo','AlmacenOrigen','AlmacenDestino', 'CantidadEnviada', 'CatidadRecibida','FechaRegistro','FechaActualiza','UsuarioActualiza','UsuarioEnvía', 'UsuarioRecibe', 'FechaInicio', 'FechaFinal']"
     [data]="detallesList"
     [hasDelete]="true"
     [hasEdit]="true"
+    (editEmit)="editDetalle($event)"
     ></app-custom-table>
 </div>

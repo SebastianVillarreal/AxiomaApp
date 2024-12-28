@@ -3,7 +3,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CustomTableComponent } from '@Component/Table';
-import { DetalleTraspasoInsertRequest, DetalleTraspasoModel } from '@Models/DetalleTraspaso';
+import { DetalleTraspasoInsertRequest, DetalleTraspasoModel, DetalleTraspasoUpdateRequest } from '@Models/DetalleTraspaso';
 import { InsumoModel } from '@Models/Insumo';
 import { NbButtonModule, NbCardModule, NbInputModule, NbSelectModule } from '@nebular/theme';
 import { DetalleTraspasoService, InsumoService } from '@Services';
@@ -25,8 +25,10 @@ export class DetalleTraspasosComponent implements OnInit{
   insumosList: InsumoModel[] = []
   idTraspaso: number = 0
   form = this.fb.nonNullable.group({
+    id: [0],
     insumo: ["", [Validators.required]],
-    cantidadEnviada: [0, [Validators.required]]
+    cantidadEnviada: [0, [Validators.required]],
+    cantidadRecibida: [0, [Validators.required]],
   })
 
   ngOnInit(): void {
@@ -48,7 +50,7 @@ export class DetalleTraspasosComponent implements OnInit{
   }
 
   onSubmit(): void {
-    const { insumo, cantidadEnviada } = this.form.getRawValue()
+    const { id, insumo, cantidadEnviada, cantidadRecibida } = this.form.getRawValue()
     const usuarioActualiza = parseInt(localStorage.getItem("idUsuario") ?? "0")
     
     const insertRequest: DetalleTraspasoInsertRequest = {
@@ -57,8 +59,18 @@ export class DetalleTraspasosComponent implements OnInit{
       cantidadEnviada: cantidadEnviada,
       usuarioActualiza: usuarioActualiza
     }
+    const updateRequest: DetalleTraspasoUpdateRequest = {
+      id: id,
+      insumo: insumo,
+      cantidadEnviada: cantidadEnviada,
+      cantidadRecibida: cantidadRecibida,
+      usuarioActualiza: usuarioActualiza
+    }
 
-    const serviceCall = this.detallesTraspasoService.insertDetalleTraspaso(insertRequest)
+    console.log(insertRequest)
+    console.log(updateRequest)
+
+    const serviceCall = id == 0 ? this.detallesTraspasoService.insertDetalleTraspaso(insertRequest) : this.detallesTraspasoService.updateDetalleTraspaso(updateRequest)
     serviceCall.subscribe({
       next: (res: any) => {
         console.log(res)
@@ -73,8 +85,21 @@ export class DetalleTraspasosComponent implements OnInit{
 
   resetForm(): void {
     this.form.reset({
+      id: 0,
       insumo: "",
-      cantidadEnviada: 0
+      cantidadEnviada: 0,
+      cantidadRecibida: 0
+    })
+  }
+
+  editDetalle(data: DetalleTraspasoModel): void {
+    const insumo = this.insumosList.find(insumo => insumo.Descripcion.toLowerCase() === data.Insumo.toLowerCase())
+    console.log(insumo)
+    this.form.patchValue({
+      id: data.Id,
+      insumo: insumo?.Insumo,
+      cantidadEnviada: data.CantidadEnviada,
+      cantidadRecibida: data.CatidadRecibida
     })
   }
 

@@ -7,6 +7,14 @@ export interface DetalleTraspasoInsertRequest {
     usuarioActualiza: number;
 }
 
+export interface DetalleTraspasoUpdateRequest {
+    id: number;
+    insumo: string;
+    cantidadEnviada: number;
+    cantidadRecibida: number;
+    usuarioActualiza: number;
+}
+
 export type GetDetalleTraspasoResponse = ApiResponse<DetalleTraspasoResponseData>
 
 export interface DetalleTraspasoResponseData {
@@ -20,7 +28,7 @@ export interface DetalleTraspasoModel {
     AlmacenOrigne: string;
     AlmacenDestino: string;
     CantidadEnviada: number;
-    CantidadRecibida: number;
+    CatidadRecibida: number;
     FechaRegistro: string;
     FechaActualiza: string;
     UsuarioActualiza: string;
