@@ -107,6 +107,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/pages/traspasos/nueva',
         icon: 'plus-square-outline'
       },
+      {
+        title: 'Listado',
+        link: '/pages/traspasos/listado',
+        icon: 'list-outline'
+      },
     ],
   },
   {

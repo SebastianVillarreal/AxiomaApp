@@ -2,6 +2,7 @@ import { Router, RouterModule, Routes } from "@angular/router";
 import { TraspasosComponent } from "./traspasos/traspasos.component";
 import { NgModule } from "@angular/core";
 import { DetalleTraspasosComponent } from "./detalle-traspasos/detalle-traspasos.component";
+import { TraspasosTableComponent } from "./traspasos-table/traspasos-table.component";
 
 export const routes: Routes = [
     {
@@ -16,6 +17,11 @@ export const routes: Routes = [
                 path: 'nueva',
                 component: TraspasosComponent,
                 title: 'Nuevo Traspaso'
+            },
+            {
+                path: 'listado',
+                component: TraspasosTableComponent,
+                title: 'Listado de Traspasos'
             },
             {
                 path: 'detalles/:id',
