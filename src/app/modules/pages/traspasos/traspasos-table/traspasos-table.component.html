@@ -1,1 +1,60 @@
-<p>traspasos-table works!</p>
+<div class="mb-5">
+    <form [formGroup]="filter" (ngSubmit)="getTraspasos()" novalidate>
+        <h6>
+            Filtrar
+        </h6>
+        <div class="form-grid">
+            <div>
+                <label class="label">Almacen Origen:</label>
+                <nb-select formControlName="pAlmacenOrigen" fullWidth>
+                    <nb-option value="0" disabled>Almacenes</nb-option>
+                    <nb-option *ngFor="let sucursal of sucursalesList" [value]="sucursal.Id">{{sucursal.Nombre}}</nb-option>
+                </nb-select>
+                <div *ngIf="filter.get('pAlmacenOrigen')?.touched && filter.get('pAlmacenOrigen')?.invalid">
+                    <p class="text-danger text-sm italic" *ngIf="filter.get('pAlmacenOrigen')?.errors?.['required']">Almacen de Origen requerido*</p>
+                </div>
+                <div *ngIf="filter.get('pAlmacenOrigen')?.touched && filter.get('pAlmacenOrigen')?.invalid">
+                    <p class="text-danger text-sm italic" *ngIf="filter.get('pAlmacenOrigen')?.errors?.['min']">Seleccione un Almacen de Origen*</p>
+                </div>
+            </div>
+            <div>
+                <label class="label">Almacen Destino:</label>
+                <nb-select formControlName="pAlmacenDestino" fullWidth>
+                    <nb-option value="0" disabled>Almacenes</nb-option>
+                    <nb-option *ngFor="let sucursal of sucursalesList" [value]="sucursal.Id">{{sucursal.Nombre}}</nb-option>
+                </nb-select>
+                <div *ngIf="filter.get('pAlmacenDestino')?.touched && filter.get('pAlmacenDestino')?.invalid">
+                    <p class="text-danger text-sm italic" *ngIf="filter.get('pAlmacenDestino')?.errors?.['required']">Almacen de Destino requerido*</p>
+                </div>
+                <div *ngIf="filter.get('pAlmacenDestino')?.touched && filter.get('pAlmacenDestino')?.invalid">
+                    <p class="text-danger text-sm italic" *ngIf="filter.get('pAlmacenDestino')?.errors?.['min']">Seleccione un Almacen de Destino*</p>
+                </div>
+            </div>
+            <div>
+                <label class="label">Fecha Inicio</label>
+                <input formControlName="pFechaInicio" nbInput [nbDatepicker]="fechaInicio" fullWidth>
+                <nb-datepicker #fechaInicio></nb-datepicker>
+            </div>
+            <div>
+                <label class="label">Fecha Fin</label>
+                <input formControlName="pFechaFinal" nbInput [nbDatepicker]="fechaFin" fullWidth>
+                <nb-datepicker #fechaFin></nb-datepicker>
+            </div>
+        </div>
+        <div class="mt-3">
+            <button nbButton status="primary" [disabled]="!filter.valid" type="submit">Filtrar</button>
+        </div>
+    </form>
+</div>
+
+<div>
+    <app-custom-table
+    tableHead="Traspasos| Tabla"
+    keyRow="Id"
+    [headers]="['#', 'Almacen Origen', 'Almacen Destino', 'Fecha Registro', 'Fecha Recibido','Fecha Actualiza', 'Usuario Envía', 'Usuario Recibe', 'Usuario Actualiza', 'Fecha Inicio', 'Fecha Final']"
+    [keys]="['Id', 'AlmacenOrigen', 'AlmacenDestino','FechaRegistro','FechaRecibido','FechaActualiza','UsuarioEnvia', 'UsuarioRecibe', 'UsuarioActualiza','FechaInicio', 'FechaFinal']"
+    [data]="traspasoList"
+    [hasDelete]="true"
+    [hasEdit]="true"
+    ></app-custom-table>
+</div>

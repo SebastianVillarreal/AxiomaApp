@@ -10,9 +10,6 @@ import { TraspasosTableComponent } from './traspasos-table/traspasos-table.compo
             TraspasosRoutingModule,
             NbMenuModule
         ],
-        declarations: [
-          TraspasosTableComponent
-        ],
     }
 )
 export class TraspasosModule { }
