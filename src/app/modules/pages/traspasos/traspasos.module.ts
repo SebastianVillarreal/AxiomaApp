@@ -9,9 +9,6 @@ import { DetalleTraspasosComponent } from './detalle-traspasos/detalle-traspasos
             TraspasosRoutingModule,
             NbMenuModule
         ],
-        declarations: [
-          DetalleTraspasosComponent
-        ]
     }
 )
 export class TraspasosModule { }

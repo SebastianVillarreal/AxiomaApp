@@ -1,1 +1,11 @@
-<p>detalle-traspasos works!</p>
+<div>
+    <app-custom-table
+    tableHead="Detalles Traspaso | Tabla"
+    keyRow="Id"
+    [headers]="['#', '# Traspaso', 'Insumo', 'Almacen Origen', 'Almacen Destino', 'Cantidad Enviada', 'Cantidad Recibida', 'Fecha Registro','Fecha Actualiza','Usuario Actualiza', 'Usuario Envía', 'Usuario Recibe', 'Fecha Inicio', 'Fecha Final']"
+    [keys]="['Id', 'IdTraspaso', 'Insumo','AlmacenOrigen','AlmacenDestino', 'CantidadEnviada', 'CantidadRecibida','FechaRegistro','FechaActualiza','UsuarioActualiza','UsuarioEnvía', 'UsuarioRecibe', 'FechaInicio', 'FechaFinal']"
+    [data]="detallesList"
+    [hasDelete]="true"
+    [hasEdit]="true"
+    ></app-custom-table>
+</div>

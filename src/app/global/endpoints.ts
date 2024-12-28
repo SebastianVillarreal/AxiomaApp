@@ -98,6 +98,10 @@ export const traspasos = {
   insert: `${environment.urlBase}Traspasos/Insert`,
 }
 
+export const detalleTraspasos = {
+  get: `${environment.urlBase}DetalleTraspaso/Get`
+}
+
 export const catModulos = {
   insert: `${environment.urlBase}CatModulo/Insert`,
   get: `${environment.urlBase}CatModulo/Get`,
