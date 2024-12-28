@@ -1,6 +1,7 @@
 import { NgFor, NgIf } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { SucursalModel } from '@Models/Sucursal';
 import { TraspasoInsertRequest } from '@Models/Traspaso';
 import { UsuarioModel } from '@Models/Usuario';
@@ -18,6 +19,7 @@ export class TraspasosComponent implements OnInit {
   private traspasoSerivice = inject(TraspasoService)
   private sucursalService = inject(SucursalService)
   private usuarioService = inject(UsuarioService)
+  private router = inject(Router)
   private fb = inject(FormBuilder)
 
   sucursalesList: SucursalModel[] = []
@@ -61,6 +63,7 @@ export class TraspasosComponent implements OnInit {
       next: (res: any) => {
         console.log(res)
         this.resetForm()
+        this.showDetallesTraspaso(res.response.data)
       },
       error: (err: any) => {
         console.log(err)
@@ -76,5 +79,7 @@ export class TraspasosComponent implements OnInit {
     })
   }
 
-
+  showDetallesTraspaso(id: number): void {
+    this.router.navigate(['pages/traspasos/detalles', id])
+  }
 }
