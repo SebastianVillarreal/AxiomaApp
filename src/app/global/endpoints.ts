@@ -101,7 +101,8 @@ export const traspasos = {
 export const detalleTraspasos = {
   insert: `${environment.urlBase}DetalleTraspaso/Insert`,
   get: `${environment.urlBase}DetalleTraspaso/Get`,
-  update: `${environment.urlBase}DetalleTraspaso/Update`
+  update: `${environment.urlBase}DetalleTraspaso/Update`,
+  delete: `${environment.urlBase}DetalleTraspaso/Delete`
 }
 
 export const catModulos = {

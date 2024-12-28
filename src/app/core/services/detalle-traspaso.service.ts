@@ -43,4 +43,16 @@ export class DetalleTraspasoService {
       })
     )
   }
+
+  deleteDetalleTraspaso(id: number): Observable<boolean> {
+    const httpOptions = { headers: this.headers }
+    return this.http.put<boolean>(detalleTraspasos.delete, { id }, httpOptions)
+      .pipe(
+        map(res => 
+        {
+          return res
+        }
+      )
+    )
+  }
 }

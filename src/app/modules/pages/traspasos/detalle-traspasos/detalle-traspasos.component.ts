@@ -6,6 +6,7 @@ import { CustomTableComponent } from '@Component/Table';
 import { DetalleTraspasoInsertRequest, DetalleTraspasoModel, DetalleTraspasoUpdateRequest } from '@Models/DetalleTraspaso';
 import { InsumoModel } from '@Models/Insumo';
 import { NbButtonModule, NbCardModule, NbInputModule, NbSelectModule } from '@nebular/theme';
+import { SweetAlertService } from '@Service/SweetAlert';
 import { DetalleTraspasoService, InsumoService } from '@Services';
 
 @Component({
@@ -18,6 +19,7 @@ import { DetalleTraspasoService, InsumoService } from '@Services';
 export class DetalleTraspasosComponent implements OnInit{
   private detallesTraspasoService = inject(DetalleTraspasoService)
   private insumoService = inject(InsumoService)
+  private sweetAlertService = inject(SweetAlertService)
   private route = inject(ActivatedRoute)
   private fb = inject(FormBuilder)
   
@@ -100,6 +102,26 @@ export class DetalleTraspasosComponent implements OnInit{
       insumo: insumo?.Insumo,
       cantidadEnviada: data.CantidadEnviada,
       cantidadRecibida: data.CatidadRecibida
+    })
+  }
+
+  deleteDetalle(Id: number): void {
+    this.sweetAlertService.confirm({
+      title: 'Eliminar Detalle Traspaso',
+      text: '¿Estás seguro que deseas eliminar este Detalle Traspaso?',
+      confirmButtonText: 'Eliminar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.detallesTraspasoService.deleteDetalleTraspaso(Id).subscribe({
+          next: (res: any) => {
+            console.log(res)
+            this.getDetalles()
+          },
+          error: (err: any) => {
+            console.log(err)
+          }
+        })
+      }
     })
   }
 
