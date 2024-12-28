@@ -1,5 +1,12 @@
 import { ApiResponse } from "@Models/Response";
 
+export interface DetalleTraspasoInsertRequest {
+    idTraspaso: number;
+    insumo: string;
+    cantidadEnviada: number;
+    usuarioActualiza: number;
+}
+
 export type GetDetalleTraspasoResponse = ApiResponse<DetalleTraspasoResponseData>
 
 export interface DetalleTraspasoResponseData {

@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { detalleTraspasos } from '@Global/endpoints';
-import { GetDetalleTraspasoResponse } from '@Models/DetalleTraspaso';
+import { DetalleTraspasoInsertRequest, GetDetalleTraspasoResponse } from '@Models/DetalleTraspaso';
 import { map, Observable } from 'rxjs';
 
 @Injectable({
@@ -17,6 +17,16 @@ export class DetalleTraspasoService {
     const httpOptions = { headers: this.headers }
     const url = `${detalleTraspasos.get}?idTraspaso=${idTraspaso}`
     return this.http.get<GetDetalleTraspasoResponse>(url, httpOptions)
+      .pipe(
+        map(res => {
+        return res
+      })
+    )
+  }
+
+  insertDetalleTraspaso(detalle: DetalleTraspasoInsertRequest): Observable<boolean> {
+    const httpOptions = { headers: this.headers }
+    return this.http.post<boolean>(detalleTraspasos.insert, detalle, httpOptions)
       .pipe(
         map(res => {
         return res
