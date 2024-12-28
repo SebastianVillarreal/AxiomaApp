@@ -3,7 +3,7 @@
         <nb-card>
             <nb-card-header>
                 <h5>
-                    Detalles Traspaso #{{idTraspaso}} | Formulario
+                    Detalle Traspaso #{{idTraspaso}} | Formulario
                 </h5>
             </nb-card-header>
             <nb-card-body class="form-grid">
@@ -41,7 +41,7 @@
 
 <div>
     <app-custom-table
-    tableHead="Detalles Traspaso | Tabla"
+    tableHead="Detalles Traspaso #{{idTraspaso}}| Tabla"
     keyRow="Id"
     [headers]="['#', '# Traspaso', 'Insumo', 'Almacen Origen', 'Almacen Destino', 'Cantidad Enviada', 'Cantidad Recibida', 'Fecha Registro','Fecha Actualiza','Usuario Actualiza', 'Usuario Envía', 'Usuario Recibe', 'Fecha Inicio', 'Fecha Final']"
     [keys]="['Id', 'IdTraspaso', 'Insumo','AlmacenOrigen','AlmacenDestino', 'CantidadEnviada', 'CatidadRecibida','FechaRegistro','FechaActualiza','UsuarioActualiza','UsuarioEnvía', 'UsuarioRecibe', 'FechaInicio', 'FechaFinal']"
@@ -51,4 +51,8 @@
     (editEmit)="editDetalle($event)"
     (deleteEmit)="deleteDetalle($event)"
     ></app-custom-table>
+</div>
+
+<div>
+    <button nbButton status="success" type="button" (click)="closeComponent()">Terminar</button>
 </div>
