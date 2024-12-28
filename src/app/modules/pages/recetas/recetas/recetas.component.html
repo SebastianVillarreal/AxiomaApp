@@ -7,8 +7,8 @@
       <div>
         <label class="label">*Nombre</label>
         <input formControlName="nombre" type="text" nbInput fullWidth />
-        <div *ngIf="form.get('nombre')?.touched && form.get('receta')?.invalid">
-          <p class="text-danger text-sm italic" *ngIf="form.get('receta')?.errors?.['receta']">
+        <div *ngIf="form.get('nombre')?.touched && form.get('nombre')?.invalid">
+          <p class="text-danger text-sm italic" *ngIf="form.get('nombre')?.errors?.['required']">
             Nombre de receta requerido*
           </p>
         </div>
