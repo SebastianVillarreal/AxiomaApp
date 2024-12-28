@@ -99,6 +99,17 @@ export const MENU_ITEMS: NbMenuItem[] = [
     ]
   },
   {
+    title: 'Traspasos',
+    icon: 'shopping-cart-outline',
+    children: [
+      {
+        title: 'Nuevo',
+        link: '/pages/traspasos/nueva',
+        icon: 'plus-square-outline'
+      },
+    ],
+  },
+  {
     title: 'ADMINISTRACIÓN',
     group: true,
   },

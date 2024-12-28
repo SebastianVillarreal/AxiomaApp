@@ -7,11 +7,15 @@ import { SucursalesComponent } from './sucursales/sucursales.component';
 import { ProveedoresComponent } from './proveedores/proveedores.component';
 import { ExistenciasComponent } from './existencias/existencias.component';
 import { UnidadMedidaComponent } from './unidad-medida/unidad-medida.component';
+import { TraspasosComponent } from './traspasos/traspasos/traspasos.component';
 
 @NgModule({
   imports: [
     PagesRoutingModule,
     NbMenuModule,
+  ],
+  declarations: [
+    TraspasosComponent
   ],
 })
 export class PagesModule {
