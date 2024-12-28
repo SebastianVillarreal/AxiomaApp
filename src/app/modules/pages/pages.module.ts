@@ -14,9 +14,6 @@ import { TraspasosComponent } from './traspasos/traspasos/traspasos.component';
     PagesRoutingModule,
     NbMenuModule,
   ],
-  declarations: [
-    TraspasosComponent
-  ],
 })
 export class PagesModule {
 }

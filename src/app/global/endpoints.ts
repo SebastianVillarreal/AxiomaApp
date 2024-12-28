@@ -94,6 +94,10 @@ export const detalleEntradas = {
   delete: `${environment.urlBase}DetalleEntrada/Delete`
 }
 
+export const traspasos = {
+  insert: `${environment.urlBase}Traspasos/Insert`,
+}
+
 export const catModulos = {
   insert: `${environment.urlBase}CatModulo/Insert`,
   get: `${environment.urlBase}CatModulo/Get`,
