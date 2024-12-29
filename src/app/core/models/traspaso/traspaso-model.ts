@@ -5,6 +5,10 @@ export interface TraspasoInsertRequest {
     usuarioActualiza: number;
 }
 
+export interface TraspasoUpdateRequest extends TraspasoInsertRequest {
+    id: number
+}
+
 export interface TraspasoGetRequest {
     pAlmacenOrigen: number;
     pAlmacenDestino: number;
@@ -21,7 +25,7 @@ export interface TraspasoModel {
     FechaRecibido: string;
     FechaActualiza: string;
     UsuarioEnvia: string;
-    UsuarioRecibre: string;
+    UsuarioRecibe: string;
     UsuarioActualiza: string;
     Mensjae: string;
     FechaInicio: string;

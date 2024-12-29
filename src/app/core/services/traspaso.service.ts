@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { traspasos } from '@Global/endpoints';
 import { ReturnDataResponse } from '@Models/Response';
-import { GetTraspasoResponse, TraspasoGetRequest, TraspasoInsertRequest } from '@Models/Traspaso';
+import { GetTraspasoResponse, TraspasoGetRequest, TraspasoInsertRequest, TraspasoUpdateRequest } from '@Models/Traspaso';
 import { map, Observable } from 'rxjs';
 
 @Injectable({
@@ -38,6 +38,16 @@ export class TraspasoService {
   deleteTraspaso(id: number): Observable<boolean>{
     const httpOptions = { headers: this.headers }
     return this.http.put<boolean>(traspasos.delete, { id }, httpOptions)
+      .pipe(
+        map(res => {
+        return res
+      })
+    )
+  }
+
+  updateTraspaso(traspaso: TraspasoUpdateRequest): Observable<boolean>{
+    const httpOptions = { headers: this.headers }
+    return this.http.put<boolean>(traspasos.update, traspaso, httpOptions)
       .pipe(
         map(res => {
         return res
