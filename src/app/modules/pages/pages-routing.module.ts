@@ -59,6 +59,10 @@ const routes: Routes = [{
       loadChildren: () => import('./traspasos/traspasos.module').then(m =>m.TraspasosModule)
     },
     {
+      path: 'movimientos',
+      loadChildren: () => import('./movimientos/movimientos.module').then(m => m.MovimientosModule)
+    },
+    {
       path: 'sucursales',
       component: SucursalesComponent,
       title: 'Sucursales'

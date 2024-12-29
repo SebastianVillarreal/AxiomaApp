@@ -115,6 +115,27 @@ export const MENU_ITEMS: NbMenuItem[] = [
     ],
   },
   {
+    title: 'Movimientos',
+    icon: 'shopping-cart-outline',
+    children: [
+      {
+        title: 'Tipos',
+        link: '/pages/movimientos/tipos',
+        icon: 'list-outline'
+      },
+      {
+        title: 'Nuevo',
+        link: '/pages/movimientos/nuevo',
+        icon: 'plus-square-outline'
+      },
+      {
+        title: 'Listado',
+        link: '/pages/movimientos/listado',
+        icon: 'list-outline'
+      },
+    ],
+  },
+  {
     title: 'ADMINISTRACIÓN',
     group: true,
   },

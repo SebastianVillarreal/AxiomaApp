@@ -8,11 +8,15 @@ import { ProveedoresComponent } from './proveedores/proveedores.component';
 import { ExistenciasComponent } from './existencias/existencias.component';
 import { UnidadMedidaComponent } from './unidad-medida/unidad-medida.component';
 import { TraspasosComponent } from './traspasos/traspasos/traspasos.component';
+import { TiposMovimientosComponent } from './movimientos/tipos-movimientos/tipos-movimientos.component';
 
 @NgModule({
   imports: [
     PagesRoutingModule,
     NbMenuModule,
+  ],
+  declarations: [
+    TiposMovimientosComponent
   ],
 })
 export class PagesModule {
