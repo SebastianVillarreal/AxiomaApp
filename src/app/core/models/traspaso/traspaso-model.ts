@@ -9,6 +9,14 @@ export interface TraspasoUpdateRequest extends TraspasoInsertRequest {
     id: number
 }
 
+export interface TraspasoAuthorizeRequest {
+    id: number;
+    fechaRecibido: string;
+    estatus: number;
+    usuarioRecibe: number;
+    usuarioActualiza: number
+}
+
 export interface TraspasoGetRequest {
     pAlmacenOrigen: number;
     pAlmacenDestino: number;

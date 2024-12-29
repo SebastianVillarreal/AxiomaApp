@@ -48,70 +48,110 @@
 </div>
 
 <ng-template #dialog let-data let-ref="dialogRef">
-    <form [formGroup]="form"  (ngSubmit)="onSubmit()" novalidate>
         <nb-card>
             <nb-card-header>
                 Traspaso #{{data.Id}}
             </nb-card-header>
             <nb-card-body class="form-grid">
-                <div>
-                    <label class="label">*Almacen Origen:</label>
-                    <nb-select formControlName="idAlmacenOrigen" fullWidth>
-                      <nb-option value="0" disabled>Almacenes</nb-option>
-                      <nb-option *ngFor="let sucursal of sucursalesList" [value]="sucursal.Id">{{sucursal.Nombre}}</nb-option>
-                    </nb-select>
-                    <div *ngIf="form.get('idAlmacenOrigen')?.touched && form.get('idAlmacenOrigen')?.invalid">
-                      <p class="text-danger text-sm italic" *ngIf="form.get('idAlmacenOrigen')?.errors?.['required']">
-                        Almacen de Origen requerido*
-                      </p>
-                    </div>
-                    <div *ngIf="form.get('idAlmacenOrigen')?.touched && form.get('idAlmacenOrigen')?.invalid">
-                      <p class="text-danger text-sm italic" *ngIf="form.get('idAlmacenOrigen')?.errors?.['min']">
-                       Seleccione un Almacen de Origen*
-                      </p>
-                    </div>
-                  </div>
-                  <div>
-                      <label class="label">*Almacen Destino:</label>
-                      <nb-select formControlName="idAlmacenDestino" fullWidth>
-                        <nb-option value="0" disabled>Almacenes</nb-option>
-                        <nb-option *ngFor="let sucursal of sucursalesList" [value]="sucursal.Id">{{sucursal.Nombre}}</nb-option>
-                      </nb-select>
-                      <div *ngIf="form.get('idAlmacenDestino')?.touched && form.get('idAlmacenDestino')?.invalid">
-                        <p class="text-danger text-sm italic" *ngIf="form.get('idAlmacenDestino')?.errors?.['required']">
-                          Almacen de Destino requerido*
-                        </p>
-                      </div>
-                      <div *ngIf="form.get('idAlmacenDestino')?.touched && form.get('idAlmacenDestino')?.invalid">
-                        <p class="text-danger text-sm italic" *ngIf="form.get('idAlmacenDestino')?.errors?.['min']">
-                         Seleccione un Almacen de Destino*
-                        </p>
-                      </div>
-                    </div>
-                    <div>
-                      <label class="label">*Usuario Envía:</label>
-                      <nb-select formControlName="usuarioEnvia" fullWidth>
-                        <nb-option value="0" disabled>Usuarios</nb-option>
-                        <nb-option *ngFor="let usuario of usuariosList" [value]="usuario.Id">{{usuario.Nombre}}</nb-option>
-                      </nb-select>
-                      <div *ngIf="form.get('usuarioEnvia')?.touched && form.get('usuarioEnvia')?.invalid">
-                        <p class="text-danger text-sm italic" *ngIf="form.get('usuarioEnvia')?.errors?.['required']">
-                          Usuario Envía requerido*
-                        </p>
-                      </div>
-                      <div *ngIf="form.get('usuarioEnvia')?.touched && form.get('usuarioEnvia')?.invalid">
-                        <p class="text-danger text-sm italic" *ngIf="form.get('usuarioEnvia')?.errors?.['min']">
-                         Seleccione un Usuario Envía*
-                        </p>
-                      </div>
-                    </div>
+                <nb-tabset>
+                    <nb-tab tabTitle="Editar">
+                        <form [formGroup]="form"  (ngSubmit)="onSubmit()" novalidate>
+                            <div>
+                                <label class="label">*Almacen Origen:</label>
+                                <nb-select formControlName="idAlmacenOrigen" fullWidth>
+                                <nb-option value="0" disabled>Almacenes</nb-option>
+                                <nb-option *ngFor="let sucursal of sucursalesList" [value]="sucursal.Id">{{sucursal.Nombre}}</nb-option>
+                                </nb-select>
+                                <div *ngIf="form.get('idAlmacenOrigen')?.touched && form.get('idAlmacenOrigen')?.invalid">
+                                <p class="text-danger text-sm italic" *ngIf="form.get('idAlmacenOrigen')?.errors?.['required']">
+                                    Almacen de Origen requerido*
+                                </p>
+                                </div>
+                                <div *ngIf="form.get('idAlmacenOrigen')?.touched && form.get('idAlmacenOrigen')?.invalid">
+                                <p class="text-danger text-sm italic" *ngIf="form.get('idAlmacenOrigen')?.errors?.['min']">
+                                Seleccione un Almacen de Origen*
+                                </p>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="label">*Almacen Destino:</label>
+                                <nb-select formControlName="idAlmacenDestino" fullWidth>
+                                    <nb-option value="0" disabled>Almacenes</nb-option>
+                                    <nb-option *ngFor="let sucursal of sucursalesList" [value]="sucursal.Id">{{sucursal.Nombre}}</nb-option>
+                                </nb-select>
+                                <div *ngIf="form.get('idAlmacenDestino')?.touched && form.get('idAlmacenDestino')?.invalid">
+                                    <p class="text-danger text-sm italic" *ngIf="form.get('idAlmacenDestino')?.errors?.['required']">
+                                    Almacen de Destino requerido*
+                                    </p>
+                                </div>
+                                <div *ngIf="form.get('idAlmacenDestino')?.touched && form.get('idAlmacenDestino')?.invalid">
+                                    <p class="text-danger text-sm italic" *ngIf="form.get('idAlmacenDestino')?.errors?.['min']">
+                                    Seleccione un Almacen de Destino*
+                                    </p>
+                                </div>
+                                </div>
+                                <div>
+                                <label class="label">*Usuario Envía:</label>
+                                <nb-select formControlName="usuarioEnvia" fullWidth>
+                                    <nb-option value="0" disabled>Usuarios</nb-option>
+                                    <nb-option *ngFor="let usuario of usuariosList" [value]="usuario.Id">{{usuario.Nombre}}</nb-option>
+                                </nb-select>
+                                <div *ngIf="form.get('usuarioEnvia')?.touched && form.get('usuarioEnvia')?.invalid">
+                                    <p class="text-danger text-sm italic" *ngIf="form.get('usuarioEnvia')?.errors?.['required']">
+                                    Usuario Envía requerido*
+                                    </p>
+                                </div>
+                                <div *ngIf="form.get('usuarioEnvia')?.touched && form.get('usuarioEnvia')?.invalid">
+                                    <p class="text-danger text-sm italic" *ngIf="form.get('usuarioEnvia')?.errors?.['min']">
+                                    Seleccione un Usuario Envía*
+                                    </p>
+                                </div>
+                                </div>
+                                <div class="mt-5">
+                                    <button nbButton status="primary" type="submit" [disabled]="!form.valid">Guardar</button>
+                                </div>
+                        </form>
+                    </nb-tab>
+                    <nb-tab tabTitle="Autorizar">
+                        <form [formGroup]="authorize"  (ngSubmit)="onAuthorize()" novalidate>
+                            <div>
+                                <label class="label">Fecha Recibido</label>
+                                <input formControlName="fechaRecibido" nbInput [nbDatepicker]="fechaRecibido" fullWidth>
+                                <nb-datepicker #fechaRecibido></nb-datepicker>
+                            </div>
+                            <div>
+                                <label class="label">*Usuario Recibe:</label>
+                                <nb-select formControlName="usuarioRecibe" fullWidth>
+                                    <nb-option value="0" disabled>Usuarios</nb-option>
+                                    <nb-option *ngFor="let usuario of usuariosList" [value]="usuario.Id">{{usuario.Nombre}}</nb-option>
+                                </nb-select>
+                                <div *ngIf="form.get('usuarioRecibe')?.touched && form.get('usuarioRecibe')?.invalid">
+                                    <p class="text-danger text-sm italic" *ngIf="form.get('usuarioRecibe')?.errors?.['required']">
+                                    Usuario Recibe requerido*
+                                    </p>
+                                </div>
+                                <div *ngIf="form.get('usuarioRecibe')?.touched && form.get('usuarioRecibe')?.invalid">
+                                    <p class="text-danger text-sm italic" *ngIf="form.get('usuarioRecibe')?.errors?.['min']">
+                                    Seleccione un Usuario Recibe*
+                                    </p>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="label">Estatus</label>
+                                <nb-radio-group formControlName="estatus">
+                                    <nb-radio [value]="1" checked>Activo</nb-radio>
+                                    <nb-radio [value]="0" checked>Inactivo</nb-radio>
+                                </nb-radio-group>
+                            </div>
+                            <button nbButton status="primary" type="submit" [disabled]="!authorize.valid">Autorizar</button>
+                        </form>
+                    </nb-tab>
+                </nb-tabset>
             </nb-card-body>
-            <nb-card-footer class="gap-x-5">
-                <button nbButton status="primary" type="submit" [disabled]="!form.valid">Guardar</button>
-                <button nbButton status="danger" (click)="ref.close()">Cerrar</button>
+            <nb-card-footer>
+                <button nbButton (click)="ref.close()">Cerrar</button>
             </nb-card-footer>
         </nb-card>
-    </form>
 </ng-template>
 
 <div>

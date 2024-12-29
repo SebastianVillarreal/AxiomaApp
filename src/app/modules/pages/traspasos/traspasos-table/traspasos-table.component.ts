@@ -3,20 +3,19 @@ import { Component, inject, OnInit, Optional, TemplateRef, ViewChild } from '@an
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CustomTableComponent } from '@Component/Table';
 import { SucursalModel } from '@Models/Sucursal';
-import { TraspasoGetRequest, TraspasoModel, TraspasoUpdateRequest } from '@Models/Traspaso';
-import { NbButtonModule, NbCardModule, NbDatepickerModule, NbDialogModule, NbDialogRef, NbDialogService, NbInputModule, NbSelectModule } from '@nebular/theme';
+import { TraspasoAuthorizeRequest, TraspasoGetRequest, TraspasoModel, TraspasoUpdateRequest } from '@Models/Traspaso';
+import { NbButtonModule, NbCardModule, NbDatepickerModule, NbDialogModule, NbDialogRef, NbDialogService, NbInputModule, NbRadioModule, NbSelectModule, NbTabsetModule } from '@nebular/theme';
 import { DetalleTraspasoService, SucursalService, TraspasoService, UsuarioService } from '@Services';
 import { DatePipe } from '@angular/common';
 import { SweetAlertService } from '@Service/SweetAlert';
 import { UsuarioModel } from '@Models/Usuario';
 import { Router } from '@angular/router';
 import { DetalleTraspasoExportRequest } from '@Models/DetalleTraspaso';
-import { publishFacade } from '@angular/compiler';
 
 @Component({
   selector: 'app-traspasos-table',
   standalone: true,
-  imports: [CustomTableComponent, ReactiveFormsModule, NgIf, NgFor, NbDatepickerModule, NbCardModule,NbSelectModule, NbButtonModule, NbInputModule, NbDialogModule],
+  imports: [CustomTableComponent, ReactiveFormsModule, NgIf, NgFor, NbDatepickerModule, NbCardModule,NbSelectModule, NbButtonModule, NbInputModule, NbDialogModule, NbTabsetModule, NbRadioModule],
   templateUrl: './traspasos-table.component.html',
   styleUrls: ['./traspasos-table.component.scss']
 })
@@ -48,6 +47,12 @@ export class TraspasosTableComponent implements OnInit {
     idAlmacenOrigen: [0, [Validators.required, Validators.min(1)]],
     idAlmacenDestino: [0, [Validators.required, Validators.min(1)]],
     usuarioEnvia: [0, [Validators.required, Validators.min(1)]]
+  })
+  authorize = this.fb.nonNullable.group({
+    id: [0],
+    fechaRecibido: ["", [Validators.required]],
+    estatus: [1],
+    usuarioRecibe: [0, [Validators.required, Validators.min(1)]],
   })
   
   ngOnInit(): void {
@@ -81,7 +86,7 @@ export class TraspasosTableComponent implements OnInit {
   }
 
   onSubmit(): void {
-const { id,idAlmacenOrigen, idAlmacenDestino, usuarioEnvia } = this.form.getRawValue()
+    const { id,idAlmacenOrigen, idAlmacenDestino, usuarioEnvia } = this.form.getRawValue()
     const usuarioActualiza = parseInt(localStorage.getItem("idUsuario") ?? "0")
     
     const updateRequest: TraspasoUpdateRequest = {
@@ -97,6 +102,7 @@ const { id,idAlmacenOrigen, idAlmacenDestino, usuarioEnvia } = this.form.getRawV
         console.log(res)
         this.dialogRef.close()
         this.getTraspasos()
+        this.resetForms()
       },
       error: (err: any) => {
         console.log(err)
@@ -104,12 +110,56 @@ const { id,idAlmacenOrigen, idAlmacenDestino, usuarioEnvia } = this.form.getRawV
     })
   }
 
-  resetForm(): void {
+  onAuthorize(): void {
+    const { id, fechaRecibido, usuarioRecibe, estatus } = this.authorize.getRawValue()
+    const usuarioActualiza = parseInt(localStorage.getItem("idUsuario") ?? "0")
+
+    const authorizeRequest: TraspasoAuthorizeRequest = {
+      id: id,
+      fechaRecibido: this.datePipe.transform(fechaRecibido, 'MM/dd/yyyy')??'',
+      usuarioRecibe: usuarioRecibe,
+      estatus: estatus,
+      usuarioActualiza: usuarioActualiza
+    }
+    console.log(authorizeRequest)
+
+    this.traspasoService.authorizeTraspaso(authorizeRequest).subscribe({
+      next: (res: any) => {
+        console.log(res)
+        this.dialogRef.close()
+        this.getTraspasos()
+        this.resetForms()
+      },
+      error: (err: any) => {
+        console.error(err)
+      }
+    })
+  }
+
+  resetFilter(): void {
     this.filter.reset({
       pAlmacenOrigen: 0,
       pAlmacenDestino: 0,
       pFechaInicio: '',
       pFechaFinal: ''
+    })
+  }
+
+  resetForms(): void {
+    this.authorize.reset(
+      {
+        id: 0,
+        fechaRecibido: '',
+        usuarioRecibe: 0,
+        estatus: 0,
+      }
+    )
+
+    this.form.reset({
+      id: 0,
+      usuarioEnvia: 0,
+      idAlmacenOrigen: 0,
+      idAlmacenDestino: 0
     })
   }
 
@@ -137,12 +187,17 @@ const { id,idAlmacenOrigen, idAlmacenDestino, usuarioEnvia } = this.form.getRawV
     const almacenOrigen = this.sucursalesList.find(sucursal => sucursal.Nombre === data.AlmacenOrigen)
     const almacenDestino = this.sucursalesList.find(sucursal => sucursal.Nombre === data.AlmacenDestino)
     const usuarioEnvia = this.usuariosList.find(usuario => usuario.Nombre === data.UsuarioEnvia)
+    const usuarioRecibe = this.usuariosList.find(usuario => usuario.Nombre === data.UsuarioRecibe)
 
     this.form.patchValue({
       id: data.Id,
       idAlmacenOrigen: almacenOrigen?.Id,
       idAlmacenDestino: almacenDestino?.Id,
       usuarioEnvia: usuarioEnvia?.Id
+    })
+    this.authorize.patchValue({
+      id: data.Id,
+      usuarioRecibe: usuarioRecibe?.Id,
     })
   }
 

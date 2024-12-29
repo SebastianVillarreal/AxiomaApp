@@ -98,6 +98,7 @@ export const traspasos = {
   insert: `${environment.urlBase}Traspasos/Insert`,
   get: `${environment.urlBase}Traspasos/Get`,
   update: `${environment.urlBase}Traspasos/Update`,
+  authorize: `${environment.urlBase}Traspasos/AutorizarTraspaso`,
   delete: `${environment.urlBase}Traspasos/Delete`
 }
 
