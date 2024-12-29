@@ -123,6 +123,9 @@
     [data]="traspasoList"
     [hasDelete]="true"
     [hasEdit]="true"
+    [hasDetails]="true"
+    [hasSearch]="true"
+    (detailsEmit)="showDetails($event)"
     (deleteEmit)="deleteTraspaso($event)"
     (editEmit)="editTraspaso($event)">
     ></app-custom-table>

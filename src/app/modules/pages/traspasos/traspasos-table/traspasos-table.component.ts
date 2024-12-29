@@ -9,6 +9,7 @@ import { SucursalService, TraspasoService, UsuarioService } from '@Services';
 import { DatePipe } from '@angular/common';
 import { SweetAlertService } from '@Service/SweetAlert';
 import { UsuarioModel } from '@Models/Usuario';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-traspasos-table',
@@ -25,6 +26,7 @@ export class TraspasosTableComponent implements OnInit {
   private usuarioService = inject(UsuarioService)
   private datePipe = inject(DatePipe)
   private fb = inject(FormBuilder)
+  private router = inject(Router)
 
   constructor(@Optional() private dialogRef: NbDialogRef<any>) { }
   @ViewChild('dialog') dialog!: TemplateRef<any>
@@ -139,5 +141,9 @@ const { id,idAlmacenOrigen, idAlmacenDestino, usuarioEnvia } = this.form.getRawV
       idAlmacenDestino: almacenDestino?.Id,
       usuarioEnvia: usuarioEnvia?.Id
     })
+  }
+
+  showDetails(data: TraspasoModel): void {
+    this.router.navigate(['pages/traspasos/detalles', data.Id])
   }
 }
