@@ -1,3 +1,8 @@
+export interface TipoMovimientoInsertRequest {
+    descripcion: string;
+    usuarioActualiza: number;
+}
+
 export type GetTipoMovimientoResponse = TipoMovimientoModel[]
 
 export interface TipoMovimientoModel {
