@@ -7,6 +7,7 @@ import { TraspasoGetRequest, TraspasoModel } from '@Models/Traspaso';
 import { NbButtonModule, NbDatepickerModule, NbInputModule, NbSelectModule } from '@nebular/theme';
 import { SucursalService, TraspasoService } from '@Services';
 import { DatePipe } from '@angular/common';
+import { SweetAlertService } from '@Service/SweetAlert';
 
 @Component({
   selector: 'app-traspasos-table',
@@ -18,6 +19,7 @@ import { DatePipe } from '@angular/common';
 export class TraspasosTableComponent implements OnInit {
   private traspasoService = inject(TraspasoService)
   private sucursalService = inject(SucursalService)
+  private sweetAlertService = inject(SweetAlertService)
   private datePipe = inject(DatePipe)
   private fb = inject(FormBuilder)
   
@@ -45,7 +47,6 @@ export class TraspasosTableComponent implements OnInit {
     this.traspasoService.getTraspasos(filterRequest).subscribe((data) => {
       this.traspasoList = data
     })
-    this.resetForm()
   }
 
   getSucursales(): void {
@@ -60,6 +61,25 @@ export class TraspasosTableComponent implements OnInit {
       pAlmacenDestino: 0,
       pFechaInicio: '',
       pFechaFinal: ''
+    })
+  }
+
+  deleteTraspaso(Id: number): void {
+    this.sweetAlertService.confirm({
+      title: 'Eliminar Traspaso',
+      text: '¿Estás seguro que desea eliminar este traspaso?',
+      confirmButtonText: 'Eliminar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.traspasoService.deleteTraspaso(Id).subscribe({
+          next: (res: any) => {
+            this.getTraspasos()
+          },
+          error: (err: any) => {
+            console.error(err)
+          }
+        })
+      }
     })
   }
 }

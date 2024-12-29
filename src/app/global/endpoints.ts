@@ -96,7 +96,8 @@ export const detalleEntradas = {
 
 export const traspasos = {
   insert: `${environment.urlBase}Traspasos/Insert`,
-  get: `${environment.urlBase}Traspasos/Get`
+  get: `${environment.urlBase}Traspasos/Get`,
+  delete: `${environment.urlBase}Traspasos/Delete`
 }
 
 export const detalleTraspasos = {
