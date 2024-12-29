@@ -105,7 +105,8 @@ export const detalleTraspasos = {
   insert: `${environment.urlBase}DetalleTraspaso/Insert`,
   get: `${environment.urlBase}DetalleTraspaso/Get`,
   update: `${environment.urlBase}DetalleTraspaso/Update`,
-  delete: `${environment.urlBase}DetalleTraspaso/Delete`
+  delete: `${environment.urlBase}DetalleTraspaso/Delete`,
+  export: `${environment.urlBase}DetalleTraspaso/DiferenciasTraspasosExcel`
 }
 
 export const catModulos = {

@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { detalleTraspasos } from '@Global/endpoints';
-import { DetalleTraspasoInsertRequest, DetalleTraspasoUpdateRequest, GetDetalleTraspasoResponse } from '@Models/DetalleTraspaso';
+import { DetalleTraspasoExportRequest, DetalleTraspasoInsertRequest, DetalleTraspasoUpdateRequest, GetDetalleTraspasoResponse } from '@Models/DetalleTraspaso';
 import { map, Observable } from 'rxjs';
 
 @Injectable({
@@ -54,5 +54,17 @@ export class DetalleTraspasoService {
         }
       )
     )
+  }
+
+  exportDiferenciasTraspaso(filter: DetalleTraspasoExportRequest): Observable<Blob>{
+    const httpOptions = { headers: this.headers, responseType: 'blob' as 'json' }
+    const url = `${detalleTraspasos.export}?FechaInicio=${filter.FechaInicio}&FechaFinal=${filter.FechaFin}`
+    return this.http.get<Blob>(url, httpOptions)
+      .pipe(
+        map(res => {
+        return res
+      })
+    )
+
   }
 }

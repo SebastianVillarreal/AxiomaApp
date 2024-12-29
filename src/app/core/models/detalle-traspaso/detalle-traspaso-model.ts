@@ -15,6 +15,11 @@ export interface DetalleTraspasoUpdateRequest {
     usuarioActualiza: number;
 }
 
+export interface DetalleTraspasoExportRequest {
+    FechaInicio: string;
+    FechaFin: string;
+}
+
 export type GetDetalleTraspasoResponse = ApiResponse<DetalleTraspasoResponseData>
 
 export interface DetalleTraspasoResponseData {

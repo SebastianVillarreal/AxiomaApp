@@ -5,11 +5,13 @@ import { CustomTableComponent } from '@Component/Table';
 import { SucursalModel } from '@Models/Sucursal';
 import { TraspasoGetRequest, TraspasoModel, TraspasoUpdateRequest } from '@Models/Traspaso';
 import { NbButtonModule, NbCardModule, NbDatepickerModule, NbDialogModule, NbDialogRef, NbDialogService, NbInputModule, NbSelectModule } from '@nebular/theme';
-import { SucursalService, TraspasoService, UsuarioService } from '@Services';
+import { DetalleTraspasoService, SucursalService, TraspasoService, UsuarioService } from '@Services';
 import { DatePipe } from '@angular/common';
 import { SweetAlertService } from '@Service/SweetAlert';
 import { UsuarioModel } from '@Models/Usuario';
 import { Router } from '@angular/router';
+import { DetalleTraspasoExportRequest } from '@Models/DetalleTraspaso';
+import { publishFacade } from '@angular/compiler';
 
 @Component({
   selector: 'app-traspasos-table',
@@ -21,6 +23,7 @@ import { Router } from '@angular/router';
 export class TraspasosTableComponent implements OnInit {
   private traspasoService = inject(TraspasoService)
   private sucursalService = inject(SucursalService)
+  private detalleTraspasoService = inject(DetalleTraspasoService)
   private sweetAlertService = inject(SweetAlertService)
   private dialogService = inject(NbDialogService)
   private usuarioService = inject(UsuarioService)
@@ -145,5 +148,24 @@ const { id,idAlmacenOrigen, idAlmacenDestino, usuarioEnvia } = this.form.getRawV
 
   showDetails(data: TraspasoModel): void {
     this.router.navigate(['pages/traspasos/detalles', data.Id])
+  }
+
+  exportDiferenciaDetallesTraspasos(): void {
+    const { pFechaInicio, pFechaFinal } = this.filter.getRawValue()
+    const filter: DetalleTraspasoExportRequest = {
+      FechaInicio: this.datePipe.transform(pFechaInicio, 'MM/dd/yyyy') ?? '',
+      FechaFin: this.datePipe.transform(pFechaFinal, 'MM/dd/yyyy') ?? '',
+    }
+
+    this.detalleTraspasoService.exportDiferenciasTraspaso(filter).subscribe((data) => {
+      const url = window.URL.createObjectURL(data);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'DiferenciaEntreTraspasos.xlsx';
+      a.click();
+    },
+      error => {
+      console.log(error)
+    })
   }
 }

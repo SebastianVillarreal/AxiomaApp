@@ -125,6 +125,8 @@
     [hasEdit]="true"
     [hasDetails]="true"
     [hasSearch]="true"
+    [hasExport]="true"
+    (exportEmit)="exportDiferenciaDetallesTraspasos()"
     (detailsEmit)="showDetails($event)"
     (deleteEmit)="deleteTraspaso($event)"
     (editEmit)="editTraspaso($event)">
