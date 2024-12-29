@@ -30,7 +30,8 @@
       "@Models/Existencia": ["src/app/core/models/existencia"],
       "@Models/UnidadMedida": ["src/app/core/models/unidad-medida"],
       "@Models/Traspaso": ["src/app/core/models/traspaso"],
-      "@Models/DetalleTraspaso": ["src/app/core/models/detalle-traspaso"]
+      "@Models/DetalleTraspaso": ["src/app/core/models/detalle-traspaso"],
+      "@Models/TipoMovimiento": ["src/app/core/models/tipo-movimiento"]
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

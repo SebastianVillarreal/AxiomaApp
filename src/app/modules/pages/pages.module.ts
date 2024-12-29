@@ -15,9 +15,6 @@ import { TiposMovimientosComponent } from './movimientos/tipos-movimientos/tipos
     PagesRoutingModule,
     NbMenuModule,
   ],
-  declarations: [
-    TiposMovimientosComponent
-  ],
 })
 export class PagesModule {
 }

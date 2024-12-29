@@ -1,1 +1,12 @@
-<p>tipos-movimientos works!</p>
+<div>
+    <app-custom-table
+        tableHead="Módulos | Tabla"
+        keyRow="Id"
+        [headers]="['#', 'Descripción', 'Fecha registro','Fecha Actualiza', 'Usuario']"
+        [keys]="['Id','Descripcion', 'FechaRegistro','FechaActualiza','UsuarioActualiza']"
+        [data]="tiposList"
+        [hasEdit]="true"
+        [hasDelete]="true"
+        [hasSearch]="true">
+    ></app-custom-table>
+</div>

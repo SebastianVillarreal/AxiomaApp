@@ -110,6 +110,10 @@ export const detalleTraspasos = {
   export: `${environment.urlBase}DetalleTraspaso/DiferenciasTraspasosExcel`
 }
 
+export const tipoMovimientos = {
+  get: `${environment.urlBase}TipoMovimiento/Get`
+}
+
 export const catModulos = {
   insert: `${environment.urlBase}CatModulo/Insert`,
   get: `${environment.urlBase}CatModulo/Get`,
