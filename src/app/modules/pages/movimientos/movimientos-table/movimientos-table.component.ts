@@ -1,6 +1,7 @@
 import { NgFor, NgIf } from '@angular/common';
 import { Component, inject, OnInit, Optional, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CustomTableComponent } from '@Component/Table';
 import { tipoMovimientos } from '@Global/endpoints';
 import { MovimientoModel, MovimientoUpdateRequest } from '@Models/Movimiento';
@@ -23,6 +24,7 @@ export class MovimientosTableComponent implements OnInit {
   private tipoService = inject(TipoMovimientoService)
   private sweetAlertService = inject(SweetAlertService)
   private dialogService = inject(NbDialogService)
+  private router = inject(Router)
   private fb = inject(FormBuilder)
 
   constructor(@Optional() private dialogRef: NbDialogRef<any>) { }
@@ -142,5 +144,9 @@ export class MovimientosTableComponent implements OnInit {
       idAlmacen: almacen?.Id,
       tipoMovimiento: tipo?.Id,
     })
+  }
+
+  showDetails(data: MovimientoModel): void {
+    this.router.navigate(['pages/movimientos/detalles', data.Id])
   }
 }
