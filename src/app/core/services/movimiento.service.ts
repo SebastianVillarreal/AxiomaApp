@@ -34,5 +34,13 @@ export class MovimientoService {
     )
   }
 
-  
+  exportMovimientos(): Observable<Blob>{
+    const httpOptions = { headers: this.headers, responseType: 'blob' as 'json' }
+    return this.http.get<Blob>(movimientos.export, httpOptions)
+      .pipe(
+        map(res => {
+        return res
+      })
+    )
+  }
 }
