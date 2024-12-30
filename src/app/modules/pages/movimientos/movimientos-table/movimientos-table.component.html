@@ -1,1 +1,14 @@
-<p>movimientos-table works!</p>
+<div>
+    <app-custom-table
+    tableHead="Movimientos| Tabla"
+    keyRow="Id"
+    [headers]="['#', 'Almacen', 'Tipo Movimiento', 'Fecha Creación', 'Fecha Autorización','Usuario Registra', 'Usuario Autoriza', 'Fecha Actualiza', 'Usuario Actualiza', 'Mensaje']"
+    [keys]="['Id', 'NombreAlmacen', 'TipoMovimiento','FechaCreacion','FechaAutorizacion','UsuarioRegistra','UsuarioAutoriza', 'FechaActualiza', 'UsuarioActualiza','Mensaje']"
+    [data]="movimientosList"
+    [hasDelete]="true"
+    [hasEdit]="true"
+    [hasDetails]="true"
+    [hasSearch]="true"
+    [hasExport]="true">
+    ></app-custom-table>
+</div>
