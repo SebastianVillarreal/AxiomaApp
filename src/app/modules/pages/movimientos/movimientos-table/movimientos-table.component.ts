@@ -171,4 +171,17 @@ export class MovimientosTableComponent implements OnInit {
   showDetails(data: MovimientoModel): void {
     this.router.navigate(['pages/movimientos/detalles', data.Id])
   }
+
+  exportReportMovimientos(): void {
+    this.reportService.exportReportKardexMov().subscribe((data) => {
+      const url = window.URL.createObjectURL(data);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'ReportKardexMov.xlsx';
+      a.click();
+    },
+      error => {
+      console.log(error)
+    })
+  }
 }

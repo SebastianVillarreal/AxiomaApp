@@ -127,7 +127,8 @@ export const movimientos = {
 }
 
 export const reportKardexMov = {
-  get: `${environment.urlBase}ReportKardexMov/Get`
+  get: `${environment.urlBase}ReportKardexMov/Get`,
+  export: `${environment.urlBase}ReportKardexMov/ExportarReportKardexMovAExcel`
 }
 
 export const catModulos = {

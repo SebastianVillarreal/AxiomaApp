@@ -23,4 +23,14 @@ export class ReportKardexMovService {
       })
     )
   }
+
+  exportReportKardexMov(): Observable<Blob>{
+    const httpOptions = { headers: this.headers, responseType: 'blob' as 'json' }
+    return this.http.get<Blob>(reportKardexMov.export, httpOptions)
+      .pipe(
+        map(res => {
+        return res
+      })
+    )
+  }
 }
