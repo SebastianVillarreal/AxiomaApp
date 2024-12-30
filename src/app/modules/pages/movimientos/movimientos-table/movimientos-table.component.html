@@ -10,6 +10,7 @@
     [hasDetails]="true"
     [hasSearch]="true"
     [hasExport]="true"
-    (exportEmit)="exportMovimientos()">
+    (exportEmit)="exportMovimientos()"
+    (deleteEmit)="deleteMovimiento($event)">
     ></app-custom-table>
 </div>

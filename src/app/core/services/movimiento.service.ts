@@ -43,4 +43,14 @@ export class MovimientoService {
       })
     )
   }
+
+  deleteMovimiento(id: number): Observable<boolean> {
+    const httpOptions = { headers: this.headers }
+    return this.http.put<boolean>(movimientos.delete, { id }, httpOptions)
+      .pipe(
+        map(res => {
+        return res
+      })
+    )
+  }
 }

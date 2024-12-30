@@ -223,4 +223,6 @@ export class TraspasosTableComponent implements OnInit {
       console.log(error)
     })
   }
+
+
 }
