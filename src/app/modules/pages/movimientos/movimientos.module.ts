@@ -3,6 +3,7 @@ import { MovimientosRoutingModule } from "./movimientos-routing.module";
 import { NbMenuModule } from "@nebular/theme";
 import { MovimientosComponent } from './movimientos/movimientos.component';
 import { MovimientosTableComponent } from './movimientos-table/movimientos-table.component';
+import { DetalleMovimientosComponent } from './detalle-movimientos/detalle-movimientos.component';
 
 @NgModule({
     imports: [
@@ -11,7 +12,8 @@ import { MovimientosTableComponent } from './movimientos-table/movimientos-table
     ],
     declarations: [
       MovimientosComponent,
-      MovimientosTableComponent
+      MovimientosTableComponent,
+      DetalleMovimientosComponent
     ],
 })
 export class MovimientosModule{}

@@ -3,6 +3,7 @@ import { TiposMovimientosComponent } from "./tipos-movimientos/tipos-movimientos
 import { NgModule } from "@angular/core";
 import { MovimientosComponent } from "./movimientos/movimientos.component";
 import { MovimientosTableComponent } from "./movimientos-table/movimientos-table.component";
+import { DetalleMovimientosComponent } from "./detalle-movimientos/detalle-movimientos.component";
 
 export const routes: Routes = [
     {
@@ -27,6 +28,11 @@ export const routes: Routes = [
                 path: 'listado',
                 component: MovimientosTableComponent,
                 title: 'Listado Movimientos'
+            },
+            {
+                path: 'detalles/:id',
+                component: DetalleMovimientosComponent,
+                title: 'Detalles Movimiento'
             }
         ]
     }
