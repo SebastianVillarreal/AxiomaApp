@@ -32,7 +32,8 @@
       "@Models/Traspaso": ["src/app/core/models/traspaso"],
       "@Models/DetalleTraspaso": ["src/app/core/models/detalle-traspaso"],
       "@Models/TipoMovimiento": ["src/app/core/models/tipo-movimiento"],
-      "@Models/Movimiento": ["src/app/core/models/movimiento"]
+      "@Models/Movimiento": ["src/app/core/models/movimiento"],
+      "@Models/ReporteKardexMov": ["src/app/core/models/reportKardexMov"]
 
     },
     "outDir": "./dist/out-tsc",

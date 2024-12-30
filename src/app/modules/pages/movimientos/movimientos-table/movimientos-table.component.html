@@ -60,22 +60,61 @@
     </nb-card>
 </ng-template>
 
-
-<div>
-    <app-custom-table
-    tableHead="Movimientos| Tabla"
-    keyRow="Id"
-    [headers]="['#', 'Almacen', 'Tipo Movimiento', 'Fecha Creación', 'Fecha Autorización','Usuario Registra', 'Usuario Autoriza', 'Fecha Actualiza', 'Usuario Actualiza', 'Mensaje']"
-    [keys]="['Id', 'NombreAlmacen', 'TipoMovimiento','FechaCreacion','FechaAutorizacion','UsuarioRegistra','UsuarioAutoriza', 'FechaActualiza', 'UsuarioActualiza','Mensaje']"
-    [data]="movimientosList"
-    [hasDelete]="true"
-    [hasEdit]="true"
-    [hasDetails]="true"
-    [hasSearch]="true"
-    [hasExport]="true"
-    (exportEmit)="exportMovimientos()"
-    (deleteEmit)="deleteMovimiento($event)"
-    (editEmit)="editMovimiento($event)"
-    (detailsEmit)="showDetails($event)">
-    ></app-custom-table>
-</div>
+<nb-tabset>
+    <nb-tab tabTitle="Tabla">
+        <div>
+            <app-custom-table
+            tableHead="Movimientos| Tabla"
+            keyRow="Id"
+            [headers]="['#', 'Almacen', 'Tipo Movimiento', 'Fecha Creación', 'Fecha Autorización','Usuario Registra', 'Usuario Autoriza', 'Fecha Actualiza', 'Usuario Actualiza', 'Mensaje']"
+            [keys]="['Id', 'NombreAlmacen', 'TipoMovimiento','FechaCreacion','FechaAutorizacion','UsuarioRegistra','UsuarioAutoriza', 'FechaActualiza', 'UsuarioActualiza','Mensaje']"
+            [data]="movimientosList"
+            [hasDelete]="true"
+            [hasEdit]="true"
+            [hasDetails]="true"
+            [hasSearch]="true"
+            [hasExport]="true"
+            (exportEmit)="exportMovimientos()"
+            (deleteEmit)="deleteMovimiento($event)"
+            (editEmit)="editMovimiento($event)"
+            (detailsEmit)="showDetails($event)">
+            ></app-custom-table>
+        </div>
+    </nb-tab>
+    <nb-tab tabTitle="Reporte Kardex">
+        <div class="mb-5">
+            <form [formGroup]="filter" (ngSubmit)="getReportMovimientos()" novalidate>
+                <h6>
+                    Filtrar
+                </h6>
+                <div class="form-grid">
+                    <div>
+                        <label class="label">Fecha Inicio</label>
+                        <input formControlName="fechaInicio" nbInput [nbDatepicker]="fechaInicio" fullWidth>
+                        <nb-datepicker #fechaInicio></nb-datepicker>
+                    </div>
+                    <div>
+                        <label class="label">Fecha Fin</label>
+                        <input formControlName="fechaFinal" nbInput [nbDatepicker]="fechaFin" fullWidth>
+                        <nb-datepicker #fechaFin></nb-datepicker>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <button nbButton status="primary" [disabled]="!filter.valid" type="submit">Filtrar</button>
+                </div>
+            </form>
+        </div>
+        <div>
+            <app-custom-table
+            tableHead="Reporte Kardex Movimientos | Tabla"
+            keyRow="Id"
+            [headers]="['#', 'Movimiento Ligado', 'Tipo Movimiento', 'Sucursal', 'Insumo','Cantidad','Estatus','Fecha Registro', 'Fecha Actualiza', 'Usuario Actualiza', 'Fecha Inicio', 'Fecha Final']"
+            [keys]="['Id', 'Movimiento_Ligado', 'TipoMovimiento','Sucursal','Insumo','Cantidad', 'Estatus','FechaRegistro', 'FechaActualiza', 'UsuarioActualiza','FechaInicio', 'FechaFinal']"
+            [data]="reportMovimientosList"
+            [hasSearch]="true"
+            [hasExport]="true"
+            (exportEmit)="exportMovimientos()">
+            ></app-custom-table>
+        </div>
+    </nb-tab>
+</nb-tabset>

@@ -1,29 +1,32 @@
-import { NgFor, NgIf } from '@angular/common';
+import { DatePipe, NgFor, NgIf } from '@angular/common';
 import { Component, inject, OnInit, Optional, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CustomTableComponent } from '@Component/Table';
 import { tipoMovimientos } from '@Global/endpoints';
 import { MovimientoModel, MovimientoUpdateRequest } from '@Models/Movimiento';
+import { ReportGetRequest, ReportKardexMovModel } from '@Models/ReporteKardexMov';
 import { SucursalModel } from '@Models/Sucursal';
 import { TipoMovimientoModel } from '@Models/TipoMovimiento';
-import { NbButtonModule, NbCardModule, NbDialogModule, NbDialogRef, NbDialogService, NbRadioModule, NbSelectModule } from '@nebular/theme';
+import { NbButtonModule, NbCardModule, NbDatepickerModule, NbDialogModule, NbDialogRef, NbDialogService, NbInputModule, NbRadioModule, NbSelectModule, NbTabsetModule } from '@nebular/theme';
 import { SweetAlertService } from '@Service/SweetAlert';
-import { MovimientoService, SucursalService, TipoMovimientoService } from '@Services';
+import { MovimientoService, ReportKardexMovService, SucursalService, TipoMovimientoService } from '@Services';
 
 @Component({
   selector: 'app-movimientos-table',
   standalone: true,
-  imports: [CustomTableComponent, ReactiveFormsModule, NgIf, NgFor, NbSelectModule, NbCardModule, NbButtonModule, NbDialogModule, NbRadioModule],
+  imports: [CustomTableComponent, ReactiveFormsModule, NgIf, NgFor, NbSelectModule, NbCardModule, NbButtonModule, NbDialogModule, NbInputModule,NbRadioModule, NbTabsetModule, NbDatepickerModule],
   templateUrl: './movimientos-table.component.html',
   styleUrls: ['./movimientos-table.component.scss']
 })
 export class MovimientosTableComponent implements OnInit {
   private movimientoService = inject(MovimientoService)
+  private reportService = inject(ReportKardexMovService)
   private sucursalService = inject(SucursalService)
   private tipoService = inject(TipoMovimientoService)
   private sweetAlertService = inject(SweetAlertService)
   private dialogService = inject(NbDialogService)
+  private datePipe = inject(DatePipe)
   private router = inject(Router)
   private fb = inject(FormBuilder)
 
@@ -31,6 +34,7 @@ export class MovimientosTableComponent implements OnInit {
   @ViewChild('dialog') dialog!: TemplateRef<any>
 
   movimientosList: MovimientoModel[] = []
+  reportMovimientosList: ReportKardexMovModel[] = []
   sucursalesList: SucursalModel[] = []
   tipoMovimientosList: TipoMovimientoModel[] = []
 
@@ -41,10 +45,16 @@ export class MovimientosTableComponent implements OnInit {
     estatus: [1]
   })
 
+  filter = this.fb.nonNullable.group({
+    fechaInicio: ['', [Validators.required]],
+    fechaFinal: ['', [Validators.required]]
+  })
+
   ngOnInit(): void {
     this.getMovimientos()
     this.getSucursales()
     this.getTipos()
+    this.getReportMovimientos()
   }
 
   getMovimientos(): void {
@@ -62,6 +72,18 @@ export class MovimientosTableComponent implements OnInit {
   getTipos(): void {
     this.tipoService.getTiposMovimiento().subscribe((data) => {
       this.tipoMovimientosList = data
+    })
+  }
+
+  getReportMovimientos(): void {
+    const { fechaInicio, fechaFinal } = this.filter.getRawValue()
+    const filterRequest: ReportGetRequest = {
+      FechaInicio: this.datePipe.transform(fechaInicio,'MM/dd/yyyy')??'',
+      FechaFinal: this.datePipe.transform(fechaFinal, 'MM/dd/yyyy')??'',
+    }
+    this.reportService.getReportKardexMov(filterRequest).subscribe((data) => {
+      this.reportMovimientosList = data
+      console.log(data)
     })
   }
 

@@ -126,6 +126,10 @@ export const movimientos = {
   updateFechaAutoriza: `${environment.urlBase}Movimientos/UpdateFechaAutoriza`
 }
 
+export const reportKardexMov = {
+  get: `${environment.urlBase}ReportKardexMov/Get`
+}
+
 export const catModulos = {
   insert: `${environment.urlBase}CatModulo/Insert`,
   get: `${environment.urlBase}CatModulo/Get`,
