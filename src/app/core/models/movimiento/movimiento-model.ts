@@ -9,6 +9,11 @@ export interface MovimientoInsertRequest {
     usuarioActualiza: number;
 }
 
+export interface MovimientoUpdateRequest extends MovimientoInsertRequest {
+    id: number;
+    estatus: number;
+}
+
 export type GetMovimientoResponse = ApiResponse<MovimientoResponseData>
 
 export interface MovimientoResponseData {

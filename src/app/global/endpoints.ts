@@ -121,7 +121,8 @@ export const movimientos = {
   insert: `${environment.urlBase}Movimientos/Insert`,
   get: `${environment.urlBase}Movimientos/Get`,
   export: `${environment.urlBase}Movimientos/ExportarMovimientosAExcel`,
-  delete: `${environment.urlBase}Movimientos/Delete`
+  delete: `${environment.urlBase}Movimientos/Delete`,
+  update: `${environment.urlBase}Movimientos/Update`
 }
 
 export const catModulos = {

@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { movimientos } from '@Global/endpoints';
-import { GetMovimientoResponse, MovimientoInsertRequest } from '@Models/Movimiento';
+import { GetMovimientoResponse, MovimientoInsertRequest, MovimientoUpdateRequest } from '@Models/Movimiento';
 import { ReturnDataResponse } from '@Models/Response';
 import { map, Observable } from 'rxjs';
 
@@ -47,6 +47,16 @@ export class MovimientoService {
   deleteMovimiento(id: number): Observable<boolean> {
     const httpOptions = { headers: this.headers }
     return this.http.put<boolean>(movimientos.delete, { id }, httpOptions)
+      .pipe(
+        map(res => {
+        return res
+      })
+    )
+  }
+
+  updateMovimiento(movimiento: MovimientoUpdateRequest): Observable<boolean> {
+    const httpOptions = { headers: this.headers }
+    return this.http.put<boolean>(movimientos.update, movimiento, httpOptions)
       .pipe(
         map(res => {
         return res
