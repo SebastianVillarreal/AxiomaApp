@@ -10,10 +10,5 @@ import { DetalleMovimientosComponent } from './detalle-movimientos/detalle-movim
         MovimientosRoutingModule,
         NbMenuModule
     ],
-    declarations: [
-      MovimientosComponent,
-      MovimientosTableComponent,
-      DetalleMovimientosComponent
-    ],
 })
 export class MovimientosModule{}

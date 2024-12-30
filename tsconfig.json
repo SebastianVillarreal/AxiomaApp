@@ -31,7 +31,9 @@
       "@Models/UnidadMedida": ["src/app/core/models/unidad-medida"],
       "@Models/Traspaso": ["src/app/core/models/traspaso"],
       "@Models/DetalleTraspaso": ["src/app/core/models/detalle-traspaso"],
-      "@Models/TipoMovimiento": ["src/app/core/models/tipo-movimiento"]
+      "@Models/TipoMovimiento": ["src/app/core/models/tipo-movimiento"],
+      "@Models/Movimiento": ["src/app/core/models/movimiento"]
+
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
