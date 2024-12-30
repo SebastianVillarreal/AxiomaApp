@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { tipoMovimientos } from '@Global/endpoints';
-import { GetTipoMovimientoResponse, TipoMovimientoInsertRequest } from '@Models/TipoMovimiento';
+import { GetTipoMovimientoResponse, TipoMovimientoInsertRequest, TipoMovimientoUpdateRequest } from '@Models/TipoMovimiento';
 import { map, Observable } from 'rxjs';
 
 @Injectable({
@@ -26,6 +26,16 @@ export class TipoMovimientoService {
   insertTipoMovimiento(tipo: TipoMovimientoInsertRequest): Observable<boolean>{
     const httpOptions = { headers: this.headers }
     return this.http.post<boolean>(tipoMovimientos.insert, tipo, httpOptions)
+      .pipe(
+        map(res => {
+        return res
+      })
+    )
+  }
+
+  updateTipoMovimiento(tipo: TipoMovimientoUpdateRequest): Observable<boolean>{
+    const httpOptions = { headers: this.headers }
+    return this.http.put<boolean>(tipoMovimientos.update, tipo, httpOptions)
       .pipe(
         map(res => {
         return res

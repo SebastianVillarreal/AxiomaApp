@@ -7,13 +7,19 @@
                 </h5>
             </nb-card-header>
             <nb-card-body class="form-grid">
- 
                 <div>
                     <label class="label">*Descripción</label>
                     <input formControlName="descripcion" type="text" nbInput fullWidth>
                     <div *ngIf="form.get('descripcion')?.touched && form.get('descripcion')?.invalid">
                         <p class="text-danger text-sm italic" *ngIf="form.get('descripcion')?.errors?.['required']">Descripción de tipo requerida*</p>
                     </div>
+                </div>
+                <div *ngIf="form.get('id')?.value !== 0">
+                    <label class="label">Estatus</label>
+                    <nb-radio-group formControlName="estatus">
+                        <nb-radio [value]="1" checked>Activo</nb-radio>
+                        <nb-radio [value]="0">Inactivo</nb-radio>
+                    </nb-radio-group>
                 </div>
             </nb-card-body>
             <nb-card-footer>
@@ -32,6 +38,7 @@
         [data]="tiposList"
         [hasEdit]="true"
         [hasDelete]="true"
-        [hasSearch]="true">
+        [hasSearch]="true"
+        (editEmit)="editTipo($event)">
     ></app-custom-table>
 </div>

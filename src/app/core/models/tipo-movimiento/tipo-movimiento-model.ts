@@ -3,6 +3,11 @@ export interface TipoMovimientoInsertRequest {
     usuarioActualiza: number;
 }
 
+export interface TipoMovimientoUpdateRequest extends TipoMovimientoInsertRequest{
+    id: number;
+    estatus: number
+}
+
 export type GetTipoMovimientoResponse = TipoMovimientoModel[]
 
 export interface TipoMovimientoModel {
@@ -12,3 +17,4 @@ export interface TipoMovimientoModel {
     FechaActualiza: string;
     UsuarioActualiza: string;
 }
+

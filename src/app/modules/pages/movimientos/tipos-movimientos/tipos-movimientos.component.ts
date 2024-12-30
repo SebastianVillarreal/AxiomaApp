@@ -2,14 +2,14 @@ import { NgIf } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CustomTableComponent } from '@Component/Table';
-import { TipoMovimientoInsertRequest, TipoMovimientoModel } from '@Models/TipoMovimiento';
-import { NbButton, NbButtonModule, NbCardModule, NbInputModule } from '@nebular/theme';
+import { TipoMovimientoInsertRequest, TipoMovimientoModel, TipoMovimientoUpdateRequest } from '@Models/TipoMovimiento';
+import { NbButton, NbButtonModule, NbCardModule, NbInputModule, NbRadioModule } from '@nebular/theme';
 import { TipoMovimientoService } from '@Services';
 
 @Component({
   selector: 'app-tipos-movimientos',
   standalone: true,
-  imports: [CustomTableComponent, ReactiveFormsModule, NgIf,NbInputModule, NbCardModule, NbButtonModule],
+  imports: [CustomTableComponent, ReactiveFormsModule, NgIf,NbInputModule, NbCardModule, NbButtonModule, NbRadioModule],
   templateUrl: './tipos-movimientos.component.html',
   styleUrls: ['./tipos-movimientos.component.scss']
 })
@@ -20,7 +20,9 @@ export class TiposMovimientosComponent implements OnInit{
   tiposList: TipoMovimientoModel[] = []
 
   form = this.fb.nonNullable.group({
-    descripcion: ["", [Validators.required]]
+    id: [0],
+    descripcion: ["", [Validators.required]],
+    estatus: [1]
   })
 
   ngOnInit(): void {
@@ -35,7 +37,7 @@ export class TiposMovimientosComponent implements OnInit{
 
   onSubmit(): void {
     if (this.form.valid) {
-      const { descripcion } = this.form.getRawValue()
+      const { id, descripcion, estatus } = this.form.getRawValue()
       const usuarioActualiza = parseInt(localStorage.getItem('idUsuario') ?? '0')
       
       const insertRequest: TipoMovimientoInsertRequest = {
@@ -43,7 +45,14 @@ export class TiposMovimientosComponent implements OnInit{
         usuarioActualiza: usuarioActualiza
       }
 
-      const serviceCall = this.tiposService.insertTipoMovimiento(insertRequest)
+      const updateRequest: TipoMovimientoUpdateRequest = {
+        id: id,
+        descripcion: descripcion,
+        usuarioActualiza: usuarioActualiza,
+        estatus: estatus
+      }
+
+      const serviceCall = id == 0 ? this.tiposService.insertTipoMovimiento(insertRequest) : this.tiposService.updateTipoMovimiento(updateRequest)
       serviceCall.subscribe({
         next: (res: any) => {
           console.log(res)
@@ -60,6 +69,13 @@ export class TiposMovimientosComponent implements OnInit{
   resetForm() {
     this.form.reset({
       descripcion: ""
+    })
+  }
+
+  editTipo(data: TipoMovimientoModel) {
+    this.form.patchValue({
+      id: data.Id,
+      descripcion: data.Descripcion
     })
   }
 }
