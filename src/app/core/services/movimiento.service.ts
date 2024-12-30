@@ -63,4 +63,14 @@ export class MovimientoService {
       })
     )
   }
+
+  updateFechaAutoriza(id: number): Observable<boolean>{
+    const httpOptions = { headers: this.headers }
+    return this.http.put<boolean>(movimientos.updateFechaAutoriza, { id }, httpOptions)
+      .pipe(
+        map(res => {
+        return res
+      })
+    )
+  }
 }

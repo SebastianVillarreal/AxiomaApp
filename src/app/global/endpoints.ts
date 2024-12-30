@@ -122,7 +122,8 @@ export const movimientos = {
   get: `${environment.urlBase}Movimientos/Get`,
   export: `${environment.urlBase}Movimientos/ExportarMovimientosAExcel`,
   delete: `${environment.urlBase}Movimientos/Delete`,
-  update: `${environment.urlBase}Movimientos/Update`
+  update: `${environment.urlBase}Movimientos/Update`,
+  updateFechaAutoriza: `${environment.urlBase}Movimientos/UpdateFechaAutoriza`
 }
 
 export const catModulos = {

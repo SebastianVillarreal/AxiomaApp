@@ -4,7 +4,7 @@
             Movimiento #{{data.Id}}
         </nb-card-header>
         <nb-card-body class="form-grid">
-            <form [formGroup]="form"  (ngSubmit)="onSubmit()" novalidate>
+            <form [formGroup]="form" novalidate>
                 <div>
                     <label class="label">*Almacen:</label>
                     <nb-select formControlName="idAlmacen" fullWidth>
@@ -47,7 +47,10 @@
                     </nb-radio-group>
                 </div>
                 <div class="mt-5">
-                    <button nbButton status="primary" type="submit" [disabled]="!form.valid">Guardar</button>
+                    <button nbButton status="primary" type="submit" [disabled]="!form.valid" (click)="onSubmit('guardar')">Guardar</button>
+                </div>
+                <div class="mt-5">
+                    <button nbButton status="success" type="submit" (click)="onSubmit('actualizarFecha')">Actualizar Fecha Autoriza</button>
                 </div>
             </form>
         </nb-card-body>

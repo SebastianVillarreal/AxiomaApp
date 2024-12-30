@@ -224,5 +224,5 @@ export class TraspasosTableComponent implements OnInit {
     })
   }
 
-
+  
 }

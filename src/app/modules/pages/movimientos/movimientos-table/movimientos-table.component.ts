@@ -63,7 +63,7 @@ export class MovimientosTableComponent implements OnInit {
     })
   }
 
-  onSubmit(): void {
+  onSubmit(action: string): void {
     if (this.form.valid) {
       const { id, idAlmacen, tipoMovimiento, estatus } = this.form.getRawValue()
       const usuarioActualiza = parseInt(localStorage.getItem('idUsuario') ?? '0')
@@ -78,7 +78,7 @@ export class MovimientosTableComponent implements OnInit {
         usuarioRegistra: usuarioActualiza
       }
       
-      const serviceCall = this.movimientoService.updateMovimiento(updateRequest)
+      const serviceCall = action == 'guardar' ? this.movimientoService.updateMovimiento(updateRequest) : this.movimientoService.updateFechaAutoriza(id)
       serviceCall.subscribe({
         next: (res: any) => {
           this.getMovimientos()
