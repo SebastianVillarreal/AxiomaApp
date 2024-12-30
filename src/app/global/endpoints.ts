@@ -114,6 +114,7 @@ export const tipoMovimientos = {
   get: `${environment.urlBase}TipoMovimiento/Get`,
   insert: `${environment.urlBase}TipoMovimiento/Insert`,
   update: `${environment.urlBase}TipoMovimiento/Update`,
+  delete: `${environment.urlBase}TipoMovimiento/Delete`
 }
 
 export const catModulos = {
