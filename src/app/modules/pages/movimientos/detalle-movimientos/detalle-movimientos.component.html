@@ -24,6 +24,13 @@
                         <p class="text-danger text-sm italic" *ngIf="form.get('cantidad')?.errors?.['required']">Cantidad Enviada requerida*</p>
                     </div>
                 </div>
+                <div *ngIf="form.get('id')?.value !== 0">
+                    <label class="label">Estatus</label>
+                    <nb-radio-group formControlName="estatus">
+                        <nb-radio [value]="1" checked>Activo</nb-radio>
+                        <nb-radio [value]="0">Inactivo</nb-radio>
+                    </nb-radio-group>
+                </div>
             </nb-card-body>
             <nb-card-footer>
                 <button nbButton status="primary" [disabled]="!form.valid" type="submit">Guardar</button>
@@ -40,5 +47,6 @@
     [keys]="['Id', 'IdMovimiento', 'Insumo', 'Cantidad', 'FechaRegistro', 'FechaActualiza', 'UsuarioActualiza', 'Mensaje']"
     [data]="detallesList"
     [hasDelete]="true"
-    [hasEdit]="true"></app-custom-table>
+    [hasEdit]="true"
+    (editEmit)="editDetalle($event)"></app-custom-table>
 </div>

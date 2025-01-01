@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { detalleMovimientos } from '@Global/endpoints';
-import { DetalleMovimientoInsertRequest, GetDetalleMovimientoResponse } from '@Models/DetalleMovimiento';
+import { DetalleMovimientoInsertRequest, DetalleMovimientoUpdateRequest, GetDetalleMovimientoResponse } from '@Models/DetalleMovimiento';
 import { map, Observable } from 'rxjs';
 
 @Injectable({
@@ -32,5 +32,15 @@ export class DetalleMovimientoService {
         return res
       })
     )
+  }
+
+  updateDetalleMovimiento(detalle: DetalleMovimientoUpdateRequest): Observable<boolean> {
+    const httpOptions = { headers: this.headers }
+    return this.http.put<boolean>(detalleMovimientos.update, detalle, httpOptions)
+      .pipe(
+        map(res => {
+        return res
+      }
+    ))
   }
 }

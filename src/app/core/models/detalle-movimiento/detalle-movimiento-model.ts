@@ -7,6 +7,14 @@ export interface DetalleMovimientoInsertRequest {
     usuarioActualiza: number;
 }
 
+export interface DetalleMovimientoUpdateRequest {
+    id: number;
+    insumo: string;
+    cantidad: number;
+    usuarioActualiza: number;
+    estatus: number;
+}
+
 export type GetDetalleMovimientoResponse = ApiResponse<DetalleMovimientoResponseData>
 
 export interface DetalleMovimientoResponseData {
