@@ -48,5 +48,7 @@
     [data]="detallesList"
     [hasDelete]="true"
     [hasEdit]="true"
-    (editEmit)="editDetalle($event)"></app-custom-table>
+    [hasSearch]="true"
+    (editEmit)="editDetalle($event)"
+    (deleteEmit)="deleteDetalle($event)"></app-custom-table>
 </div>

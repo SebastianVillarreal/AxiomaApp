@@ -6,6 +6,7 @@ import { CustomTableComponent } from '@Component/Table';
 import { DetalleMovimientoInsertRequest, DetalleMovimientoModel, DetalleMovimientoUpdateRequest } from '@Models/DetalleMovimiento';
 import { InsumoModel } from '@Models/Insumo';
 import { NbButtonModule, NbCardModule, NbInputModule, NbRadioModule, NbSelectModule } from '@nebular/theme';
+import { SweetAlertService } from '@Service/SweetAlert';
 import { DetalleMovimientoService, InsumoService } from '@Services';
 
 @Component({
@@ -18,6 +19,7 @@ import { DetalleMovimientoService, InsumoService } from '@Services';
 export class DetalleMovimientosComponent implements OnInit{
   private detalleMovimientoService = inject(DetalleMovimientoService)
   private insumoService = inject(InsumoService)
+  private sweetAlertService = inject(SweetAlertService)
   private route = inject(ActivatedRoute)
   private fb = inject(FormBuilder)
 
@@ -79,7 +81,7 @@ export class DetalleMovimientosComponent implements OnInit{
           this.resetForm()
         },
         error: (err: any) => {
-          console.log(err)
+          console.error(err)
         }
       })
     }
@@ -99,6 +101,26 @@ export class DetalleMovimientosComponent implements OnInit{
       id: data.Id,
       insumo: data.Insumo,
       cantidad: data.Cantidad,
+    })
+  }
+
+  deleteDetalle(Id: number): void {
+    this.sweetAlertService.confirm({
+      title: 'Eliminar Detalle Movimiento',
+      text: '¿Estás seguro que deseas eliminar este Detalle Movimiento?',
+      confirmButtonText: 'Eliminar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.detalleMovimientoService.deleteDetalleMovimiento(Id).subscribe({
+          next: (res: any) => {
+            this.getDetalles()
+            this.resetForm()
+          },
+          error: (err: any) => {
+            console.error(err)
+          }
+        })
+      }
     })
   }
 }

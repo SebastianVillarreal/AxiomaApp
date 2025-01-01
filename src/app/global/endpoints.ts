@@ -129,7 +129,8 @@ export const movimientos = {
 export const detalleMovimientos = {
   get: `${environment.urlBase}DetalleMovimientos/Get`,
   insert: `${environment.urlBase}DetalleMovimientos/Insert`,
-  update: `${environment.urlBase}DetalleMovimientos/Update`
+  update: `${environment.urlBase}DetalleMovimientos/Update`,
+  delete: `${environment.urlBase}DetalleMovimientos/Delete`
 }
 
 export const reportKardexMov = {
