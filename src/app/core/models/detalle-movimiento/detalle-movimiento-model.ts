@@ -1,5 +1,12 @@
 import { ApiResponse } from "@Models/Response";
 
+export interface DetalleMovimientoInsertRequest {
+    idMovimiento: number;
+    insumo: string;
+    cantidad: number;
+    usuarioActualiza: number;
+}
+
 export type GetDetalleMovimientoResponse = ApiResponse<DetalleMovimientoResponseData>
 
 export interface DetalleMovimientoResponseData {
