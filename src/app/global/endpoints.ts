@@ -126,6 +126,10 @@ export const movimientos = {
   updateFechaAutoriza: `${environment.urlBase}Movimientos/UpdateFechaAutoriza`
 }
 
+export const detalleMovimientos = {
+  get: `${environment.urlBase}DetalleMovimientos/Get`
+}
+
 export const reportKardexMov = {
   get: `${environment.urlBase}ReportKardexMov/Get`,
   export: `${environment.urlBase}ReportKardexMov/ExportarReportKardexMovAExcel`

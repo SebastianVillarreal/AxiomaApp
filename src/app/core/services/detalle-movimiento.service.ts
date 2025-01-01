@@ -1,0 +1,26 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { detalleMovimientos } from '@Global/endpoints';
+import { GetDetalleMovimientoResponse } from '@Models/DetalleMovimiento';
+import { map, Observable } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class DetalleMovimientoService {
+  private headers: HttpHeaders
+  constructor(private http: HttpClient) {
+    this.headers = new HttpHeaders({})
+  }
+  
+  getDetallesMovimiento(idMovimiento: number): Observable<GetDetalleMovimientoResponse> {
+    const httpOptions = { headers: this.headers }
+    const url = `${detalleMovimientos.get}?idMovimiento=${idMovimiento}`
+    return this.http.get<GetDetalleMovimientoResponse>(url, httpOptions)
+      .pipe(
+        map(res => {
+        return res
+      })
+    )
+  }
+}

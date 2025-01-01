@@ -1,1 +1,10 @@
-<p>detalle-movimientos works!</p>
+<div>
+    <app-custom-table
+    tableHead="Detalles Movimiento #{{idMovimiento}} | Tabla"
+    keyRow="Id"
+    [headers]="['#', 'Movimiento' ,'Insumo', 'Cantidad', 'Fecha Registro', 'Fecha Actualiza', ' Usuario', 'Mensaje']"
+    [keys]="['Id', 'IdMovimiento', 'Insumo', 'Cantidad', 'FechaRegistro', 'FechaActualiza', 'UsuarioActualiza', 'Mensaje']"
+    [data]="detallesList"
+    [hasDelete]="true"
+    [hasEdit]="true"></app-custom-table>
+</div>
